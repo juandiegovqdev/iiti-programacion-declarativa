@@ -1,1 +1,1 @@
-# haskell-ejercicios
+# Ejercicios para realizar usando Haskell.
