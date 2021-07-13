@@ -87,13 +87,13 @@ j3:: Char
 j3 = 'c'
 
 j4:: Double
-j4 = undefined
+j4 = 0.2
 
 j5:: (Integer,String,Integer,Char)
-j5 = undefined
+j5 = (1, "Hola", 2, 'd')
 
 j6:: ([Char],(Bool,String))
-j6 = undefined
+j6 = (['a', 'b', 'c'], (True, "Hellooo"))
 
 j7:: [[Bool]]
 j7 = undefined
