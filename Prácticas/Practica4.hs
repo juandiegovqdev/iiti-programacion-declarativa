@@ -1,7 +1,5 @@
 -- PD-Practica 4
 -- Definiciones por comprensión y recursión con cadenas: El cifrado César.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
