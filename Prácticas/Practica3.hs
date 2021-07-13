@@ -1,7 +1,5 @@
 -- PD-Práctica 3 
 -- Definiciones por comprensión
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
