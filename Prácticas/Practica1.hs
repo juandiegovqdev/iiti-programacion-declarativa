@@ -148,13 +148,6 @@ propEuros :: Float -> Bool
 propEuros x = x == aEuros (aDolares x) 
 
 {--
-Indicación:
-Para cada una de las constantes y funciones que se definan a
-continuación usar :t para averiguar el tipo que infiere haskell y
-añadirlo a la definición (rectificándolo cuando sea conveniente).
---}
-
-{--
 Problema 2:
 
   Conocemos que 0ºC se corresponden con 32ªF y que un incremento de
@@ -167,6 +160,11 @@ Problema 2:
     34ºC, ¿cuál sería el rango expresado en ºF?
 --}
 
+centigradosAFarenheit :: Integer -> Integer
+centigradosAFarenheit = undefined
+
+farenheitACentigrados :: Integer -> Integer
+farenheitACentigrados = undefined
 
 {--
 Problema 3:
