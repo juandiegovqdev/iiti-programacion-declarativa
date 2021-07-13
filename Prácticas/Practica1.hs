@@ -33,24 +33,44 @@ import Test.QuickCheck
 -- :t zip
 -- :t take
 
+-- Solución ------------------------------------------------------------
+------------------------------------------------------------------------
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Sin evaluar las expresiones en GHC, decide qué tipo es  
 -- el adecuado para cada una de ellas. Intenta dar el tipo más general.
 -- ---------------------------------------------------------------------
 
--- i1:: Integer  -- El primero va de regalo
--- i1 = 45
+i1:: Integer  -- El primero va de regalo
+i1 = 45
 
--- i2 = "123"
--- i3 = 45 <= i1
--- i4 = 'c'
--- i5 = ["abc","ok"]
--- i6 = head i5
--- i7 = tail "abc"
--- i8 = (True,4.5)
--- i9 = [i1,34]
--- i10 = sum
--- i11 x = length [1..x]
+-- Solución ------------------------------------------------------------
+i2 :: String
+i2 = "123"
+
+i3 :: Bool
+i3 = 45 <= i1
+
+i4 :: Char
+i4 = 'c'
+
+i5 :: [String]
+i5 = ["abc","ok"]
+
+i6 :: String
+i6 = head i5
+
+i7 :: [Char]
+i7 = tail "abc"
+
+i8 :: (Bool, Float)
+i8 = (True,4.5)
+
+i9 :: [Integer]
+i9 = [i1,34]
+
+i11 :: Int -> Int
+i11 x = length [1..x]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Para cada una de las siguientes expresiones, reemplaza
@@ -58,13 +78,13 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 j1:: (String,Integer)
-j1 = undefined
+j1 = ("Holaaaa", 1)
 
 j2:: [Integer]
-j2 = undefined
+j2 = [1, 2, 3, 4, 5, 6, 7, 8]
 
 j3:: Char
-j3 = undefined
+j3 = 'c'
 
 j4:: Double
 j4 = undefined
