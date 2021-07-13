@@ -135,6 +135,15 @@ Problema 1:
     anteriores y añadírselos a cada una.
 --}
 
+tipoCambio :: Float -- Euro a dólares
+tipoCambio = 1.17507 
+
+aEuros :: Float -> Float
+aEuros x = x/tipoCambio
+
+aDolares :: Float -> Float
+aDolares x = x * tipoCambio
+
 {--
 Indicación:
 Para cada una de las constantes y funciones que se definan a
