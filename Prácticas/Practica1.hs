@@ -1,7 +1,5 @@
 -- PD-Practica 1
 -- Definiciones de funciones, tipos y clases.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- A continuación se importa el módulo QuickCheck. Necesita ser instalado
