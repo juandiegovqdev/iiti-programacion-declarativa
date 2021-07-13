@@ -33,9 +33,6 @@ import Test.QuickCheck
 -- :t zip
 -- :t take
 
--- Solución ------------------------------------------------------------
-------------------------------------------------------------------------
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Sin evaluar las expresiones en GHC, decide qué tipo es  
 -- el adecuado para cada una de ellas. Intenta dar el tipo más general.
@@ -44,7 +41,6 @@ import Test.QuickCheck
 i1:: Integer  -- El primero va de regalo
 i1 = 45
 
--- Solución ------------------------------------------------------------
 i2 :: String
 i2 = "123"
 
@@ -96,20 +92,19 @@ j6:: ([Char],(Bool,String))
 j6 = (['a', 'b', 'c'], (True, "Hellooo"))
 
 j7:: [[Bool]]
-j7 = undefined
+j7 = [[True, False], [True, False], [True, False]]
 
 j8:: [(String,Bool)]
-j8 = undefined
+j8 = [("Holaa", True), ("Holaa", True), ("Holaa", True), ("Holaa", True)]
 
 j9:: Integer -> Integer
-j9 = undefined
+j9 x = x
 
 j10:: Float -> [Bool] -> Bool
-j10 = undefined
+j10 i (x:xs) = x
 
-j11:: [Char] -> [[Int]]
-j11 = undefined
-
+j11 :: [Char] -> [[Int]]
+j11 _ = [[1, 2, 3, 4, 5]]
 
 {--
 Problema 1:
