@@ -1,7 +1,5 @@
 -- PD-Practica 2
 -- Definiciones con condicionales, guardas o patrones.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
