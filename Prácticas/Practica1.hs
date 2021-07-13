@@ -144,6 +144,9 @@ aEuros x = x/tipoCambio
 aDolares :: Float -> Float
 aDolares x = x * tipoCambio
 
+propEuros :: Float -> Bool
+propEuros x = x == aEuros (aDolares x) 
+
 {--
 Indicación:
 Para cada una de las constantes y funciones que se definan a
