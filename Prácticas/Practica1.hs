@@ -247,5 +247,14 @@ Problema 4:
     llegar  a 1.
 --}
 
+juegoNumeroImpar :: Integer -> Integer 
+juegoNumeroImpar x = x * 3 + 1
+
+juegoPar :: Integer -> Integer 
+juegoPar x = div x 2
+
 juego :: Integer -> Integer
-juego =  undefined
+juego x 
+  | x == 1 = 0
+  | odd x = 1 + juego (juegoNumeroImpar x)
+  | otherwise = 1 + juego (juegoPar x)
