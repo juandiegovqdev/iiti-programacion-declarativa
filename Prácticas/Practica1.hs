@@ -247,3 +247,5 @@ Problema 4:
     llegar  a 1.
 --}
 
+juego :: Integer -> Integer
+juego =  undefined
