@@ -196,8 +196,16 @@ Problema 3:
     el precio del ejemplo.
 --}
 
+
+-- 2kg == 2,7 euros
+
 calculoSinPromocion :: Float -> Float
-calculoSinPromocion = undefined
+calculoSinPromocion x = x * 2.7
+
+calculoConPromocion :: Float -> Float
+calculoConPromocion x 
+  | x > 5 = 5 * 2.7 + (x-5) * 2.2
+  | otherwise = x * 2.7
 
 {--
 Problema 4:
