@@ -160,11 +160,17 @@ Problema 2:
     34ºC, ¿cuál sería el rango expresado en ºF?
 --}
 
+relacionCentigradosAFarenheit :: Integer -> Integer
+relacionCentigradosAFarenheit x = x * (div 9 5)
+
+relacionFarenheitACentigrados :: Integer -> Integer
+relacionFarenheitACentigrados x = x * (div 5 9)
+
 centigradosAFarenheit :: Integer -> Integer
-centigradosAFarenheit = undefined
+centigradosAFarenheit x = 32 + relacionCentigradosAFarenheit x
 
 farenheitACentigrados :: Integer -> Integer
-farenheitACentigrados = undefined
+farenheitACentigrados x = relacionCentigradosAFarenheit (x-32)
 
 {--
 Problema 3:
@@ -190,6 +196,8 @@ Problema 3:
     el precio del ejemplo.
 --}
 
+calculoSinPromocion :: Float -> Float
+calculoSinPromocion = undefined
 
 {--
 Problema 4:
