@@ -196,9 +196,6 @@ Problema 3:
     el precio del ejemplo.
 --}
 
-
--- 2kg == 2,7 euros
-
 calculoSinPromocion :: Float -> Float
 calculoSinPromocion x = x * 2.7
 
@@ -207,6 +204,12 @@ calculoConPromocion x
   | x > 5 = 5 * 2.7 + (x-5) * 2.2
   | otherwise = x * 2.7
 
+calculoSegundaPromocion :: Float -> Float
+calculoSegundaPromocion x
+  | x <= 5            = calculoSinPromocion x 
+  | x > 5 && x <= 10  = calculoConPromocion x
+  | otherwise         = 5 * 2.7 + (x - 5) * 2.2 + (x - 10) * 2
+ 
 {--
 Problema 4:
 
@@ -243,3 +246,4 @@ Problema 4:
   * Definir una función que devuelva la lista de resultados hasta
     llegar  a 1.
 --}
+
