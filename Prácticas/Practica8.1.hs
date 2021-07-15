@@ -1,7 +1,5 @@
 -- PD-Práctica 8.1 
 -- Tipos: Definiciones básicas de tipos de datos algebráicos
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

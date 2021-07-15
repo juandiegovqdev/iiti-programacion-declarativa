@@ -1,6 +1,4 @@
 -- PD 2020-21: Codeworld (de la práctica 3 del año 2017/18)
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

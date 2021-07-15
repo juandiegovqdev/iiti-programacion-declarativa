@@ -1,7 +1,5 @@
 -- PD- 2020-21
 -- Tipos: Multiconjuntos como Diccionarios
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

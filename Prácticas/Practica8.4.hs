@@ -1,7 +1,5 @@
 -- PD-Práctica 8.4 
 -- Árboles Trie
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

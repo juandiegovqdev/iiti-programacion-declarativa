@@ -1,6 +1,4 @@
 -- PD: Práctica sobre acceso a fuentes de datos en ficheros.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

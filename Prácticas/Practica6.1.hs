@@ -1,7 +1,5 @@
 -- PD-Practica 6.1
 -- Funciones de orden superior y definiciones por plegados.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
  
 -- ---------------------------------------------------------------------

@@ -1,8 +1,6 @@
 -- PD- 2020/21
 -- Correspondiente a Relación 22 de I1M 2019-20
 -- El TAD de las colas.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

@@ -23,7 +23,8 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 divisionSegura :: Double -> Double -> Double
-divisionSegura = undefined
+divisionSegura x y = div x y
+divisionSegura _ 0 = 9999.0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.1. La disyunción excluyente xor de dos fórmulas se
