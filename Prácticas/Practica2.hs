@@ -1,11 +1,6 @@
 -- PD-Practica 2
 -- Definiciones con condicionales, guardas o patrones.
 -- =====================================================================
-
--- ---------------------------------------------------------------------
--- Introducción                                                       --
--- ---------------------------------------------------------------------
-
 -- En esta relación se presentan ejercicios con definiciones elementales
 -- (no recursivas) de funciones que usan condicionales, guardas o
 -- patrones. 
@@ -28,7 +23,8 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 divisionSegura :: Double -> Double -> Double
-divisionSegura = undefined
+divisionSegura x y = div fromIntegral(x) fromIntegral(y)
+divisionSegura _ 0 = 9999.0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.1. La disyunción excluyente xor de dos fórmulas se
