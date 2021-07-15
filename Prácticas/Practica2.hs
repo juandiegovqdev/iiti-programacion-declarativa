@@ -23,7 +23,7 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 divisionSegura :: Double -> Double -> Double
-divisionSegura x y = div fromIntegral(x) fromIntegral(y)
+divisionSegura x y = div x y
 divisionSegura _ 0 = 9999.0
 
 -- ---------------------------------------------------------------------
