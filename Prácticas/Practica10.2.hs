@@ -1,30 +1,28 @@
--- PD 2020-21. Vectores y matrices: ejercicios de exámenes.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
+-- PD 2020-21. Vectores y matrices: ejercicios de exï¿½menes.
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
--- Introducción                                                       --
+-- Introducciï¿½n                                                       --
 -- ---------------------------------------------------------------------
 
--- En esta relación se presenta una recopilación de ejercicios vectores
--- y matrices propuestos en exámenes de la asignatura I1M.
+-- En esta relaciï¿½n se presenta una recopilaciï¿½n de ejercicios vectores
+-- y matrices propuestos en exï¿½menes de la asignatura I1M.
 
 -- ---------------------------------------------------------------------
--- § Librerías auxiliares                                             --
+-- ï¿½ Librerï¿½as auxiliares                                             --
 -- ---------------------------------------------------------------------
 
 import Data.Array
 import Data.List
 
--- Nota. En la relación usaremos los tipos de los vectores y las matrices 
+-- Nota. En la relaciï¿½n usaremos los tipos de los vectores y las matrices 
 -- definidos por 
 
 type Vector a = Array Int a
 type Matriz a = Array (Int,Int) a
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. Definir la función 
+-- Ejercicio 1. Definir la funciï¿½n 
 --    esTriangularS :: Num a => Matriz a -> Bool
 -- tal que (esTriangularS p) se verifica si p es una matriz triangular
 -- superior. Por ejemplo, 
@@ -38,10 +36,10 @@ esTriangularS:: (Num a, Eq a) => Matriz a -> Bool
 esTriangularS p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. Definir la función
+-- Ejercicio 2. Definir la funciï¿½n
 --    antidiagonal :: (Num a, Eq a) => Matriz a -> Bool
 -- tal que (antidiagonal m) se verifica si es cuadrada y todos los
--- elementos de m que no están en su diagonal secundaria son nulos. Por
+-- elementos de m que no estï¿½n en su diagonal secundaria son nulos. Por
 -- ejemplo,   
 --    ghci> antidiagonal (listArray ((1,1),(3,3)) [0,0,4, 0,6,0, 0,0,0])
 --    True
@@ -57,7 +55,7 @@ antidiagonal :: (Num a, Eq a) => Matriz a -> Bool
 antidiagonal p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. Definir la función
+-- Ejercicio 3. Definir la funciï¿½n
 --    esEscalar:: Num a => Matriz a -> Bool
 -- tal que (esEscalar p) se verifica si p es una matriz es escalar; es
 -- decir, diagonal con todos los elementos de la diagonal principal
@@ -71,9 +69,9 @@ esEscalar:: (Num a, Eq a) => Matriz a -> Bool
 esEscalar p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. Definir la función 
+-- Ejercicio 4. Definir la funciï¿½n 
 --    aplicaT :: (Ix a, Num b) => Array a b -> (b -> c) -> Array a c
--- tal que (aplicaT t f) es la tabla obtenida aplicado la función f a
+-- tal que (aplicaT t f) es la tabla obtenida aplicado la funciï¿½n f a
 -- los elementos de la tabla t. Por ejemplo,
 --    ghci> aplicaT (array (1,5) [(1,6),(2,3),(3,-1),(4,9),(5,20)]) (+1)
 --    array (1,5) [(1,7),(2,4),(3,0),(4,10),(5,21)]
@@ -90,7 +88,7 @@ aplicaT :: (Ix a, Num b) => Array a b -> (b -> c) -> Array a c
 aplicaT t f = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. Dada una matriz numérica A de dimensiones (m,n) y una
+-- Ejercicio 5. Dada una matriz numï¿½rica A de dimensiones (m,n) y una
 -- matriz booleana B de las mismas dimensiones, y dos funciones f y g,
 -- la transformada de A respecto de B, f y g es la matriz C (de las
 -- mismas dimensiones), tal que, para cada celda (i,j):   
@@ -104,7 +102,7 @@ aplicaT t f = undefined
 --    |2 4|
 --    |6 5|
 --     
--- Definir la función
+-- Definir la funciï¿½n
 --    transformada :: Matriz a -> Matriz Bool -> (a -> b) -> (a -> b) -> Matriz b
 -- tal que (transformada a b f g) es la transformada de A respecto de B,
 -- f y g. Por ejemplo,
@@ -118,12 +116,12 @@ transformada :: Matriz a -> Matriz Bool -> (a -> b) -> (a -> b) -> Matriz b
 transformada a b f g = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6.1. Un vector se denomina estocástico si todos sus
+-- Ejercicio 6.1. Un vector se denomina estocï¿½stico si todos sus
 -- elementos son mayores o iguales que 0 y suman 1.  
 -- 
--- Definir la función 
+-- Definir la funciï¿½n 
 --    vectorEstocastico :: Vector Float -> Bool
--- tal que (vectorEstocastico v) se verifica si v es estocástico. Por
+-- tal que (vectorEstocastico v) se verifica si v es estocï¿½stico. Por
 -- ejemplo,  
 --    vectorEstocastico (listArray (1,5) [0.1, 0.2, 0, 0, 0.7]) == True
 --    vectorEstocastico (listArray (1,5) [0.1, 0.2, 0, 0, 0.9]) == False
@@ -133,12 +131,12 @@ vectorEstocastico :: Vector Float -> Bool
 vectorEstocastico v = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6.2. Una matriz se denomina estocástica si sus columnas
--- son vectores estocásticos.  
+-- Ejercicio 6.2. Una matriz se denomina estocï¿½stica si sus columnas
+-- son vectores estocï¿½sticos.  
 -- 
--- Definir la función 
+-- Definir la funciï¿½n 
 --    matrizEstocastica :: Matriz Float -> Bool
--- tal que (matrizEstocastico p) se verifica si p es estocástica. Por
+-- tal que (matrizEstocastico p) se verifica si p es estocï¿½stica. Por
 -- ejemplo,  
 --    matrizEstocastica (listArray ((1,1),(2,2)) [0.1,0.2,0.9,0.8]) == True
 --    matrizEstocastica (listArray ((1,1),(2,2)) [0.1,0.2,0.3,0.8]) == False
@@ -148,14 +146,14 @@ matrizEstocastica :: Matriz Float -> Bool
 matrizEstocastica p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 7. Definir la función 
+-- Ejercicio 7. Definir la funciï¿½n 
 --    maximos :: Matriz Int -> [Int]
--- tal que (maximos p) es la lista de los máximos locales de la matriz
+-- tal que (maximos p) es la lista de los mï¿½ximos locales de la matriz
 -- p; es decir de los elementos de p que son mayores que todos sus
 -- vecinos. Por ejemplo,  
 --    ghci> maximos (listArray ((1,1),(3,4)) [9,4,6,5,8,1,7,3,0,2,5,4])
 --    [9,7]
--- ya que los máximos locales de la matriz
+-- ya que los mï¿½ximos locales de la matriz
 --    |9 4 6 5|
 --    |8 1 7 3|
 --    |0 2 5 4|
@@ -166,13 +164,13 @@ maximos :: Matriz Int -> [Int]
 maximos p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 8. Definir la función 
+-- Ejercicio 8. Definir la funciï¿½n 
 --    algunMenor :: Matriz Int -> [Int]
 -- tal que (algunMenor p) es la lista de los elementos de p que tienen
--- algún vecino menor que él. Por ejemplo,  
+-- algï¿½n vecino menor que ï¿½l. Por ejemplo,  
 --    algunMenor (listArray ((1,1),(3,4)) [9,4,6,5,8,1,7,3,4,2,5,4])
 --    [9,4,6,5,8,7,4,2,5,4]          
--- pues sólo el 1 y el 3 no tienen ningún vecino menor en la matriz
+-- pues sï¿½lo el 1 y el 3 no tienen ningï¿½n vecino menor en la matriz
 --    |9 4 6 5|
 --    |8 1 7 3|
 --    |4 2 5 4|
@@ -182,10 +180,10 @@ algunMenor :: Matriz Int -> [Int]
 algunMenor p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 9.1. Definir la función
+-- Ejercicio 9.1. Definir la funciï¿½n
 --      proporcional :: (Fractional a, Eq a) => Vector a -> Vector a -> Bool
 -- tal que (proporcional v1 v2) verifica si los vectores v1 y v2 son proporcionales, 
--- es decir, v1 == k*v2, con un k un número escalar cualquiera. Por ejemplo,
+-- es decir, v1 == k*v2, con un k un nï¿½mero escalar cualquiera. Por ejemplo,
 --    ghci> let p1 = listArray ((1,1),(3,3)) [1,0,0,0,0,1,0,1,0] :: Matriz Float
 --    ghci> let v1 = listArray (1,3) [0,-1,1] :: Vector Float
 --    ghci> let v2 = listArray (1,3) [1,2,1] :: Vector Float
@@ -201,7 +199,7 @@ proporcional :: (Fractional a, Eq a) => Vector a -> Vector a -> Bool
 proporcional = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 9.2. Definir la función
+-- Ejercicio 9.2. Definir la funciï¿½n
 --    esAutovector :: (Fractional a, Eq a) => 
 --                    Vector a -> Matriz a -> Bool
 -- tal que (esAutovector v p) compruebe si v es un autovector de p
@@ -220,7 +218,7 @@ esAutovector :: (Fractional a, Eq a) => Vector a -> Matriz a -> Bool
 esAutovector v p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 9.3. Definir la función
+-- Ejercicio 9.3. Definir la funciï¿½n
 --    autovalorAsociado :: (Fractional a, Eq a) => 
 --                         Matriz a -> Vector a -> Maybe a
 -- tal que si v es un autovector de p, calcule el autovalor asociado.
@@ -237,7 +235,7 @@ autovalorAsociado :: (Fractional a, Eq a) =>
 autovalorAsociado p v = undefined
 
 -- ------------------------------------------------------------------
--- Ejercicio 10. Definir la función
+-- Ejercicio 10. Definir la funciï¿½n
 --    sumaVecinos :: Matriz Int -> Matriz Int
 -- tal que (sumaVecinos p) es la matriz obtenida al escribir en la 
 -- posicion (i,j) la suma de los todos vecinos del elemento que ocupa 
@@ -252,7 +250,7 @@ sumaVecinos :: Matriz Int -> Matriz Int
 sumaVecinos p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 11.1. Una matriz tridiagonal es aquella en la que sólo hay
+-- Ejercicio 11.1. Una matriz tridiagonal es aquella en la que sï¿½lo hay
 -- elementos distintos de 0 en la diagonal principal o en las diagonales
 -- por encima y por debajo de la diagonal principal. Por ejemplo, 
 --    ( 1 2 0 0 0 0 )
@@ -262,7 +260,7 @@ sumaVecinos p = undefined
 --    ( 0 0 0 3 4 5 )
 --    ( 0 0 0 0 6 7 )
 -- 
--- Definir la función 
+-- Definir la funciï¿½n 
 --    creaTridiagonal :: Int -> Matriz Int
 -- tal que (creaTridiagonal n) es la siguiente matriz tridiagonal
 -- cuadrada con n filas y n columnas:
@@ -287,7 +285,7 @@ creaTridiagonal :: Int -> Matriz Int
 creaTridiagonal n = undefined
 
 -- ----------------------------------------------------------------------------
--- Ejercicio 11.2. Definir la función 
+-- Ejercicio 11.2. Definir la funciï¿½n 
 --    esTridiagonal :: Matriz Int -> Bool
 -- tal que (esTridiagonal p) se verifica si la matriz p es tridiagonal. Por 
 -- ejemplo,

@@ -1,7 +1,5 @@
 -- PD-Práctica 8.5
 -- Tipos: definición y uso de tipos (exámenes antiguos)
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

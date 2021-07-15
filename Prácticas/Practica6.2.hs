@@ -1,7 +1,5 @@
 -- PD 2019-20: Practica 6.2
 -- Funciones de orden superior y definiciones por plegados (II)
--- Departamento de Ciencias de la Computación e Inteligencia Artificial
--- Universidad de Sevilla
 -- ============================================================================
 
 -- ============================================================================

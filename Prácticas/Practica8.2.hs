@@ -1,7 +1,5 @@
 -- PD-Práctica 9.2 2019-20
 -- Árboles con tipos de datos algebráicos
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------

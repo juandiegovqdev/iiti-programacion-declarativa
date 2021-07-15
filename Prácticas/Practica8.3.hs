@@ -1,7 +1,5 @@
 -- PD-Práctica 8.3
 -- Expresiones Aritméticas con tipos de datos algebráicos
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 

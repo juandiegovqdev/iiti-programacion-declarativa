@@ -1,7 +1,5 @@
 -- PD-Práctica 5
 -- Definiciones por recursión.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
