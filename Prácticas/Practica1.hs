@@ -135,7 +135,7 @@ Problema 1:
     anteriores y añadírselos a cada una.
 --}
 
-tipoCambio :: Float -- Euro a dólares
+tipoCambio :: Float 
 tipoCambio = 1.17507 
 
 aEuros :: Float -> Float
