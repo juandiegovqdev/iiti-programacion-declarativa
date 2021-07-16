@@ -147,7 +147,8 @@ primerAbundanteImpar = undefined
 --    suma 3  ==  6
 -- ---------------------------------------------------------------------
 
-suma n = undefined
+suma :: Integer -> Integer
+suma n = sum [x | x <- [1..n]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Los triángulo aritmético se forman como sigue
