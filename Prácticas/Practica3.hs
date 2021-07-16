@@ -2,10 +2,6 @@
 -- Definiciones por comprensión
 -- =====================================================================
 
--- ---------------------------------------------------------------------
--- Introducción                                                       --
--- ---------------------------------------------------------------------
-
 -- En esta relación se presentan ejercicios con definiciones de
 -- funciones por comprensión. Estos ejercicios se corresponden con el
 -- tema 5 
@@ -26,7 +22,8 @@ import Data.Char
 --    sumaDeCuadrados 100  ==  338350
 -- ---------------------------------------------------------------------
 
-sumaDeCuadrados = undefined
+sumaDeCuadrados :: Integer -> Integer
+sumaDeCuadrados n = sum [x^2 | x <- [1..n]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Un entero positivo es perfecto si es igual a la suma de
@@ -62,7 +59,8 @@ perfectos n = undefined
  
 -- La definición es
 productoEscalar :: [Int] -> [Int] -> Int
-productoEscalar xs ys = undefined
+productoEscalar [] [] = 0
+productoEscalar (x:xs) (y:ys) = x*y + productoEscalar xs ys
 
 -- La propiedad conmutativa es
 prop_conmutativa_productoEscalar xs ys = undefined
@@ -149,7 +147,8 @@ primerAbundanteImpar = undefined
 --    suma 3  ==  6
 -- ---------------------------------------------------------------------
 
-suma n = undefined
+suma :: Integer -> Integer
+suma n = sum [x | x <- [1..n]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Los triángulo aritmético se forman como sigue
@@ -629,7 +628,10 @@ muyCompuesto n = undefined
 -- ---------------------------------------------------------------------
 
 todosIguales:: Eq a => [a] -> Bool
-todosIguales xs = undefined
+todosIguales [] = True
+todosIguales (x:y:xs) 
+    | x == y    = True && todosIguales (y:xs)
+    | otherwise = False
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 34.1. Las bases de datos de alumnos matriculados por
@@ -663,7 +665,8 @@ matriculas = [("Almeria","Matematicas",27),
               ("Malaga","Informatica",314)]
 
 totalAlumnos :: [(String,String,Int)] -> Int
-totalAlumnos bd = undefined
+totalAlumnos [] = 0
+totalAlumnos ((x, y, z):xs) = z + totalAlumnos xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 34.2. Definir la función 
@@ -696,5 +699,17 @@ totalMateria bd m = undefined
 --    mayorSalto [10,-10,1,4,20,-2] == 22
 -- ---------------------------------------------------------------------
 
+valorAbsoluto :: Integer -> Integer
+valorAbsoluto n
+    | n >= 0 = n
+    | otherwise = (-n)
+
 mayorSalto :: [Integer] -> Integer
-mayorSalto xs = undefined
+mayorSalto (x:y:xs) = mayorSaltoAux (y:xs) x
+
+mayorSaltoAux :: [Integer] -> Integer -> Integer
+mayorSaltoAux [] z = z  
+mayorSaltoAux (x:y:xs) z 
+    | (x-y) > (z-x)     = mayorSaltoAux (y:xs) (x-y)
+    | otherwise = mayorSaltoAux (y:xs) (z-x)
+

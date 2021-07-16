@@ -23,8 +23,8 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 divisionSegura :: Double -> Double -> Double
-divisionSegura x y = x / y
 divisionSegura _ 0 = 9999.0
+divisionSegura x y = x / y
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.1. La disyunción excluyente xor de dos fórmulas se
