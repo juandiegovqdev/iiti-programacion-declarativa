@@ -23,7 +23,7 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 divisionSegura :: Double -> Double -> Double
-divisionSegura x y = div x y
+divisionSegura x y = x / y
 divisionSegura _ 0 = 9999.0
 
 -- ---------------------------------------------------------------------
@@ -45,7 +45,10 @@ divisionSegura _ 0 = 9999.0
 -- ---------------------------------------------------------------------
 
 xor1 :: Bool -> Bool -> Bool
-xor1 = undefined
+xor1 True True      = False
+xor1 True False     = True
+xor1 False True     = True
+xor1 False False    = False
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.2. Definir la función 
@@ -56,7 +59,8 @@ xor1 = undefined
 -- ---------------------------------------------------------------------
 
 xor2 :: Bool -> Bool -> Bool
-xor2 = undefined
+xor2 True y = not y
+xor2 False y = y
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.3. Definir la función 
@@ -67,7 +71,7 @@ xor2 = undefined
 -- ---------------------------------------------------------------------
 
 xor3 :: Bool -> Bool -> Bool
-xor3 x y = undefined
+xor3 x y = (x || y) && (not x || not y)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.4. Definir la función 
@@ -77,7 +81,7 @@ xor3 x y = undefined
 -- ---------------------------------------------------------------------
 
 xor4 :: Bool -> Bool -> Bool
-xor4 x y = undefined
+xor4 x y = x /= y
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.5. Comprobar con QuickCheck que las cuatros definiciones
@@ -86,10 +90,10 @@ xor4 x y = undefined
 
 -- La propiedad es
 prop_xor_equivalentes :: Bool -> Bool -> Bool
-prop_xor_equivalentes x y = undefined
+prop_xor_equivalentes x y = xor1 x y == xor2 x y && xor1 x y == xor3 x y && xor1 x y == xor4 x y && xor2 x y == xor3 x y && xor2 x y == xor4 x y && xor4 x y == xor3 x y
 
 -- La comprobación es
-
+-- quickCheck prop_xor_equivalentes
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Las dimensiones de los rectángulos puede representarse 
 -- por pares; por ejemplo, (5,3) representa a un rectángulo de base 5 y 
