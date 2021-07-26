@@ -5,10 +5,6 @@
 -- En esta relación se presentan ejercicios con definiciones de
 -- funciones por comprensión. Estos ejercicios se corresponden con el
 -- tema 5 
-
--- ---------------------------------------------------------------------
--- Importación de librerías auxiliares                                  
--- ---------------------------------------------------------------------
  
 import Test.QuickCheck
 import Data.Char
@@ -212,7 +208,11 @@ ocurrenciasDelMaximo = undefined
 --    tienenS [" "]                                            ==  []
 -- ---------------------------------------------------------------------
 
-tienenS xss = undefined
+tienenS :: [[Char]] -> [Int]
+tienenS xss = filter (/= 0) [if tienenSAux x /= 0 then (length x) else 0 | x <- xss]
+
+tienenSAux :: [Char] -> Integer
+tienenSAux xs = sum [if x == 's' || x == 'S' then 1 else 0 | x <- xs] 
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13. Decimos que una lista está algo ordenada si para todo
