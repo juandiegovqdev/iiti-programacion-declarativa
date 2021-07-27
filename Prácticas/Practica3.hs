@@ -97,8 +97,6 @@ prop_conmutativa_productoEscalar xs ys = undefined
 euler1 :: Integer -> Integer
 euler1 n = undefined
 
--- El cálculo es
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Definir por comprensión la función
 --    replica :: Int -> a -> [a]
@@ -110,7 +108,7 @@ euler1 n = undefined
 -- ---------------------------------------------------------------------
  
 replica :: Int -> a -> [a]
-replica n x = undefined
+replica n x = [x | y <- [0..n-1]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Un número natural n se denomina abundante si es menor
@@ -126,7 +124,7 @@ replica n x = undefined
 --    numeroAbundante 30 == True
 -- ---------------------------------------------------------------------
 
-numeroAbundante n = undefined
+numeroAbundante n = sum (divisores n) > n
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6.2. Definir la función numerosAbundantesMenores tal que
@@ -414,8 +412,7 @@ conjetura n = undefined
 -- ---------------------------------------------------------------------
 
 sumaConsecutivos :: [Int] -> [Int]
-sumaConsecutivos xs = undefined
-
+sumaConsecutivos xs = [(xs !! (x-1)) + (xs !! x) | x <- [1..length xs-1]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 26. Los polinomios pueden representarse de forma dispersa o
@@ -549,7 +546,7 @@ vivas :: [(String,String,Int,Int)] -> Int -> [String]
 vivas [] _ = []
 vivas ((x, y, z, t):ps) a
     | t > a && z < a = x : vivas ps a
-    | otherwise     = vivas ps a
+    | otherwise      = vivas ps a
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 29.1. En este ejercicio se consideran listas de ternas de
@@ -610,6 +607,9 @@ esPerpendicular xs ys = sum [(xs !! x) * (ys !! x) | x <- [0..length xs-1]] == 0
 
 perpendiculares :: [Integer] ->  [[Integer]] -> [[Integer]]
 perpendiculares _ [] = []
+
+perpendiculares xs yss = [yss !! x  | x <- [0..length yss], esPerpendicular]
+
 perpendiculares xs (ys:yss)
     | esPerpendicular xs ys = ys : perpendiculares xs yss
     | otherwise             = perpendiculares xs yss
