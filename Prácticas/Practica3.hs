@@ -8,7 +8,24 @@
  
 import Test.QuickCheck
 import Data.Char
- 
+
+-- ---------------------------------------------------------------------
+-- Funciones auxiliares
+esPrimo :: Integral a => a -> Bool
+esPrimo 2 = True
+esPrimo n | n < 2 = False
+    | even n = False
+    | otherwise = n == (menorDivisor 3 n)
+
+menorDivisor :: Integral a => a -> a -> a
+menorDivisor k n | k * k > n = n
+    | rem n k == 0 = k
+    | otherwise = menorDivisor (k + 2) n
+
+divisores :: Integer -> [Integer]
+divisores n = [x | x <- [1..(n-1)], n `rem` x == 0]
+-- ---------------------------------------------------------------------
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Definir, por comprensión, la función
 --    sumaDeCuadrados :: Integer -> Integer
@@ -474,7 +491,8 @@ personas = [("Cervantes","Literatura",1547,1616),
 -- ---------------------------------------------------------------------
 
 nombres :: [(String,String,Int,Int)] -> [String]
-nombres bd = undefined
+nombres [] = []
+nombres ((x, y, z, t):bd) = x : nombres bd
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 28.2. Definir la función musicos tal que (musicos bd) es
@@ -485,7 +503,10 @@ nombres bd = undefined
 -- ---------------------------------------------------------------------
 
 musicos :: [(String,String,Int,Int)] -> [String]
-musicos bd = undefined
+musicos [] = []
+musicos ((x, y, z, t):bd)
+    | y == "Musica" = x : musicos bd
+    | otherwise     = musicos bd
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 28.3. Definir la función seleccion tal que (seleccion bd m) 
@@ -496,7 +517,10 @@ musicos bd = undefined
 -- ---------------------------------------------------------------------
 
 seleccion :: [(String,String,Int,Int)] -> String -> [String]
-seleccion bd m = undefined
+seleccion [] _ = []
+seleccion ((x, y, z, t):bd) m 
+    | y == m    = x : seleccion bd m
+    | otherwise = seleccion bd m
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 28.4. Definir, usando el apartado anterior, la función
@@ -507,7 +531,7 @@ seleccion bd m = undefined
 -- ---------------------------------------------------------------------
 
 musicos' :: [(String,String,Int,Int)] -> [String]
-musicos' bd = undefined
+musicos' bd = seleccion bd "Musica"
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 28.5. Definir la función vivas tal que (vivas bd a) es la
@@ -518,7 +542,10 @@ musicos' bd = undefined
 -- ---------------------------------------------------------------------
 
 vivas :: [(String,String,Int,Int)] -> Int -> [String]
-vivas ps a = undefined
+vivas [] _ = []
+vivas ((x, y, z, t):ps) a
+    | t > a && z < a = x : vivas ps a
+    | otherwise     = vivas ps a
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 29.1. En este ejercicio se consideran listas de ternas de
@@ -533,7 +560,15 @@ vivas ps a = undefined
 --    ["Juan","Alba","Pedro"]
 -- ---------------------------------------------------------------------
 
-puedenVotar t = undefined
+-- Para que sea más cómodo, vamos a inicializar la población.
+poblacion :: [(String, Integer, String)]
+poblacion = [("Ana", 16, "Sevilla"), ("Juan", 21, "Coria"), ("Alba", 19, "Camas"),("Pedro",18,"Sevilla")] 
+
+puedenVotar :: [(String, Integer, String)] -> [String]
+puedenVotar [] = []
+puedenVotar ((x, y, z):t)
+    | y >= 18   = x : puedenVotar t
+    | otherwise = puedenVotar t
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 29.2. Definir la función puedenVotarEn tal que (puedenVotar
@@ -547,7 +582,11 @@ puedenVotar t = undefined
 --    ["Pedro"]
 -- ---------------------------------------------------------------------
 
-puedenVotarEn t c = undefined
+puedenVotarEn :: [(String, Integer, String)] -> String -> [String]
+puedenVotarEn [] _ = []
+puedenVotarEn ((x, y, z):t) c
+    | z == c && y >= 18 = x : puedenVotarEn t c
+    | otherwise         = puedenVotarEn t c
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 30. Dos listas xs, ys de la misma longitud son
@@ -562,7 +601,14 @@ puedenVotarEn t c = undefined
 --    [[0,1,0],[-1,7,1]]
 -- ---------------------------------------------------------------------
 
-perpendiculares xs yss = undefined
+esPerpendicular :: [Integer] -> [Integer] -> Bool
+esPerpendicular xs ys = sum [(xs !! x) * (ys !! x) | x <- [0..length xs-1]] == 0
+
+perpendiculares :: [Integer] ->  [[Integer]] -> [[Integer]]
+perpendiculares _ [] = []
+perpendiculares xs (ys:yss)
+    | esPerpendicular xs ys = ys : perpendiculares xs yss
+    | otherwise             = perpendiculares xs yss
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 31.1. Un número natural n
@@ -575,7 +621,7 @@ perpendiculares xs yss = undefined
 -- ---------------------------------------------------------------------
 
 especial :: Integer -> Bool
-especial x = undefined
+especial n = all (== True) [esPrimo (x + div n x) | x <- divisores n]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 31.2. Definir la función 
@@ -604,7 +650,10 @@ sumaEspeciales n = undefined
 -- ---------------------------------------------------------------------
 
 esMuyCompuesto :: Int -> Bool
-esMuyCompuesto x = undefined 
+esMuyCompuesto x = esMuyCompuestoAux (divisores x) x
+
+esMuyCompuestoAux :: [Integer] -> Integer -> Bool
+
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 32.2. Definir la función
@@ -629,6 +678,7 @@ muyCompuesto n = undefined
 
 todosIguales:: Eq a => [a] -> Bool
 todosIguales [] = True
+todosIguales [x] = True
 todosIguales (x:y:xs) 
     | x == y    = True && todosIguales (y:xs)
     | otherwise = False
@@ -679,7 +729,10 @@ totalAlumnos ((x, y, z):xs) = z + totalAlumnos xs
 -- ---------------------------------------------------------------------
 
 totalMateria :: [(String,String,Int)] -> String -> Int
-totalMateria bd m = undefined
+totalMateria [] _ = 0
+totalMateria ((x, y, z):xs) m 
+    | m == y    = z + totalMateria xs m
+    | otherwise = totalMateria xs m
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 35. Dada una lista de números enteros, definiremos el
