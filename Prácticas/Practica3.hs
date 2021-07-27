@@ -772,4 +772,3 @@ mayorSaltoAux [] z = z
 mayorSaltoAux (x:y:xs) z 
     | (x-y) > (z-x)     = mayorSaltoAux (y:xs) (x-y)
     | otherwise = mayorSaltoAux (y:xs) (z-x)
-
