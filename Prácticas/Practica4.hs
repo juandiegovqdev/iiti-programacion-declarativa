@@ -54,7 +54,7 @@ mayuscula2int x = ord x - ord 'A'
 -- ---------------------------------------------------------------------
 
 int2minuscula :: Int -> Char
-int2minuscula = undefined
+int2minuscula x = chr (ord 'a' + x)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Definir la función
@@ -67,7 +67,7 @@ int2minuscula = undefined
 -- ---------------------------------------------------------------------
 
 int2mayuscula :: Int -> Char
-int2mayuscula = undefined
+int2mayuscula x = chr (ord 'A' + x)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Definir la función
@@ -85,7 +85,9 @@ int2mayuscula = undefined
 -- ---------------------------------------------------------------------
 
 desplaza :: Int -> Char -> Char
-desplaza = undefined
+desplaza x y 
+    | y >= 'a' || y <= 'z' = int2minuscula (x + (minuscula2int y))
+    | otherwise            = int2mayuscula (x + (mayuscula2int y))
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6.1. Definir la función
@@ -135,7 +137,7 @@ tabla = [12.53, 1.42, 4.68, 5.86, 13.68, 0.69, 1.01,
 -- ---------------------------------------------------------------------
 
 porcentaje :: Int -> Int -> Float
-porcentaje = undefined
+porcentaje x y = fromIntegral(div (x * 100) y)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. Definir la función
@@ -146,7 +148,10 @@ porcentaje = undefined
 -- ---------------------------------------------------------------------
 
 letras :: String -> String
-letras = undefined
+letras [] = []
+letras (x:xs)
+    | x /= ' '  = x : letras xs
+    | otherwise = letras xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10.1. Definir la función
@@ -157,7 +162,7 @@ letras = undefined
 -- ---------------------------------------------------------------------
 
 ocurrencias :: Eq a => a -> [a] -> Int
-ocurrencias = undefined
+ocurrencias y xs = sum [1 | x <- xs, x == y]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10.2. Comprobar con QuickCheck si el número de ocurrencias
