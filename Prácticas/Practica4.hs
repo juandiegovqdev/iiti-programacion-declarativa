@@ -259,7 +259,9 @@ prop_chiCuad_3 = undefined
 -- ---------------------------------------------------------------------
 
 rota :: Int -> [a] -> [a]
-rota = undefined
+rota y (x:xs) 
+    | y /= 0    = (rota (y-1) xs) ++ [x]
+    | otherwise = x:xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 14.2. Comprobar con QuickCkeck si para cualquier lista xs
