@@ -2,10 +2,6 @@
 -- Definiciones por comprensión y recursión con cadenas: El cifrado César.
 -- =====================================================================
 
--- ---------------------------------------------------------------------
--- Introducción                                                       --
--- ---------------------------------------------------------------------
-
 -- El objetivo de esta práctica es trabajar con la codificación de 
 -- cadenas, caracteres y comprensión en Haskell implementando el cifrado
 -- César. Se puede usar el ejemplo en
@@ -32,7 +28,7 @@ import Test.QuickCheck
 -- ---------------------------------------------------------------------
 
 minuscula2int :: Char -> Int
-minuscula2int = undefined
+minuscula2int x = ord x - ord 'a'
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Definir la función
@@ -45,7 +41,7 @@ minuscula2int = undefined
 -- ---------------------------------------------------------------------
 
 mayuscula2int :: Char -> Int
-mayuscula2int = undefined
+mayuscula2int x = ord x - ord 'A'
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Definir la función
