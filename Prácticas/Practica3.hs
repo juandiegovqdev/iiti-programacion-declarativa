@@ -77,7 +77,7 @@ perfectos n = undefined
 -- La definición es
 productoEscalar :: [Int] -> [Int] -> Int
 productoEscalar [] [] = 0
-productoEscalar (x:xs) (y:ys) = x*y + productoEscalar xs ys
+productoEscalar xs ys = sum [(xs !! z) * (ys !! z) | z <- [0..length xs]] -- x*y + productoEscalar xs ys
 
 -- La propiedad conmutativa es
 prop_conmutativa_productoEscalar xs ys = undefined
@@ -625,7 +625,7 @@ perpendiculares xs (ys:yss)
 -- ---------------------------------------------------------------------
 
 especial :: Integer -> Bool
-especial n = all (== True) [esPrimo (x + fromIntegral (div n (fromIntegral x))) | x <- divisores (bits n)]
+especial n = all (== True) [esPrimo (x + fromIntegral (div n (fromIntegral x))) | x <- divisores (toInt n)]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 31.2. Definir la función 
