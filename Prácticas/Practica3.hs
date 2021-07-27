@@ -608,12 +608,13 @@ esPerpendicular xs ys = sum [(xs !! x) * (ys !! x) | x <- [0..length xs-1]] == 0
 perpendiculares :: [Integer] ->  [[Integer]] -> [[Integer]]
 perpendiculares _ [] = []
 
-perpendiculares xs yss = [yss !! x  | x <- [0..length yss], esPerpendicular]
+perpendiculares xs yss = [yss !! x  | x <- [0..length yss-1], esPerpendicular xs (yss !! x)]
 
+{--
 perpendiculares xs (ys:yss)
     | esPerpendicular xs ys = ys : perpendiculares xs yss
     | otherwise             = perpendiculares xs yss
-
+--}
 -- ---------------------------------------------------------------------
 -- Ejercicio 31.1. Un número natural n
 -- es especial si para todo divisor d de n, d+n/d es primo. Definir la
