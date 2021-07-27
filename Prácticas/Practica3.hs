@@ -22,8 +22,12 @@ menorDivisor k n | k * k > n = n
     | rem n k == 0 = k
     | otherwise = menorDivisor (k + 2) n
 
-divisores :: Integer -> [Integer]
+divisores :: Int -> [Int]
 divisores n = [x | x <- [1..(n-1)], n `rem` x == 0]
+
+toInt :: Integer -> Int 
+toInt 0 = 0
+toInt n = fromInteger n `mod` 2 + toInt (n `div` 2)
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
@@ -621,7 +625,7 @@ perpendiculares xs (ys:yss)
 -- ---------------------------------------------------------------------
 
 especial :: Integer -> Bool
-especial n = all (== True) [esPrimo (x + div n x) | x <- divisores n]
+especial n = all (== True) [esPrimo (x + fromIntegral (div n (fromIntegral x))) | x <- divisores (bits n)]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 31.2. Definir la función 
@@ -650,10 +654,13 @@ sumaEspeciales n = undefined
 -- ---------------------------------------------------------------------
 
 esMuyCompuesto :: Int -> Bool
-esMuyCompuesto x = esMuyCompuestoAux (divisores x) x
+esMuyCompuesto x = esMuyCompuestoAux (divisores x) (length (divisores x))
 
-esMuyCompuestoAux :: [Integer] -> Integer -> Bool
-
+esMuyCompuestoAux :: [Int] -> Int -> Bool
+esMuyCompuestoAux [] _ = True
+esMuyCompuestoAux (x:xs) y
+    | length (divisores x) < fromIntegral y = True && esMuyCompuestoAux xs y
+    | otherwise = False
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 32.2. Definir la función
