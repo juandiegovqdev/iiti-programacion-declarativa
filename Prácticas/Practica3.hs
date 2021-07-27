@@ -25,6 +25,9 @@ menorDivisor k n | k * k > n = n
 divisores :: Int -> [Int]
 divisores n = [x | x <- [1..(n-1)], n `rem` x == 0]
 
+multiploTresCinco :: Integer -> Bool
+multiploTresCinco = undefined 
+
 toInt :: Integer -> Int 
 toInt 0 = 0
 toInt n = fromInteger n `mod` 2 + toInt (n `div` 2)
@@ -606,8 +609,6 @@ esPerpendicular :: [Integer] -> [Integer] -> Bool
 esPerpendicular xs ys = sum [(xs !! x) * (ys !! x) | x <- [0..length xs-1]] == 0
 
 perpendiculares :: [Integer] ->  [[Integer]] -> [[Integer]]
-perpendiculares _ [] = []
-
 perpendiculares xs yss = [yss !! x  | x <- [0..length yss-1], esPerpendicular xs (yss !! x)]
 
 {--
@@ -637,7 +638,7 @@ especial n = all (== True) [esPrimo (x + fromIntegral (div n (fromIntegral x))) 
 -- ---------------------------------------------------------------------
 
 sumaEspeciales :: Integer -> Integer
-sumaEspeciales n = undefined
+sumaEspeciales n = sum [x | x <- [0..n], especial x && x <= n]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 32.1. Un número es muy compuesto si tiene más divisores que
