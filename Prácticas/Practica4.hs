@@ -111,7 +111,7 @@ codifica n xs = [desplaza n x | x <- xs]
 
 -- La propiedad es
 prop_codifica :: Int -> String -> Bool
-prop_codifica = undefined
+prop_codifica n cs = cs == (codifica (-n) (codifica n cs))
 
 -- La comprobación es
 
@@ -171,10 +171,10 @@ ocurrencias y xs = sum [1 | x <- xs, x == y]
 
 -- La propiedad es 
 prop_ocurrencia_inv :: Int -> [Int] -> Bool
-prop_ocurrencia_inv = undefined
+prop_ocurrencia_inv y xs = ocurrencias y xs == ocurrencias y (reverse xs)
 
 -- La comprobación es
-
+-- quickCheck prop_ocurrencia_inv
 -- ---------------------------------------------------------------------
 -- Ejercicio 10.3. Comprobar con QuickCheck si el número de ocurrencias
 -- de un elemento x en la concatenación de las listas xs e ys es igual a
@@ -183,10 +183,10 @@ prop_ocurrencia_inv = undefined
 
 -- La propiedad es
 prop_ocurrencia_conc :: Int -> [Int] -> [Int] -> Bool
-prop_ocurrencia_conc = undefined
+prop_ocurrencia_conc x xs ys = ocurrencias x (xs++ys) == (ocurrencias x xs + ocurrencias x ys)
 
 -- La comprobación es
-
+-- quickCheck prop_ocurrencia_conc
 -- ---------------------------------------------------------------------
 -- Ejercicio 12. Definir la función
 --    frecuencias :: String -> [Float]
@@ -198,7 +198,7 @@ prop_ocurrencia_conc = undefined
 -- ---------------------------------------------------------------------
 
 frecuencias :: String -> [Float]
-frecuencias = undefined
+frecuencias xs = [if minuscula2int (toLower x) >= 0 then tabla !! (minuscula2int (toLower x)) else 0 | x <- xs]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13.1. Definir la función
@@ -210,7 +210,10 @@ frecuencias = undefined
 -- ---------------------------------------------------------------------
 
 chiCuad :: [Float] -> [Float] -> Float
-chiCuad = undefined
+chiCuad xs ys = sum [chiCuadAux (xs!!x) (ys!!x) | x <- [0..(length xs - 1)]]
+
+chiCuadAux :: Float -> Float -> Float
+chiCuadAux o e = ((o-e)*(o-e)) / e
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13.2, Comprobar con QuickCheck que para cualquier par de
@@ -220,10 +223,10 @@ chiCuad = undefined
 
 -- La propiedad es
 prop_chiCuad_1 :: [Float] -> [Float] -> Bool
-prop_chiCuad_1 = undefined
+prop_chiCuad_1 xs ys = chiCuad xs ys == 0 && xs == ys 
 
 -- La comprobación es
-
+-- quickCheck prop_chiCuad_1
 -- ---------------------------------------------------------------------
 -- Ejercicio 13.3. A la vista de los contraejemplos del apartado
 -- anterior, qué condición hay que añadir para que se verifique la
@@ -259,6 +262,7 @@ prop_chiCuad_3 = undefined
 -- ---------------------------------------------------------------------
 
 rota :: Int -> [a] -> [a]
+rota _ [] = [] 
 rota y (x:xs) 
     | y /= 0    = (rota (y-1) xs) ++ [x]
     | otherwise = x:xs
