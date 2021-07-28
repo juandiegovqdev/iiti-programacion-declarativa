@@ -10,6 +10,11 @@
 --    sumaCuadradosImparesR [1,2,3]  ==  10
 -- ---------------------------------------------------------------------
 
+sumaCuadradosImpares :: [Integer] -> Integer
+sumaCuadradosImpares [] = 0
+sumaCuadradosImpares (x:xs)
+    | odd x     = x*x + sumaCuadradosImpares xs
+    | otherwise = sumaCuadradosImpares xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Definir, usando recursión, la función
@@ -19,6 +24,10 @@
 --    entreL 2 5  ==  [2,3,4,5]
 -- ---------------------------------------------------------------------
 
+entreL :: Integer -> Integer -> [Integer]
+entreL x y
+    | x <= y    = x : entreL (x+1) y
+    | otherwise = []
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Definir, por recursión, la función
@@ -28,6 +37,11 @@
 --    sumaPositivosRec [0,1,-3,-2,8,-1,6]  ==  15
 -- ---------------------------------------------------------------------
 
+sumaPositivosRec :: [Int] -> Int
+sumaPositivosRec [] = 0
+sumaPositivosRec (x:xs)
+    | x > 0     = x + sumaPositivosRec xs
+    | otherwise = sumaPositivosRec xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. El doble factorial de un número n se define por 
@@ -45,6 +59,10 @@
 --    dobleFactorial 9  ==  945
 -- ---------------------------------------------------------------------
 
+dobleFactorial :: Integer -> Integer
+dobleFactorial 1 = 1
+dobleFactorial 0 = 1
+dobleFactorial n = n * (dobleFactorial (n-2))
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. La distancia de Hamming entre dos listas es el
@@ -66,6 +84,12 @@
 --    distancia "romano" "rama"    ==  1
 -- ---------------------------------------------------------------------
 
+distancia :: Eq a => [a] -> [a] -> Int
+distancia [] _ = 0
+distancia _ [] = 0
+distancia (x:xs) (y:ys)
+    | x /= y    = 1 + distancia xs ys
+    | otherwise = distancia xs ys
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Definir por recursión la función 
@@ -75,6 +99,11 @@
 --    sustituyeImpar [2,5,7,4]  ==  [2,6,8,4]
 -- --------------------------------------------------------------------- 
 
+sustituyeImpar :: [Int] -> [Int]
+sustituyeImpar [] = []
+sustituyeImpar (x:xs)
+    | odd x     = (x+1) : sustituyeImpar xs
+    | otherwise = x : sustituyeImpar xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7. Definir, por recursión, la función
@@ -84,7 +113,12 @@
 --    digitosR 320274  ==  [3,2,0,2,7,4]
 -- ---------------------------------------------------------------------
 
+digitosR :: Integer -> [Integer]
+digitosR n = digitosRAux (show n) 
 
+digitosRAux :: String -> [Integer]
+digitosRAux [] = []
+digitosRAux (x:xs) =  (read[x] :: Integer) : digitosRAux xs 
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Definir por recursión la función
@@ -93,6 +127,9 @@
 --    potencia 2 3  ==  8
 -- ---------------------------------------------------------------------
 
+potencia :: Integer -> Integer -> Integer
+potencia _ 0 = 1
+potencia x y = x * potencia x (y-1)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. Definir por recursión la función
@@ -101,7 +138,10 @@
 -- elemento x. Por ejemplo,
 --    replicate' 3 2  ==  [2,2,2]
 -- ---------------------------------------------------------------------
- 
+
+replicate' :: Int -> a -> [a]
+replicate' 0 _ = []
+replicate' x y = y : replicate' (x-1) y
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10. Dados dos números naturales, a y b, es posible
@@ -117,6 +157,9 @@
 --    mcd 30 45  ==  15
 -- ---------------------------------------------------------------------
 
+mcd :: Integer -> Integer -> Integer
+mcd a 0 = a
+mcd a b = mcd b (a `mod` b)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11. En un templo hindú se encuentran tres varillas de
@@ -159,6 +202,7 @@
 -- ---------------------------------------------------------------------
 
 
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 13. Definir por recursión la función
 --    elem' :: Eq a => a -> [a] -> Bool
@@ -169,6 +213,7 @@
 -- ---------------------------------------------------------------------
 
 
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 14. Definir por recursión la función
 --    last' :: [a] -> a
@@ -176,6 +221,8 @@
 --    last' [2,3,5]  =>  5
 -- ---------------------------------------------------------------------
 
+last' :: [a] -> a
+last' xs = head (reverse xs)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 15. Definir por recursión la función
@@ -185,6 +232,9 @@
 --    concat' [[1..3],[5..7],[8..10]]  ==  [1,2,3,5,6,7,8,9,10]
 -- ---------------------------------------------------------------------
  
+concat' :: [[a]] -> [a]
+concat' [] = []
+concat' (xs:xss) = xs ++ concat' xss
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 16. Definir por recursión la función
@@ -193,6 +243,10 @@
 --    selecciona [2,3,5,7] 2  ==  5 
 -- ---------------------------------------------------------------------
 
+selecciona :: [a] -> Int -> a 
+selecciona [] _ = error "Fuera de índice."
+selecciona (x:_) 0 = x
+selecciona (_:xs) y = selecciona xs (y-1)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 17. Definir por recursión la función
@@ -202,6 +256,9 @@
 --    take' 3 [4..12]  =>  [4,5,6]
 -- ---------------------------------------------------------------------
 
+take' :: Int -> [a] -> [a]
+take' 1 (x:_) = [x]
+take' y (x:xs) = [x] ++ take' (y-1) xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 18. Definir por recursión la función
@@ -211,6 +268,13 @@
 --    mezcla [2,5,6] [1,3,4]  ==  [1,2,3,4,5,6]
 -- ---------------------------------------------------------------------
 
+mezcla :: Ord a => [a] -> [a] -> [a]
+mezcla [] [] = []
+mezcla [] ys = ys
+mezcla xs [] = xs
+mezcla xss@(x:xs) yss@(y:ys)
+    | x > y     = [y] ++ mezcla xss ys
+    | otherwise = [x] ++ mezcla xs yss
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 19. Definir la función 
@@ -221,6 +285,9 @@
 --    mitades [2,3,5,7,9]  ==  ([2,3],[5,7,9])
 -- ---------------------------------------------------------------------
 
+mitades :: [a] -> ([a],[a])
+mitades xs = (take d xs, drop d xs)
+    where d = div (length xs) 2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 20. Definir por recursión la función 
