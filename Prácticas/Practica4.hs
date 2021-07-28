@@ -101,7 +101,7 @@ desplaza x y
 -- ---------------------------------------------------------------------
 
 codifica :: Int -> String -> String
-codifica = undefined
+codifica n xs = [desplaza n x | x <- xs]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6.2. Comprobar con QuickCheck que para cualquier entero n y
