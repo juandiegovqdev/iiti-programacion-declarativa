@@ -300,6 +300,18 @@ mitades xs = (take d xs, drop d xs)
 --    ordMezcla [5,2,3,1,7,2,5]  ==  [1,2,2,3,5,5,7]
 -- ---------------------------------------------------------------------
 
+ordMezcla :: Ord a => [a] -> [a]
+ordMezcla xs = mezcla (ordMitad m1) (ordMitad m2)
+    where
+        (m1, m2) = mitades xs
+
+
+ordMitad :: Ord a => [a] -> [a]
+ordMitad [] = []
+ordMitad [x] = [x]
+ordMitad (x:y:xs)
+    | x > y     = y : ordMitad (x:xs)
+    | otherwise = x : ordMitad (y:xs)
     
 -- ---------------------------------------------------------------------
 -- Ejercicio 21. Definir por recursión la función
@@ -310,3 +322,8 @@ mitades xs = (take d xs, drop d xs)
 --    borra 3 [1,2,1]  ==  [1,2,1]
 -- ---------------------------------------------------------------------
 
+borra :: Eq a => a -> [a] -> [a]
+borra _ [] = []
+borra x (y:ys)
+    | x == y = ys
+    | otherwise = y : borra x ys
