@@ -67,21 +67,28 @@ norma' v = sqrt $ productoEscalar v v
 -- norma de cada uno, sea igual a 1.
 -- ---------------------------------------------------------------------
 
-
+paralelos :: Vector2D -> Vector2D -> Bool
+paralelos v1 v2 = (productoEscalar v1 v2 / (norma v1 * norma v2)) == 1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7. Define tipos de datos (data) para almacenar información
 -- sobre el calendario: días de la semana, meses, y estaciones del año.
 -- ---------------------------------------------------------------------
 
-
+data Calendario = Calendario {
+    semana :: String,
+    mes :: String,
+    estacion :: String
+}
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Haciendo uso del tipo Maybe, define una función de
 -- división segura (que al dividir por 0 no lance una excepción).
 -- ---------------------------------------------------------------------
 
-
+divisionSegura :: Int -> Int -> Maybe Int
+divisionSegura _ 0 = Nothing
+divisionSegura m n = Just (m `div` n)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. Haciendo uso del tipo Maybe, define una función que
