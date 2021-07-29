@@ -11,7 +11,10 @@
 -- ---------------------------------------------------------------------
  
 takeWhile' :: (a -> Bool) -> [a] -> [a]
-takeWhile' = undefined
+takeWhile' _ [] = []
+takeWhile' f (x:xs)
+    | f x       = x : takeWhile' f xs
+    | otherwise = []
  
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Redefinir por recursión la función
@@ -22,7 +25,10 @@ takeWhile' = undefined
 -- ---------------------------------------------------------------------
  
 dropWhile' :: (a -> Bool) -> [a] -> [a]
-dropWhile' = undefined
+dropWhile' _ [] = []
+dropWhile' f (x:xs)
+    | f x       = dropWhile' f xs
+    | otherwise = x:xs
  
 -- ---------------------------------------------------------------------
 -- Ejercicio 3.1. Redefinir, usando foldr, la función concat. Por ejemplo, 
@@ -30,7 +36,7 @@ dropWhile' = undefined
 -- ---------------------------------------------------------------------
  
 concat' :: [[a]] -> [a]
-concat' = undefined
+concat' = foldr (++) []
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3.2. Comprobar con QuickCheck que la funciones concat',
@@ -62,7 +68,7 @@ prop_longConcat xss = undefined
 --    segmentos odd  [1,2,0,4,9,6,4,5,7,2]  ==  [[1],[9],[5,7]]
 -- ---------------------------------------------------------------------
 
-segmentos = undefined
+
  
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. La función 
