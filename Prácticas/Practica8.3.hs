@@ -2,8 +2,6 @@
 -- Expresiones Aritméticas con tipos de datos algebráicos
 -- =====================================================================
 
-
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Las expresiones aritméticas básicas pueden
 -- representarse usando el siguiente tipo de datos  
@@ -24,6 +22,11 @@ data Expr1 = C1 Int
            | P1 Expr1 Expr1  
            deriving Show
 
+evalua :: Expr1 -> Int
+evalua (C1 x) = x
+evalua (P1 e1 e2) = (evalua e1) * (evalua e2)
+evalua (S1 e1 e2) = (evalua e1) + (evalua e2)
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Definir la función aplica, tal que (aplica f e) es la 
 -- expresión obtenida aplicando la función f a cada uno de los números 
@@ -34,6 +37,10 @@ data Expr1 = C1 Int
 --    S1 (P1 (C1 6) (C1 10)) (P1 (C1 12) (C1 14))
 -- ---------------------------------------------------------------------
 
+aplica :: (Int -> Int) -> Expr1 -> Expr1 
+aplica f (P1 e1 e2) = P1 (aplica f e1) (aplica f e2)
+aplica f (C1 x) = C1 (f x)
+aplica f (S1 e1 e2) = S1 (aplica f e1) (aplica f e2)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Las expresiones aritméticas construidas con una
@@ -57,6 +64,12 @@ data Expr2 = X
            | S2 Expr2 Expr2
            | P2 Expr2 Expr2
 
+evaluaE :: Expr2 -> Int -> Int
+evaluaE X n = n
+evaluaE (C2 x) _ = x
+evaluaE (P2 e1 e2) n = (evaluaE e1 n) * (evaluaE e2 n)
+evaluaE (S2 e1 e2) n = (evaluaE e1 n) + (evaluaE e2 n)
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Definir la función numVars, tal que (numVars e) es el 
 -- número de variables en la expresión e. Por ejemplo, 
@@ -64,6 +77,12 @@ data Expr2 = X
 --    numVars X                      ==  1
 --    numVars (P2 X (S2 (C2 13) X))  ==  2
 -- ---------------------------------------------------------------------
+
+numVars :: Expr2 -> Int
+numVars (C2 x) = 0
+numVars X = 1
+numVars (P2 e1 e2) = (numVars e1) + (numVars e2)
+numVars (S2 e1 e2) = (numVars e1) + (numVars e2)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Las expresiones aritméticas con variables genéricas 
