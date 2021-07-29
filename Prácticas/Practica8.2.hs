@@ -2,10 +2,6 @@
 -- Árboles con tipos de datos algebráicos
 -- =====================================================================
 
--- ---------------------------------------------------------------------
--- Introducción                                                       --
--- ---------------------------------------------------------------------
-
 -- En esta relación se presenta ejercicios sobre árboles binarios
 -- definidos como tipos de datos algebraicos.
 
@@ -39,7 +35,9 @@ data Arbol a = H a
 -- ---------------------------------------------------------------------
 
 nHojas :: Arbol a -> Int
-nHojas = undefined
+nHojas (H a) = 1
+nHojas (N _ a1 a2) = nHojas a1 + nHojas a2
+
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 1.2. Definir la función
@@ -49,7 +47,8 @@ nHojas = undefined
 -- ---------------------------------------------------------------------
 
 nNodos :: Arbol a -> Int
-nNodos = undefined
+nNodos (N _ a1 a2) = 1 + nNodos a1 + nNodos a2
+nNodos (H _) = 0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.1. Definir la función
@@ -61,7 +60,14 @@ nNodos = undefined
 -- ---------------------------------------------------------------------
 
 profundidad :: Arbol a -> Int
-profundidad = undefined
+profundidad  (H _) = 1
+profundidad (N x a1 a2) = profundidadAux (N x a1 a2) 
+
+profundidadAux :: Arbol a -> Int
+profundidadAux (H _) = 0
+profundidadAux (N _ a1 a2)
+      | profundidadAux a1 > profundidadAux a2 = 1 + profundidadAux a1 
+      | otherwise                             = 1 + profundidadAux a2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.2. Definir la función
@@ -73,7 +79,8 @@ profundidad = undefined
 -- ---------------------------------------------------------------------
 
 anadeHojas :: Arbol a -> a -> a -> Arbol a
-anadeHojas = undefined
+anadeHojas (H z) x y = N z (H x) (H y)
+anadeHojas (N z a1 a2) x y = N z (anadeHojas a1 x y) (anadeHojas a2 x y)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3.1. Definir la función
@@ -86,7 +93,8 @@ anadeHojas = undefined
 -- ---------------------------------------------------------------------
 
 preorden :: Arbol a -> [a]
-preorden = undefined
+preorden (H x) = [x]
+preorden (N x a1 a2) = [x] ++ preorden a1 ++ preorden a2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3.2. Definir la función
@@ -99,7 +107,8 @@ preorden = undefined
 -- ---------------------------------------------------------------------
 
 inorden :: Arbol a -> [a]
-inorden = undefined
+inorden (H x) = [x]
+inorden (N x a1 a2) = inorden a1 ++ [x] ++ inorden a2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3.3. Definir la función
@@ -112,7 +121,8 @@ inorden = undefined
 -- ---------------------------------------------------------------------
 
 postorden :: Arbol a -> [a]
-postorden = undefined
+postorden (H x) = [x]
+postorden (N x a1 a2) = postorden a1 ++ postorden a2 ++ [x]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4.1. Definir la función
@@ -122,8 +132,8 @@ postorden = undefined
 -- ---------------------------------------------------------------------
 
 espejo :: Arbol a -> Arbol a
-espejo = undefined
-
+espejo (H x) = H x
+espejo (N x a1 a2) = N x (espejo a2) (espejo a1)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5.1. La función take está definida por
@@ -143,7 +153,10 @@ espejo = undefined
 -- ---------------------------------------------------------------------
  
 takeArbol :: Int -> Arbol a -> Arbol a
-takeArbol = undefined
+takeArbol 0 (H x) = H x
+takeArbol 0 (N x a1 a2) = H x
+takeArbol x (H y) = H y
+takeArbol x (N y a1 a2) = N y (takeArbol (x-1) a1) (takeArbol (x-1) a2)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6.1. La función
@@ -164,7 +177,7 @@ takeArbol = undefined
 -- ---------------------------------------------------------------------
 
 repeatArbol :: a -> Arbol a
-repeatArbol x = undefined
+repeatArbol x = N x (repeatArbol x) (repeatArbol x)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6.2. La función 
@@ -185,7 +198,8 @@ repeatArbol x = undefined
 -- ---------------------------------------------------------------------
 
 replicateArbol :: Int -> a -> Arbol a
-replicateArbol n = undefined
+replicateArbol 0 y = H y
+replicateArbol x y = N y (replicateArbol (x-1) y) (replicateArbol (x-1) y)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7.1. Definir la función
@@ -197,7 +211,8 @@ replicateArbol n = undefined
 -- ---------------------------------------------------------------------
 
 mapArbol :: (a -> a) -> Arbol a -> Arbol a
-mapArbol = undefined
+mapArbol f (H x) = H (f x)
+mapArbol f (N x a1 a2) = N (f x) (mapArbol f a1) (mapArbol f a2)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Se consideran los árboles con operaciones booleanas
@@ -254,7 +269,14 @@ ej2 = Conj (Disy (Conj (HB True) (HB False))
                  (HB True))
 
 valorB:: ArbolB -> Bool
-valorB = undefined
+valorB (Neg (HB True)) = False
+valorB (Neg (HB False)) = True
+valorB (HB True) = True
+valorB (HB False) = False
+valorB (Conj a1 a2) = (valorB a1) && (valorB a2)
+valorB (Disy a1 a2) = (valorB a1) || (valorB a2)
+valorB (Neg (Disy a1 a2)) = not ((valorB a1) || (valorB a2))
+valorB (Neg (Conj a1 a2)) = not ((valorB a1) && (valorB a2))
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. Los árboles generales se pueden representar mediante el
