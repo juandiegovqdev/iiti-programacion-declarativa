@@ -109,6 +109,18 @@ data Expr3 = C3 Int
            | P3 Expr3 Expr3  
            deriving Show
                    
+obtenerValor :: Char -> [(Char, Int)] -> Int
+obtenerValor _ [] = 0
+obtenerValor c ((x, y):xs) 
+    | c == x    = y
+    | otherwise = obtenerValor c xs
+
+evaluaG :: Expr3 -> [(Char, Int)] -> Int
+evaluaG (C3 x) xs = x 
+evaluaG (P3 e1 e2) xs = evaluaG e1 xs * evaluaG e2 xs
+evaluaG (S3 e1 e2) xs = evaluaG e1 xs + evaluaG e2 xs
+evaluaG (V3 c) xs = obtenerValor c xs
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Definir la función sumas, tal que (sumas e) es el 
 -- número de sumas en la expresión e. Por ejemplo, 
@@ -116,7 +128,13 @@ data Expr3 = C3 Int
 --    sumas (S3 (V3 'z') (S3 (C3 3) (V3 'x')))  ==  2
 --    sumas (P3 (V3 'z') (P3 (C3 3) (V3 'x')))  ==  0
 -- ---------------------------------------------------------------------
-                   
+
+sumas :: Expr3 -> Int
+sumas (P3 e1 e2) = sumas e1 + sumas e2
+sumas (S3 e1 e2) = 1 + sumas e1 + sumas e2
+sumas (C3 _) = 0
+sumas (V3 _) = 0
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 7. Definir la función sustitucion, tal que 
 -- (sustitucion e s) es la expresión obtenida sustituyendo las variables 
@@ -127,6 +145,11 @@ data Expr3 = C3 Int
 --    P3 (C3 9) (S3 (C3 3) (V3 'y'))
 -- ---------------------------------------------------------------------
 
+sustitucion :: Expr3 -> [(Char, Int)] -> Expr3
+sustitucion (V3 x) xs = C3 (obtenerValor x xs)
+sustitucion (C3 x) xs = C3 x
+sustitucion (P3 e1 e2) xs = P3 (sustitucion e1 xs) (sustitucion e2 xs)
+sustitucion (S3 e1 e2) xs = S3 (sustitucion e1 xs) (sustitucion e2 xs)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Definir la función reducible, tal que (reducible e) se 
@@ -140,3 +163,17 @@ data Expr3 = C3 Int
 --    reducible (C3 3)                           == False
 --    reducible (V3 'x')                         == False
 -- ---------------------------------------------------------------------
+
+reducible :: Expr3 -> Bool
+reducible (P3 (C3 _) (C3 _)) = True
+reducible (P3 (C3 _) (V3 _)) = False
+reducible (P3 (V3 _) (C3 _)) = False
+reducible (P3 (V3 _) (V3 _)) = False
+reducible (S3 (C3 _) (C3 _)) = True
+reducible (S3 (C3 _) (V3 _)) = False
+reducible (S3 (V3 _) (C3 _)) = False
+reducible (S3 (V3 _) (V3 _)) = False
+reducible (P3 e1 e2) = reducible e1 && reducible e2
+reducible (S3 e1 e2) = reducible e1 && reducible e2
+reducible (C3 _) = True
+reducible (V3 _) = False
