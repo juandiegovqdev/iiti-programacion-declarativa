@@ -1,7 +1,5 @@
 -- PD-Práctica 8.4 
 -- Árboles Trie
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Un árbol Trie es un árbol de búsqueda donde los nodos internos codifican
 -- un alfabeto de Claves y las hojas contienen Valores asociados
@@ -29,7 +27,6 @@
 -- tiene asociado tan solo un carácter en forma de cadena.
 -- ---------------------------------------------------------------------
 
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Definir el tipo de datos para un árbol Trie polimórfico,
 -- donde los nodos internos almacenen un elemento de un tipo Clave y puedan
@@ -37,7 +34,9 @@
 -- debe ser imprimible. Además, definir a continuación un sinónimo de árbol
 -- Trie que emplee cadenas como Claves y enteros como Valores.
 
-
+data ArbolT = N String [ArbolT] 
+           | H Int 
+           deriving Show
 
 -- ---------------------------------------------------------------------
 
@@ -50,16 +49,19 @@
 --         una hoja, devolver la cadena vacía "".
 --    (c) (esHoja n), que indique con un booleano si el nodo n es una hoja.
 
-arbolTrieVacio = undefined
+arbolTrieVacio :: ArbolT
+arbolTrieVacio = N "" []
 
-clave = undefined
+clave :: ArbolT -> String
+clave (N x _)= x
+clave (H _) = ""
 
-esHoja = undefined
+esHoja :: ArbolT -> Bool
+esHoja (N _ _) = False 
+esHoja (H _) = True
+
 -- ---------------------------------------------------------------------
-
-
--- ---------------------------------------------------------------------
--- Ejercicio 3. Definir la función (siguienteNodo hs s), que reciba una
+-- Ejercicio 3. Definir la función (siguienteNodo as s), que reciba una
 -- lista de árboles as y una cadena de un solo carácter s, y devuelva un
 -- par tal que:
 --  1. El primer elemento del par será el nodo h de la lista as tal que su
@@ -68,9 +70,21 @@ esHoja = undefined
 --  2. El segundo elemento del par serán todos los nodos de hs cuya clave no
 --     coincidan con s.
 
-siguienteNodo = undefined
--- ---------------------------------------------------------------------
+siguienteNodo :: [ArbolT] -> String -> (ArbolT, [ArbolT])
+siguienteNodo xs s = ((obtenerNodoPrimerPar xs s), (obtenerNodoSegundoPar xs s))
 
+obtenerNodoPrimerPar :: [ArbolT] -> String -> ArbolT
+obtenerNodoPrimerPar [] s = N s []
+obtenerNodoPrimerPar ((N x yss):xs) s
+    | x == s    = N x yss
+    | otherwise = obtenerNodoPrimerPar xs s
+
+obtenerNodoSegundoPar :: [ArbolT] -> String -> [ArbolT]
+obtenerNodoSegundoPar [] _ = []
+obtenerNodoSegundoPar (x:[]) _ = [x]
+obtenerNodoSegundoPar ((N x yss):xs) s
+    | x == s    = obtenerNodoSegundoPar xs s
+    | otherwise = [(N x yss)] ++ obtenerNodoSegundoPar xs s
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Definir la función (insertaEnArbol a p ), que reciba un
@@ -78,7 +92,8 @@ siguienteNodo = undefined
 -- de caracteres y valor un entero. La función debe devolver el árbol a
 -- incluyendo el nuevo par (clave,valor).
 
-insertaEnArbol = undefined
+-- insertaEnArbol :: ArbolT -> (String, Integer) -> ArbolT
+-- insertaEnArbol () (y, z) = undefined
 -- ---------------------------------------------------------------------
 
 
