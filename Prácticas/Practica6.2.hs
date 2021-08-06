@@ -1,10 +1,6 @@
 -- PD 2019-20: Practica 6.2
 -- Funciones de orden superior y definiciones por plegados (II)
 -- ============================================================================
-
--- ============================================================================
--- Librerías auxiliares
--- ============================================================================
 import Data.Char
 import Data.List
 import Data.Numbers.Primes
@@ -17,12 +13,21 @@ import Data.Numbers.Primes
 --   resultadoPos sum [[1,2],[9],[-8,3],[],[3,5]]  ==  [[1,2],[9],[3,5]]
 --
 -- Define esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...),
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
 -- -----------------------------------------------------------------------------
+-- 1) por comprensión
+resultadoPosC :: (a -> Integer) -> [[a]] -> [a]
+resultadoPosC f (xs:xss)= undefined
 
+esPositivo :: (a -> Integer) -> [a] -> Bool
+esPositivo f (x:xs) = undefined
+
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión
+
+
+-- 4) por plegado (con 'foldr')
 
 
 -- ----------------------------------------------------------------------------
