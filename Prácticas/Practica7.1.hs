@@ -43,7 +43,7 @@ inicial =  [5,4,3,2,1]
 -- ---------------------------------------------------------------------
 
 finalizado :: Tablero -> Bool
-finalizado t = all (==True) [t!!x == 0 | x <- [0..(length t)-1]]
+finalizado t = all (==True) [t!!x == 0 | x <- [0..(length t) - 1]]
 
 -- ---------------------------------------------------------------------
 -- Ejecicio 2.2. Definir la función
@@ -57,7 +57,7 @@ finalizado t = all (==True) [t!!x == 0 | x <- [0..(length t)-1]]
 -- ---------------------------------------------------------------------
 
 valida :: Tablero -> Int -> Int -> Bool
-valida t f n = undefined
+valida t f n = t!!(f-1) >= n && n >= 1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Definir la función
@@ -68,7 +68,10 @@ valida t f n = undefined
 -- ---------------------------------------------------------------------
 
 jugada :: Tablero -> Int -> Int -> Tablero
-jugada t f n = undefined
+jugada [] _ _ = []
+jugada (x:xs) f n
+    | f == 1 = (x-n) : jugada xs (f-1) n
+    | otherwise = x : jugada xs (f-1) n
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Definir la acción
@@ -80,7 +83,7 @@ jugada t f n = undefined
 -- ---------------------------------------------------------------------
 
 nuevaLinea :: IO ()
-nuevaLinea = undefined
+nuevaLinea = putStr "\n"
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Definir la función
@@ -92,7 +95,8 @@ nuevaLinea = undefined
 -- ---------------------------------------------------------------------
 
 estrellas :: Int -> String
-estrellas n = undefined
+estrellas 0 = ""
+estrellas n = "* " ++ estrellas (n-1) 
                               
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Definir la acción
@@ -104,7 +108,11 @@ estrellas n = undefined
 -- ---------------------------------------------------------------------
  
 escribeFila :: Int -> Int -> IO ()
-escribeFila f n =  undefined
+escribeFila f n = do
+    putStr (show f) 
+    putStr ": "
+    putStr (estrellas n) 
+    putChar '\n'
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7. Definir la acción
@@ -120,12 +128,21 @@ escribeFila f n =  undefined
 -- ---------------------------------------------------------------------
 
 escribeTablero :: Tablero -> IO ()
-escribeTablero = undefined
+escribeTablero xs = escribeTableroAux xs 1
+
+escribeTableroAux :: Tablero -> Int -> IO ()
+escribeTableroAux [] _ = putStr ""
+escribeTableroAux (x:xs) n = do
+        putStr (show n) 
+        putStr ": "
+        putStr (estrellas x) 
+        putChar '\n'
+        escribeTableroAux (xs) (n+1)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Definir la acción
 --    leeDigito :: String -> IO Int
--- tal que (leeDigito c) escribe una nueva línea con l cadena "prueba",
+-- tal que (leeDigito c) escribe una nueva línea con la cadena "prueba",
 -- lee un carácter y comprueba que es un dígito. Además, si el carácter
 -- leido es un dígito entonces devuelve el entero correspondiente y si
 -- no lo es entonces escribe el mensaje "Entrada incorrecta" y vuelve a
@@ -140,8 +157,17 @@ escribeTablero = undefined
 --    3
 -- ---------------------------------------------------------------------
 
+isInt x = x == fromInteger (round x)
+
+{--
 leeDigito :: String -> IO Int
-leeDigito c = undefined
+leeDigito c = do
+    putStr c
+    x <- getChar  
+    if isInt toInt x then return x else do 
+        error "Entrada incorrecta"
+        leeDigito "prueba "
+--}
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. Los jugadores se representan por los números 1 y 2.
@@ -285,4 +311,5 @@ nim = undefined
 -- Ejercicio 12. Definir la función principal para poder compilar el
 -- el fichero. Compila el fichero y genera un ejecutable.
 -- ---------------------------------------------------------------------
+
 
