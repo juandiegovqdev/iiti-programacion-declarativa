@@ -15,17 +15,19 @@ import Data.Numbers.Primes
 -- Define esta función
 -- -----------------------------------------------------------------------------
 -- 1) por comprensión
-resultadoPosC :: (a -> Integer) -> [[a]] -> [a]
-resultadoPosC f (xs:xss)= undefined
-
-esPositivo :: (a -> Integer) -> [a] -> Bool
-esPositivo f (x:xs) = undefined
+resultadoPosC :: (a -> Integer) -> [a] -> [a]
+resultadoPosC f xss = [x | x <- xss, f x > 0]
 
 -- 2) por orden superior (map, filter, ...)
-
+resultadoPosOS :: (a -> Integer) -> [a] -> [a]
+resultadoPosOS f xss = filter (\x -> f x > 0) xss
 
 -- 3) por recursión
-
+resultadoPosR :: (a -> Integer) -> [a] -> [a]
+resultadoPosR _ [] = []
+resultadoPosR f (x:xs) 
+    | f x > 0   = [x] ++ resultadoPosR f xs
+    | otherwise = resultadoPosR f xs
 
 -- 4) por plegado (con 'foldr')
 
@@ -40,12 +42,25 @@ esPositivo f (x:xs) = undefined
 --   intercala 5 [6,7,9,8]      ==  [6,7,9,8]
 --
 -- Define esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...)
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
 -- ----------------------------------------------------------------------------
+-- 1) por comprensión,
+{--
+intercalaC :: Int -> [Int] -> [Int]
+intercalaC y xs = [b x y | x <- xs]
+    where b x y = if x < y then x y else x
+--}
 
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión,
+intercalaR :: Int -> [Int] -> [Int]
+intercalaR _ [] = []
+intercalaR y (x:xs)
+    | x < y = y : x : intercalaR y xs
+    | otherwise = x : intercalaR y xs
+
+-- 4) por plegado (con 'foldr').
 
 
 -- ----------------------------------------------------------------------------
@@ -56,13 +71,18 @@ esPositivo f (x:xs) = undefined
 --   dec2ent [2,3,4,5]  ==  2345
 --   dec2ent [1..9]     ==  123456789
 --
--- Defie esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...)
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
+-- Define esta función
 -- ----------------------------------------------------------------------------
+-- 1) por comprensión,
 
+
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión,
+
+
+-- 4) por plegado (con 'foldr').
 
 
 -- ----------------------------------------------------------------------------
@@ -76,12 +96,17 @@ esPositivo f (x:xs) = undefined
 --   diferencia [1,3] [1..9]       ==  []
 --
 -- Define esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...)
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
 -- ----------------------------------------------------------------------------
+-- 1) por comprensión,
 
+
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión,
+
+
+-- 4) por plegado (con 'foldr').
 
 
 -- ----------------------------------------------------------------------------
@@ -95,12 +120,17 @@ esPositivo f (x:xs) = undefined
 
 --
 -- Define esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...)
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
 -- ----------------------------------------------------------------------------
+-- 1) por comprensión,
 
+
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión,
+
+
+-- 4) por plegado (con 'foldr').
 
 
 -- ----------------------------------------------------------------------------
@@ -117,14 +147,19 @@ esPositivo f (x:xs) = undefined
 --    hermanada [2,3,5]        ==  False
 --
 -- Se pide definir esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...)
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
 -- ----------------------------------------------------------------------------
 -- Nota: Usa la función 'gcd'
 -- ----------------------------------------------------------------------------
+-- 1) por comprensión,
 
+
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión,
+
+
+-- 4) por plegado (con 'foldr').
 
 
 -- ----------------------------------------------------------------------------
@@ -136,14 +171,19 @@ esPositivo f (x:xs) = undefined
 --   permanentes [80,1,7,8,4]  ==  [80,8,4]
 
 -- Se pide definir esta función
--- 1) por comprensión,
--- 2) por orden superior (map, filter, ...)
--- 3) por recursión,
--- 4) por plegado (con 'foldr').
 -- ---------------------------------------------------------------------------
 -- Nota: Usa la función 'tails' de Data.List.
 -- ----------------------------------------------------------------------------
+-- 1) por comprensión,
 
+
+-- 2) por orden superior (map, filter, ...)
+
+
+-- 3) por recursión,
+
+
+-- 4) por plegado (con 'foldr').
 
                
 -- ---------------------------------------------------------------------
