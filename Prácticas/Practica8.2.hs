@@ -341,7 +341,13 @@ ramifica = undefined
 -- ---------------------------------------------------------------------
 
 nHojasG :: ArbolG a -> Int
-nHojasG = undefined
+nHojasG xs = nHojasGAux [xs] 
+
+nHojasGAux :: [ArbolG a] -> Int
+nHojasGAux [] = 0
+nHojasGAux ((NG _ y):xs)
+      | null y    = 1 + nHojasGAux xs
+      | otherwise = nHojasGAux y + nHojasGAux xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11. Definir la función
@@ -353,7 +359,13 @@ nHojasG = undefined
 -- ---------------------------------------------------------------------
 
 profundidadG :: ArbolG a -> Int
-profundidadG = undefined
+profundidadG xs = profundidadGAux [xs]
+
+profundidadGAux :: [ArbolG a] -> Int
+profundidadGAux [] = 0
+profundidadGAux ((NG _ y):xs)
+      | null y    = nHojasGAux xs
+      | otherwise = 1 + nHojasGAux y + nHojasGAux xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 12. Definir la función
