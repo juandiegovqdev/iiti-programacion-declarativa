@@ -23,10 +23,6 @@
 -- + ColaConListas.hs    que está en http://bit.ly/21z3wQL
 -- + ColaConDosListas.hs que está en http://bit.ly/21z3AQp
 
--- ---------------------------------------------------------------------
--- Importación de librerías                                           --
--- ---------------------------------------------------------------------
-
 import Data.List
 import Test.QuickCheck
 
