@@ -1,11 +1,6 @@
 -- PD- 2020-21
 -- Tipos: Multiconjuntos como Diccionarios
 -- =====================================================================
-
--- ---------------------------------------------------------------------
--- Introducción                                                       --
--- ---------------------------------------------------------------------
-
 -- Un multiconjunto es una colección de elementos en los que no importa
 -- el orden de los elementos, pero sí el número de veces en que
 -- aparecen. Por ejemplo, la factorización prima de un número se puede
@@ -21,7 +16,7 @@
 -- Librerías auxiliares                                               --
 -- ---------------------------------------------------------------------
 
-import qualified Data.Map as M
+import Data.Map as M
 
 -- ---------------------------------------------------------------------
 -- El tipo de dato de multiconjuntos                                  --
@@ -48,7 +43,7 @@ type MultiConj a = M.Map a Int
 -- ---------------------------------------------------------------------
 
 vacio :: MultiConj a
-vacio = undefined
+vacio = empty 
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Definir la función
@@ -59,7 +54,7 @@ vacio = undefined
 -- ---------------------------------------------------------------------
 
 unitario :: a -> MultiConj a
-unitario x = undefined
+unitario x = insert x 1 vacio
 
 -- ---------------------------------------------------------------------
 -- Añadir y quitar elementos                                          --
