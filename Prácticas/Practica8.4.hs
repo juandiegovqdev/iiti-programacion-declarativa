@@ -97,6 +97,7 @@ obtenerNodoSegundoPar ((N x yss):xs) s
 -- ---------------------------------------------------------------------
 
 
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Definir la función (insertaEnArbol a cs), que reciba un
 -- árbol Trie, a, y una lista, cs, de pares (clave, valor), y devuelva un
@@ -109,6 +110,7 @@ insertaElemsEnArbol = undefined
 -- ---------------------------------------------------------------------
 
 
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Definir la (consultaValor a cs), tal que reciba un árbol
 -- Trie a y una Clave cs, y devuelva los valores asociados a ella. Si la
@@ -117,4 +119,5 @@ insertaElemsEnArbol = undefined
 
 consultaValor = undefined
 -- ---------------------------------------------------------------------
+
 
