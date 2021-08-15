@@ -2,18 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 3 Parcial                                      21 de Diciembre 2017
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- # Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- # Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
-
--- -------------------------------------------------------------------
 -- Ejercicio 3 (2 ptos).
 -- -------------------------------------------------------------------
 -- Una lista de números enteros se llama alternada si sus elementos
@@ -31,7 +19,11 @@
 --    alternada [7]         == True
 -- -------------------------------------------------------------------
 
--- Solución:
+alternada :: [Int] -> Bool
+alternada (x:y:xs)
+    | even x    = odd y && alternada (y:xs)
+    | otherwise = even y && alternada (y:xs)
+alternada _ = True
 
 -- -------------------------------------------------------------------
 -- Generalizando, una lista es alternada respecto de un predicado p si
@@ -47,14 +39,18 @@
 --    alternadaG even [8,1,2,3]      == True
 -- -------------------------------------------------------------------
 
--- Solución:
+alternadaG :: (a -> Bool) -> [a] -> Bool
+alternadaG p (x:y:xs)
+    | p x       = p y /= True && alternadaG p (y:xs)
+    | otherwise = p y == True && alternadaG p (y:xs)
+alternadaG p _ = True
 
 -- -------------------------------------------------------------------
 -- (3.3) Redefinir la función alternada usando alternadaG y comprobar
 -- con QuickCheck que ambas definiciones coinciden.
 -- -------------------------------------------------------------------
 
--- Solución:
+prop_alternada xs = alternadaG even xs == alternada xs
 
 -- -------------------------------------------------------------------
 -- (3.4) Un número de la suerte es un número natural que se genera por
@@ -85,5 +81,20 @@
 -- -------------------------------------------------------------------
 
 -- Solución:
+
+numerosDeLaSuerte :: [Int]
+numerosDeLaSuerte = eliminarNumerosSieteEnSiete (eliminarNumerosTresEnTres (eliminarNumerosDosEnDos [1..1000000]))
+
+eliminarNumerosDosEnDos :: [Int] -> [Int]
+eliminarNumerosDosEnDos (x:y:xs) = [x] ++ (eliminarNumerosDosEnDos xs) 
+eliminarNumerosDosEnDos _ = []
+
+eliminarNumerosTresEnTres :: [Int] -> [Int]
+eliminarNumerosTresEnTres (x:y:z:xs) = [x] ++ [y] ++ (eliminarNumerosTresEnTres xs) 
+eliminarNumerosTresEnTres _ = []
+
+eliminarNumerosSieteEnSiete :: [Int] -> [Int]
+eliminarNumerosSieteEnSiete (a:b:c:d:e:f:g:xs) = [a] ++ [b] ++ [c] ++ [d] ++ [e] ++ [f] ++ (eliminarNumerosSieteEnSiete xs) 
+eliminarNumerosSieteEnSiete _ = []
 
 -- -------------------------------------------------------------------

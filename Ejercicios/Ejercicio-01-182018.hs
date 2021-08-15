@@ -2,20 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 3 Parcial                                          18 de Enero 2018
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   <uvus>Ejercicio2.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
 
 {-# LANGUAGE OverloadedStrings #-}
 import CodeWorld
@@ -46,6 +32,7 @@ import Test.QuickCheck
 -- Solución:
 -- ---------
 
+type PosicionUno = Int -> Int
 
 -- -------------------------------------------------------------------
 -- Diremos que dos elementos, pi y pj, del tipo PosicionUno verifican

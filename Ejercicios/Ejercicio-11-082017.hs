@@ -2,20 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 1 Parcial                                       8 de Noviembre 2017
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   <uvus>Ejercicio20171108.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo que considere más adecuado) como
---   necesite describiendo claramente su objetivo.
--- -------------------------------------------------------------------
 
 import Test.QuickCheck
 
@@ -43,7 +29,10 @@ listaEjemplo = [(1, "A"), (2, "B"), (2, "C")]
 -- (1.1) Definir, utilizando recursión, la función
 
 esClave :: (Eq a) => a -> [(a, b)] -> Bool
-esClave = undefined
+esClave a ((x, y):xs)
+    | a == x = True
+    | otherwise = esClave a xs
+esClave a [] = False
 
 -- que, dado un elemento c y una lista asociativa l, determine si c
 -- es una clave de l. Por ejemlo:
@@ -55,14 +44,20 @@ esClave = undefined
 -- (1.2) Definir la función
 
 asoc1 :: (Eq a) => a -> [(a, b)] -> b
-asoc1 = undefined
+asoc1 a ((x, y):xs) 
+    | x == a    = y
+    | otherwise = asoc1 a xs
+asoc1 _ [] = error "Clave no válida."
 
 -- que, dados un elemento c y una lista asociativa l, devuelva un
 -- elemento v tal que el par (c, v) pertenece a l. Análogamente,
 -- definir la función
 
 asoc2 :: (Eq b) => b -> [(a, b)] -> a
-asoc2 = undefined
+asoc2 a ((x, y):xs) 
+    | y == a    = x
+    | otherwise = asoc2 a xs
+asoc2 _ [] = error "Valor no válido."
 
 -- que , dados un elemento v y una lista asociativa l, devuelva un
 -- elemento c tal que el par (c, v) pertenece a l. Por ejemplo:
@@ -87,7 +82,10 @@ asoc2 = undefined
 -- (1.3) Definir
 
 codigo :: [(Char, Int)]
-codigo = undefined
+codigo = [("a", 0),("b", 1),("c", 2),("d", 3),("e", 4),("f", 5),("g", 6),
+("h", 7),("i", 8),("j", 9),("k", 10),("l", 11),("m", 12),("n", 13),("ñ", 14),
+("o", 15),("p", 16),("q", 17),("r", 18),("s", 19),("t", 20),("u", 21),
+("v", 22),("w", 23),("x", 24),("y", 25),("z", 26)]
 
 -- como una lista asociativa que represente la siguiente
 -- correspondencia entre las 27 letras del alfabeto español (en
@@ -109,6 +107,16 @@ codigo = undefined
 esCodigo :: (Eq a, Eq b) => [(a, b)] -> Bool
 esCodigo = undefined
 
+numeroRepeticionesClave :: [(Char, Int)] -> Char -> Int
+numeroRepeticionesClave ((x, y):xs) c
+    | x == c    = 1 + numeroRepeticionesClave xs c
+    | otherwise = numeroRepeticionesClave xs c
+
+numeroRepeticionesValor :: [(Char, Int)] -> Int -> Int
+numeroRepeticionesValor ((x, y):xs) c
+    | c == y    = 1 + numeroRepeticionesValor xs c
+    | otherwise = numeroRepeticionesValor xs c
+
 -- que, dada una lista asociativa, determine si es un código. Por
 -- ejemplo:
 --   esCodigo codigo ==> True
@@ -118,8 +126,8 @@ esCodigo = undefined
 -- (1.5) Definir
 
 letraNumero :: Char -> Int
-letraNumero = undefined
-                
+letraNumero = undefined    
+
 -- que reciba una letra y devuelva la correspondencia numérica de dicha
 -- letra según el código definido. De forma análoga, definir
                                                     
