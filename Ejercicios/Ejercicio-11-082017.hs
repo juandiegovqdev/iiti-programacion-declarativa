@@ -2,20 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 1 Parcial                                       8 de Noviembre 2017
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   <uvus>Ejercicio20171108.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo que considere más adecuado) como
---   necesite describiendo claramente su objetivo.
--- -------------------------------------------------------------------
 
 import Test.QuickCheck
 
@@ -43,7 +29,10 @@ listaEjemplo = [(1, "A"), (2, "B"), (2, "C")]
 -- (1.1) Definir, utilizando recursión, la función
 
 esClave :: (Eq a) => a -> [(a, b)] -> Bool
-esClave = undefined
+esClave a ((x, y):xs)
+    | a == x = True
+    | otherwise = esClave a xs
+esClave a [] = False
 
 -- que, dado un elemento c y una lista asociativa l, determine si c
 -- es una clave de l. Por ejemlo:
