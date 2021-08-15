@@ -44,14 +44,20 @@ esClave a [] = False
 -- (1.2) Definir la función
 
 asoc1 :: (Eq a) => a -> [(a, b)] -> b
-asoc1 = undefined
+asoc1 a ((x, y):xs) 
+    | x == a    = y
+    | otherwise = asoc1 a xs
+asoc1 _ [] = error "Clave no válida."
 
 -- que, dados un elemento c y una lista asociativa l, devuelva un
 -- elemento v tal que el par (c, v) pertenece a l. Análogamente,
 -- definir la función
 
 asoc2 :: (Eq b) => b -> [(a, b)] -> a
-asoc2 = undefined
+asoc2 a ((x, y):xs) 
+    | y == a    = x
+    | otherwise = asoc2 a xs
+asoc2 _ [] = error "Valor no válido."
 
 -- que , dados un elemento v y una lista asociativa l, devuelva un
 -- elemento c tal que el par (c, v) pertenece a l. Por ejemplo:
@@ -76,7 +82,10 @@ asoc2 = undefined
 -- (1.3) Definir
 
 codigo :: [(Char, Int)]
-codigo = undefined
+codigo = [("a", 0),("b", 1),("c", 2),("d", 3),("e", 4),("f", 5),("g", 6),
+("h", 7),("i", 8),("j", 9),("k", 10),("l", 11),("m", 12),("n", 13),("ñ", 14),
+("o", 15),("p", 16),("q", 17),("r", 18),("s", 19),("t", 20),("u", 21),
+("v", 22),("w", 23),("x", 24),("y", 25),("z", 26)]
 
 -- como una lista asociativa que represente la siguiente
 -- correspondencia entre las 27 letras del alfabeto español (en
