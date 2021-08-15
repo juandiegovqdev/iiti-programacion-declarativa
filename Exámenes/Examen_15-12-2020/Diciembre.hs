@@ -2,25 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 3a Convocatoria                               15 de Diciembre de 2020
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- Lugar ocupado:   laboratorio:            puesto:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:          Diciembre_<uvus>.hs
---    donde "<uvus>" es tu UVUS.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y NO lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
 -- ORIENTACIONES
 -- · Escribe la solución de cada ejercicio en el hueco reservado para
 --   ello.
@@ -31,7 +12,7 @@
 -- ----------------------------------------------------------------------
 
 import Data.List as L
-import Data.Matrix as M
+-- import Data.Matrix as M
 import Data.Map as D
 import Control.Monad
 import Control.Exception (catch, SomeException)
@@ -49,9 +30,20 @@ import Control.Exception (catch, SomeException)
 --   maximoConsecutivos "abbcccddddeeeffg"         ==  4
 -- ----------------------------------------------------------------------------
 
-maximoConsecutivos = undefined
+maximoConsecutivos :: (Eq a) => [a] -> Integer
+maximoConsecutivos xs = maximoConsecutivosAux xs 0
 
--- ============================================================================
+maximoConsecutivosAux :: (Eq a) => [a] -> Integer -> Integer
+maximoConsecutivosAux [] y = y
+maximoConsecutivosAux (x:xs) y
+  | maxiApariciones (x:xs) x > y = maximoConsecutivosAux xs (maxiApariciones (x:xs) x)
+  | otherwise                    = maximoConsecutivosAux xs y
+
+maxiApariciones :: (Eq a) => [a] -> a -> Integer
+maxiApariciones  [] _ = 0
+maxiApariciones (x:xs) y
+  | x == y    = 1 + maxiApariciones xs y
+  | otherwise = maxiApariciones xs y
 
 -- ============================================================================
 -- Ejercicio 2. (2,5 ptos) Los árboles binarios con datos en nodos internos y
@@ -94,9 +86,17 @@ ejArbol =
 --   caminoEntreHojas 2 0 ejArbol  ==  []
 -- ----------------------------------------------------------------------------
 
-caminoEntreHojas = undefined
+caminoEntreHojas :: (Eq a) => a -> a -> Arbol a -> [a]
+caminoEntreHojas x y arbol
+  | valorPresenteArbol arbol x && valorPresenteArbol arbol y = undefined
+  | otherwise                                                = []
 
--- ============================================================================
+caminoEntreHojasAux :: (Eq a) => a -> a -> Arbol a -> [a]
+caminoEntreHojasAux x y arbol = undefined
+
+valorPresenteArbol :: (Eq a) => Arbol a -> a -> Bool
+valorPresenteArbol (H x) a = x == a
+valorPresenteArbol (N x x1 x2) a =  x == a || valorPresenteArbol x1 a || valorPresenteArbol x2 a
 
 -- ============================================================================
 -- Ejercicio 3. (2,5 ptos) El problema de las N torres consiste en colocar 
@@ -139,7 +139,10 @@ caminoEntreHojas = undefined
 -- Pista: puede ser útil la función permutations de Data.List
 -- ---------------------------------------------------------------------
 
+{--
+torres  :: Int -> [Matrix Int]
 torres = undefined
+--}
 
 -- ============================================================================
 
@@ -160,7 +163,7 @@ torres = undefined
 -- usuario Grogu
 -- modo Superusuario
 -- pantalla Primaria
- 
+
 -- d) Pedir al usuario un nombre de OPCION y devolver el VALOR correspondiente
 -- según lo cargado en el diccionaro. Acto seguido, el programa acaba. (0.5ptos).
 
@@ -174,5 +177,3 @@ torres = undefined
 -- Grogu
 
 main = undefined
-
--- ============================================================================
