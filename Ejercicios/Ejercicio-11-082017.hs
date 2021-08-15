@@ -107,6 +107,16 @@ codigo = [("a", 0),("b", 1),("c", 2),("d", 3),("e", 4),("f", 5),("g", 6),
 esCodigo :: (Eq a, Eq b) => [(a, b)] -> Bool
 esCodigo = undefined
 
+numeroRepeticionesClave :: [(Char, Int)] -> Char -> Int
+numeroRepeticionesClave ((x, y):xs) c
+    | x == c    = 1 + numeroRepeticionesClave xs c
+    | otherwise = numeroRepeticionesClave xs c
+
+numeroRepeticionesValor :: [(Char, Int)] -> Int -> Int
+numeroRepeticionesValor ((x, y):xs) c
+    | c == y    = 1 + numeroRepeticionesValor xs c
+    | otherwise = numeroRepeticionesValor xs c
+
 -- que, dada una lista asociativa, determine si es un código. Por
 -- ejemplo:
 --   esCodigo codigo ==> True
@@ -116,8 +126,8 @@ esCodigo = undefined
 -- (1.5) Definir
 
 letraNumero :: Char -> Int
-letraNumero = undefined
-                
+letraNumero = undefined    
+
 -- que reciba una letra y devuelva la correspondencia numérica de dicha
 -- letra según el código definido. De forma análoga, definir
                                                     
