@@ -149,7 +149,7 @@ ganadores ((x,y):xs) = if y == m then x : ganadores xs else ganadores xs
 -- (8.1) Definir
 
 falsos :: [Bool]
-falsos = undefined
+falsos = [False | x <- [1..20000000]]
 
 -- una lista infinita en la que todos los elementos son False.
 -- take 6 falsos == [False,False,False,False,False,False]
