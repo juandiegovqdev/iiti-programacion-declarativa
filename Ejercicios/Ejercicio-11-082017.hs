@@ -5,13 +5,6 @@
 
 import Test.QuickCheck
 
--- En caso de no resolver adecuadamente el ejercicio 1 descomentar la
--- siguiente línea. Dispondrá de las funciones letraNumero y
--- numeroLetra del apartado 1.5 (útiles para los ejercicios 2 y 3).
-
--- import Codigo
--- -------------------------------------------------------------------
-
 -- -------------------------------------------------------------------
 -- Ejercicio 1.
 -- Llamaremos lista asociativa a una lista de tuplas binarias. A los
@@ -82,10 +75,7 @@ asoc2 _ [] = error "Valor no válido."
 -- (1.3) Definir
 
 codigo :: [(Char, Int)]
-codigo = [("a", 0),("b", 1),("c", 2),("d", 3),("e", 4),("f", 5),("g", 6),
-("h", 7),("i", 8),("j", 9),("k", 10),("l", 11),("m", 12),("n", 13),("ñ", 14),
-("o", 15),("p", 16),("q", 17),("r", 18),("s", 19),("t", 20),("u", 21),
-("v", 22),("w", 23),("x", 24),("y", 25),("z", 26)]
+codigo = [('a', 0),('b', 1),('c', 2),('d', 3),('e', 4),('f', 5),('g', 6),('h', 7),('i', 8),('j', 9),('k', 10),('l', 11),('m', 12),('n', 13),('ñ', 14),('o', 15),('p', 16),('q', 17),('r', 18),('s', 19),('t', 20),('u', 21),('v', 22),('w', 23),('x', 24),('y', 25),('z', 26)]
 
 -- como una lista asociativa que represente la siguiente
 -- correspondencia entre las 27 letras del alfabeto español (en
@@ -105,17 +95,22 @@ codigo = [("a", 0),("b", 1),("c", 2),("d", 3),("e", 4),("f", 5),("g", 6),
 -- (1.4) Definir
 
 esCodigo :: (Eq a, Eq b) => [(a, b)] -> Bool
-esCodigo = undefined
+esCodigo ((x,y):xs)
+    | numeroRepeticionesClave ((x,y):xs) x == 1 && numeroRepeticionesValor ((x,y):xs) y == 1 = True && esCodigo xs
+    | otherwise = False
+esCodigo [] =  True
 
-numeroRepeticionesClave :: [(Char, Int)] -> Char -> Int
+numeroRepeticionesClave :: (Eq a, Eq b) => [(a, b)] -> a -> Int
 numeroRepeticionesClave ((x, y):xs) c
     | x == c    = 1 + numeroRepeticionesClave xs c
     | otherwise = numeroRepeticionesClave xs c
+numeroRepeticionesClave [] _ = 0
 
-numeroRepeticionesValor :: [(Char, Int)] -> Int -> Int
+numeroRepeticionesValor :: (Eq a, Eq b) => [(a, b)] -> b -> Int
 numeroRepeticionesValor ((x, y):xs) c
     | c == y    = 1 + numeroRepeticionesValor xs c
     | otherwise = numeroRepeticionesValor xs c
+numeroRepeticionesValor [] _ = 0
 
 -- que, dada una lista asociativa, determine si es un código. Por
 -- ejemplo:
