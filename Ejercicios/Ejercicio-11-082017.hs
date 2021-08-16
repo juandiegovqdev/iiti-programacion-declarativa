@@ -121,13 +121,25 @@ numeroRepeticionesValor [] _ = 0
 -- (1.5) Definir
 
 letraNumero :: Char -> Int
-letraNumero = undefined    
+letraNumero a = letraNumeroAux codigo a
+
+letraNumeroAux :: [(Char, Int)] -> Char -> Int
+letraNumeroAux ((x,y):xs) a
+    | x == a = y
+    | otherwise = letraNumeroAux xs a
+letraNumeroAux [] _ = error "sólo disponible para el alfabeto español (minúsculas)."
 
 -- que reciba una letra y devuelva la correspondencia numérica de dicha
 -- letra según el código definido. De forma análoga, definir
                                                     
 numeroLetra :: Int -> Char
-numeroLetra = undefined
+numeroLetra a = numeroLetraAux codigo a
+
+numeroLetraAux :: [(Char, Int)] -> Int -> Char
+numeroLetraAux ((x,y):xs) a
+    | y == a = x
+    | otherwise = numeroLetraAux xs a
+numeroLetraAux [] _ = error "sólo hay 27 letras disponibles (numeradas de 0 a 26)."
 
 -- que reciba un número natural menor que 27 y devuelva la letra que
 -- corresponde a dicho número. Por ejemplo:
