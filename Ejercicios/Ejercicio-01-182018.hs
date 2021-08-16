@@ -4,7 +4,6 @@
 -- -------------------------------------------------------------------
 
 {-# LANGUAGE OverloadedStrings #-}
-import CodeWorld
 import Data.List 
 import Test.QuickCheck
 
@@ -198,82 +197,6 @@ data Arbol v r = H v | N (r, Arbol v r) v (r, Arbol v r)
 ejemplo :: Arbol Char Bool
 ejemplo = N (True, N (False, (H '*')) '+' (True, (H '*')))
           '*' (False, (H '*'))
-
--- -------------------------------------------------------------------
--- Para dibujar los árboles binarios de forma interactiva
--- utilizaremos el tipo siguiente:
-
-type Estado = (Arbol Point Color, [Point])
-
--- Una tupla de la forma (a, vs) donde a es un árbol (cuyos vértices
--- son las coordenadas de su posición en la imagen y cuyas ramas
--- llevan como etiqueta el color con el que queremos pintarlas al
--- interaccionar) y vs una lista con los vértices de parte de una rama
--- de a (al menos la raíz del árbol estará en la lista), la que se ha
--- coloreado con la interacción.
--- En la imagen el árbol a aparecerá en negro salvo la rama parcial
--- cuyos vértices están en la lista vs. En último vértice de vs
--- aparecerá como * y lo denominaremos puntero.
--- Para la interacción utilizaremos las teclas A, I, D siendo:
--- A: volver al vértice anterior al puntero en la rama coloreada
---    (salvo si es la raíz). La última rama coloreada volverá a ser
---    negra.
--- I: añadir el vértice de la rama a la izquierda del puntero a la
---    rama coloreada (salvo que el puntero sea una hoja). Dicha rama
---    aparecerá con el color de su etiqueta.
--- D: añadir el vértice de la rama a la derecha del puntero a la
---    rama coloreada (salvo que el puntero sea una hoja). Dicha rama
---    aparecerá con el color de su etiqueta.
-
-arbol, arbolI:: Estado
-arbol = (N (blue, N (green, (H (0, 0))) (1, 1) (yellow, (H (2, 0))))
-         (2, 2) (red, (H (3, 1))),
-         [(2, 2)])
-
-arbolI = (N (blue, N (green, (H (0, 0))) (1, 1) (yellow, (H (2, 0))))
-          (2, 2) (red, (H (3, 1))),
-          [(2, 2), (1, 1)])
-
--- -------------------------------------------------------------------
--- (3.1) Definir la función
-
-pintaEstado :: Estado -> Picture
-
--- tal que, dado un estado e, devuelva una imagen del mismo según la
--- descripción anterior.
-
--- > drawingOf (pintaEstado arbol)
--- Imagen del fichero arbol.png
--- > drawingOf (pintaEstado arbolI)
--- Imagen del fichero arbolI.png
-
--- Solución:
--- ---------
-
-pintaEstado = undefined
-
--- -------------------------------------------------------------------
--- (3.2) Definir la función
-
-manejaEvento :: Event -> Estado -> Estado
-
--- tal que, dado un evento de teclado con las letras I, D ó A y un
--- estado e devuelva el estado que resulta según las indicaciones
--- anteriores. Si el movimiento no se puede realizar el estado no se
--- modifica.
-
--- arbolP = manejaEvento (KeyPress "I") arbol
--- arbolS = manejaEvento (KeyPress "A") arbolP
--- > arbolI == arbolP
--- True
--- > arbolS == arbol
--- True
--- > interactionOf arbol (\_ e -> e) manejaEstado pintaEstado
-
--- Solución:
--- ---------
-
-manejaEvento = undefined
 
 -- -------------------------------------------------------------------
 -- Ejercicio 4 (2 ptos)
