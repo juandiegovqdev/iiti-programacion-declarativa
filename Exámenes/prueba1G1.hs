@@ -2,11 +2,6 @@
 -- PD. Grado en Informatica. Tecnologias Informaticas. CURSO 2013-14
 -- PRUEBA 1 DE EVALUACION ALTERNATIVA (6 NOVIEMBRE 2013)
 -- ---------------------------------------------------------------------------
--- ---------------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- GRUPO:
--- EMAIL:
--- ---------------------------------------------------------------------------
 
 import Test.QuickCheck
 
@@ -23,10 +18,20 @@ import Test.QuickCheck
 -- Ya que |3-1| = 2 >=0; |0-3|=3>=1; pero |1-0|=1 no es >=2.
 -- Definir por comprension una funcion (genial xs) tal que reconozca  si
 -- xs es una lista genial.
--- SOLUCION:
-genial :: [Int] -> Bool
-genial = undefined
 
+genial :: [Int] -> Bool
+genial xs = all (==True) [abs (xs!!x-xs!!(x+1)) > x | x <- [0..length xs-2]]
+
+-- Solución usando recursión.
+genialRec :: [Int] -> Bool
+genialRec = genialAux 0
+
+genialAux :: Int -> [Int] -> Bool
+genialAux a (x:y:xs)
+    | abs (x-y) > a = True && genialAux (a+1) (y:xs)
+    | otherwise = False
+genialAux _ (x:xs) = True
+genialAux _ [] = True
 
 -- ---------------------------------------------------------------------------
 -- EJERCICIO 2. USANDO COMPRENSION / USANDO RECURSION
@@ -47,7 +52,7 @@ genial = undefined
 -- esRaizR [(5,3),(-3,2),(-1,1)] 0 == True
 -- esRaizR [(-1,2),(1,0)] 1 == True
 -- esRaizR [(-1,3),(1,0)] 0 == False
--- SOLUCION:
+
 valeR :: [(Float, Float)] -> Float  ->  Float
 valeR = undefined
 
@@ -56,7 +61,7 @@ esRaizR = undefined
 -- EJERCICIO 2.2.
 -- Definir la funcion valeC, que actue como valeR, usando
 -- comprension. Define esRaizC usandola.
--- SOLUCION:
+
 valeC :: [(Float, Float)] -> Float  -> Float
 valeC = undefined
 
@@ -65,8 +70,8 @@ esRaizC = undefined
 -- EJERCICIO 2.3.
 -- Definir una propiedad para comprobar con quickCheck que esRaizR y
 -- esRaizC son iguales.
--- SOLUCION:
-prop_raiz = undefined 
+
+prop_raiz = undefined
 
 -- ---------------------------------------------------------------------------
 -- EJERCICIO 3.   COMPRENSION
@@ -83,7 +88,7 @@ prop_raiz = undefined
 -- sonParientes 25 6 == True
 -- sonParientes 6 25 == False
 --
--- SOLUCION:
+
 sonParientes = undefined
 --
 -- EJERCICIO 3.2.
@@ -93,8 +98,8 @@ sonParientes = undefined
 -- parientes 1 30 ==
 -- [(4,9),(6,6),(10,8),(14,10),(16,15),(18,21),(20,22),(22,14),(25,6)]
 --
--- SOLUCION:
-parientes = undefined 
+
+parientes = undefined
 
 -- ---------------------------------------------------------------------------
 -- EJERCICIO 4.   COMPRENSION / RECURSION
@@ -111,7 +116,7 @@ parientes = undefined
 -- Definir una funcion ventasC, tal que (ventasC x xs) devuelva el numero
 -- total de electrodomesticos tipo x vendidos segun la lista xs.
 -- Por ejemplo, llamemos lista a la lista anterior:
---
+
 lista :: [(String, [(String, Int)])]
 lista = [("Lavadora"    , [("AEG", 20), ("Fagor",15),("Boch",5)]),
     ("Lavavajillas", [("AEG",12),  ("Boch",8),  ("Zanussi",7), ("Fagor",4)]),
@@ -123,13 +128,13 @@ lista = [("Lavadora"    , [("AEG", 20), ("Fagor",15),("Boch",5)]),
 -- ventasC "Lavavadora" lista == 47
 -- Ya que 47 == 20+15+5+2+5
 --
--- SOLUCION:
+
 ventasC :: String -> [(String, [(String, Int)])] -> Int
 ventasC = undefined
 --
 -- EJERCICIO 4.2.
 -- Definir la version recursiva de la funcion anterior, ventasR.
 --
--- SOLUCION:
+
 ventasR :: String -> [(String, [(String, Int)])] -> Int
 ventasR = undefined

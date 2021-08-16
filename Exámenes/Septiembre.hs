@@ -5,11 +5,11 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
--- import TADPila
+import TADPila
 import System.Environment (getArgs)
 import qualified Data.ByteString.Lazy as B
 import Text.CSV
--- import Data.Matrix
+import Data.Matrix
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. [2 ptos]
@@ -30,31 +30,25 @@ import Text.CSV
 -- ---------------------------------------------------------------------
 
 -- 1. usando map y filter,
-multFuncPrimerosNValidosMapFilter :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
-multFuncPrimerosNValidosMapFilter n f p xs = sum (map f (take n (filter p xs)))
---    multFuncPrimerosNValidosMapFilter 2 (4+) even [1..7]  
+
 
 -- 2. por recursión,
-multFuncPrimerosNValidosRecursion :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
-multFuncPrimerosNValidosRecursion n f p xs = multFuncPrimerosNValidosRecursionAux n f (multFuncPrimerosNValidosRecursionFiltro p xs)
---    multFuncPrimerosNValidosRecursion 2 (4+) even [1..7]
 
-multFuncPrimerosNValidosRecursionAux :: (Num a, Num b) => Int -> (a -> b) -> [a] -> b
-multFuncPrimerosNValidosRecursionAux n f (x:xs) = f x + multFuncPrimerosNValidosRecursionAux n f xs
-multFuncPrimerosNValidosRecursionAux _ _ [] = 0
-
-multFuncPrimerosNValidosRecursionFiltro :: (Num a) => (a -> Bool) -> [a]  -> [a]
-multFuncPrimerosNValidosRecursionFiltro = filter
 
 -- 3. por recursión con acumulador,
-multFuncPrimerosNValidosAcumulador :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
-multFuncPrimerosNValidosAcumulador n f p xs = undefined
---    multFuncPrimerosNValidosAcumulador 2 (4+) even [1..7] 
+
 
 -- 4. por plegado (a izquierda o derecha).
-multFuncPrimerosNValidosFoldr :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
-multFuncPrimerosNValidosFoldr n f p xs = undefined
---    multFuncPrimerosNValidosFoldr 2 (4+) even [1..7] 
+
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 2. [1 pto]
+-- ---------------------------------------------------------------------
+-- Desarrolle una animación usando CodeWorld, de modo que la escena
+-- incluya los ejes de coordenadas, un rectángulo inmóvil con grosor,
+-- y un círculo relleno de otro color que vaya girando alrededor
+-- del rectángulo estático.
+-- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. [2 ptos]
@@ -62,7 +56,7 @@ multFuncPrimerosNValidosFoldr n f p xs = undefined
 -- Desarrolle un programa principal que lea del archivo pasado
 -- como argumento (si no se le pasa ninguno, de "atp_players.csv"),
 -- lo parsee y posteriormente realice lo siguiente con las filas válidas
--- del fichero:
+-- delfichero:
 --
 -- a) Imprimir por pantalla el número de jugadores de que consta el archivo.
 --    A continuación, imprimalos nombres de los campos contenidos en el
@@ -72,13 +66,11 @@ multFuncPrimerosNValidosFoldr n f p xs = undefined
 --    "nombre" (campo 2)
 --    ...
 --
--- b) Procesar los registros contenidos, de forma que vaya seleccionando
+-- b) Procesar los registros contenidos, de forma quevaya seleccionando
 --    aquellos que sean españoles (ESP), zurdos (L) y nacidos en los 80,
 --    y para cada uno de ellos imprima el nombre, apellidos y
 --    fecha de nacimiento.
 -- ---------------------------------------------------------------------
-
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. [1,5 ptos]
@@ -104,8 +96,6 @@ multFuncPrimerosNValidosFoldr n f p xs = undefined
 -- λ> fibPila 4 200
 --   108|56|29|15|8|4|2|1|1|-
 -- ---------------------------------------------------------------------
-
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. [1,5 ptos]
@@ -133,8 +123,6 @@ data Arbol = N Int [Arbol]
 --         N 1 [N 2 [N 2 []],N 3 [N 4 [N 4 []],N 7 []],N 6 []]
 -- ---------------------------------------------------------------------
 
-
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. [1 pto]
 -- ---------------------------------------------------------------------
@@ -151,4 +139,35 @@ data Arbol = N Int [Arbol]
 --       λ> binario2int (B 0 (B 1 (B 0 BFin))) == 10
 -- ---------------------------------------------------------------------
 
-
+-- ---------------------------------------------------------------------
+-- Ejercicio 7. [1 pto]
+-- ---------------------------------------------------------------------
+-- Algunos algoritmos de compresión de imágenes hacen uso de los planos
+-- de bits, o bitplanes. Sea una matriz m de números en binario, los
+-- bitplanes son las matrices de bits correspondientes al bit n-ésimo de
+-- cada elemento en m. Es decir, la matriz con el primer bit de todos los
+-- elementos es el primer bitplane, la matriz con el segundo bit de todos
+-- los elementos es el segundo bitplane, ... Supongamos una representación
+-- little-endian (el bit menos significativo (en la posición 1) es el último,
+-- el bit 2 es el antepenúltimo, etc.). Por ejemplo, los bitplanes de la matriz
+--  ┌             ┐
+--  │ 101   1  10 │
+--  │   0  11 100 │
+--  │  10 110   1 │
+--  └             ┘
+-- es la lista de matrices siguiente (del tercer bitplane al primero):
+--  ┌       ┐   ┌       ┐   ┌       ┐
+--  │ 1 0 0 │   │ 0 0 1 │   │ 1 1 0 │
+--  │ 0 0 1 │   │ 0 1 0 │   │ 0 1 0 │
+--  │ 0 1 0 │   │ 1 1 0 │   │ 0 0 1 │
+--  └       ┘ , └       ┘ , └       ┘
+--
+-- Defina la función (bitplanes m), tal que recibe una matriz
+-- de números en binario (por simplicidad de tipo Int, asuma que solo
+-- contiene 0s y 1s), y devuelve una lista de matrices con los bitplanes
+-- desde el más significativo (el '1' más significativo de todos los
+-- elementos de la matriz) hasta el menos significativo. La siguiente
+-- matriz de ejemplo corresponde al anterior.
+matrizEj :: Matrix Int
+matrizEj = fromLists [[101, 1, 10], [0, 11, 100], [10, 110, 1]]
+-- ---------------------------------------------------------------------
