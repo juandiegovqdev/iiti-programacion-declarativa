@@ -115,17 +115,13 @@ algunoVerifica p c
 --    ponAlaCola c2 c3 == C [17,14,11,8,5,2,10,9,8,7,6,5,4,3]
 -- ---------------------------------------------------------------------
 
--- c2 = foldr inserta vacia [2,5..18]
--- c3 = foldr inserta vacia [3..10]
-
 ponAlaCola :: Cola a -> Cola a -> Cola a
 ponAlaCola c1 c2
-    | esVacia c2 = error "Cola vacía." 
-    | esVacia rc =  
-    | otherwise = ponAlaCola c1 c2
+    | esVacia rc = inserta pc c1
+    | otherwise = ponAlaCola (inserta pc c1) rc
     where pc = primero c2
           rc = resto c2
-
+          
 -- ---------------------------------------------------------------------
 -- Ejercicio 6: Definir la función
 --    mezclaColas :: Cola a -> Cola a -> Cola a
@@ -135,8 +131,19 @@ ponAlaCola c1 c2
 --    mezclaColas c2 c4 == C [17,4,14,3,11,3,8,0,5,10,2,8,3,7,-1,4]
 -- ---------------------------------------------------------------------
 
+{--
+c2 = foldr inserta vacia [2,5..18]
+c4 = foldr inserta vacia [4,-1,7,3,8,10,0,3,3,4]
+--}
+
 mezclaColas :: Cola a -> Cola a -> Cola a
 mezclaColas c1 c2 = undefined
+
+mezclaColasC1aC2 :: Cola a -> Cola a -> Cola a
+mezclaColasC1aC2 c1 c2 = undefined
+
+mezclaColasC2aC1 :: Cola a -> Cola a -> Cola a
+mezclaColasC2aC1 c1 c2 = undefined
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7: Definir la función
