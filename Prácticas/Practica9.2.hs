@@ -27,8 +27,8 @@ import Data.List
 import Test.QuickCheck
 
 -- Hay que elegir una implementación del TAD colas:
-import ColaConListas
--- import ColaConDosListas
+-- import Prácticas.ColaConListas 
+import Prácticas.ColaConDosListas
 -- import I1M.Cola
     
 -- ---------------------------------------------------------------------
@@ -42,8 +42,6 @@ c4 = foldr inserta vacia [4,-1,7,3,8,10,0,3,3,4]
 c5 = foldr inserta vacia [15..20]
 c6 = foldr inserta vacia (reverse [1..20])
 -- ---------------------------------------------------------------------
-
--- ---------------------------------------------------------------------
 -- Ejercicio 1: Definir la función
 --    ultimoCola :: Cola a -> a
 -- tal que (ultimoCola c) es el último elemento de la cola c. Por
@@ -53,8 +51,12 @@ c6 = foldr inserta vacia (reverse [1..20])
 -- ---------------------------------------------------------------------
 
 ultimoCola :: Cola a -> a
-ultimoCola c = undefined
-
+ultimoCola c
+    | esVacia c = error "Cola vacía." 
+    | esVacia rc = pc
+    | otherwise = ultimoCola rc
+    where pc = primero c
+          rc = resto c
 -- ---------------------------------------------------------------------
 -- Ejercicio 2: Definir la función
 --    longitudCola :: Cola a -> Int
@@ -64,7 +66,12 @@ ultimoCola c = undefined
 -- ---------------------------------------------------------------------
 
 longitudCola :: Cola a -> Int
-longitudCola c = undefined
+longitudCola c
+    | esVacia c = error "Cola vacía." 
+    | esVacia rc = 1
+    | otherwise = 1 + longitudCola rc
+    where pc = primero c
+          rc = resto c
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3: Definir la función 
@@ -76,7 +83,12 @@ longitudCola c = undefined
 -- ---------------------------------------------------------------------
 
 todosVerifican :: (a -> Bool) -> Cola a -> Bool
-todosVerifican p c = undefined
+todosVerifican p c
+    | esVacia c = error "Cola vacía." 
+    | esVacia rc = True
+    | otherwise = p pc && todosVerifican p rc
+    where pc = primero c
+          rc = resto c
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4: Definir la función
@@ -88,7 +100,12 @@ todosVerifican p c = undefined
 -- ---------------------------------------------------------------------
 
 algunoVerifica :: (a -> Bool) -> Cola a -> Bool
-algunoVerifica p c = undefined
+algunoVerifica p c
+    | esVacia c = error "Cola vacía." 
+    | esVacia rc = False
+    | otherwise = p pc || algunoVerifica p rc
+    where pc = primero c
+          rc = resto c
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5: Definir la función
@@ -98,8 +115,16 @@ algunoVerifica p c = undefined
 --    ponAlaCola c2 c3 == C [17,14,11,8,5,2,10,9,8,7,6,5,4,3]
 -- ---------------------------------------------------------------------
 
+-- c2 = foldr inserta vacia [2,5..18]
+-- c3 = foldr inserta vacia [3..10]
+
 ponAlaCola :: Cola a -> Cola a -> Cola a
-ponAlaCola c1 c2 = undefined
+ponAlaCola c1 c2
+    | esVacia c2 = error "Cola vacía." 
+    | esVacia rc =  
+    | otherwise = ponAlaCola c1 c2
+    where pc = primero c2
+          rc = resto c2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6: Definir la función
