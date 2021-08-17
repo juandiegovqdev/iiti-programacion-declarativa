@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 -- ---------------------------------------------------------------------------
 -- PD. Grado en Informatica. Tecnologias Informaticas. CURSO 2013-14
 -- PRUEBA 1 DE EVALUACION ALTERNATIVA (6 NOVIEMBRE 2013)
@@ -41,7 +42,7 @@ genialAux _ [] = True
 -- Por ejemplo, el polinomio 
 -- 5x^3 - 3x^2 - x - 1 se representara por
 -- [(5,3),(-3,2),(-1,1),(-1,0)]
---
+
 -- EJERCICIO 2.1.
 -- Definir usando recursion la funcion valeR tal que 
 -- (valeR ps x) devuelve el valor de polinomio ps para x.
@@ -54,19 +55,20 @@ genialAux _ [] = True
 -- esRaizR [(-1,3),(1,0)] 0 == False
 
 valeR :: [(Float, Float)] -> Float  ->  Float
-valeR = undefined
+valeR ((x, y):xs) a = x * (a**y) + valeR xs a
+valeR [] _ = 0
 
 esRaizR = undefined
---
+
 -- EJERCICIO 2.2.
 -- Definir la funcion valeC, que actue como valeR, usando
 -- comprension. Define esRaizC usandola.
 
 valeC :: [(Float, Float)] -> Float  -> Float
-valeC = undefined
+valeC xs a = sum [x * (a**y) | (x, y) <- xs]
 
 esRaizC = undefined
---
+
 -- EJERCICIO 2.3.
 -- Definir una propiedad para comprobar con quickCheck que esRaizR y
 -- esRaizC son iguales.
@@ -87,10 +89,9 @@ prop_raiz = undefined
 -- sonParientes 8 49 == True
 -- sonParientes 25 6 == True
 -- sonParientes 6 25 == False
---
 
 sonParientes = undefined
---
+
 -- EJERCICIO 3.2.
 -- Define la funcion parientes, tal que (parientes n m) devuelva los pares
 -- de numeros parientes entre si, en el intervalo [n, m].
@@ -118,23 +119,34 @@ parientes = undefined
 -- Por ejemplo, llamemos lista a la lista anterior:
 
 lista :: [(String, [(String, Int)])]
-lista = [("Lavadora"    , [("AEG", 20), ("Fagor",15),("Boch",5)]),
+lista = [("Lavavadora"    , [("AEG", 20), ("Fagor",15),("Boch",5)]),
     ("Lavavajillas", [("AEG",12),  ("Boch",8),  ("Zanussi",7), ("Fagor",4)]),
     ("Frigorifico" , [("Fagor",5), ("AEG",9),   ("Boch",3)]),
     ("Lavadora"    , [("AEG", 2), ("Miele",5)])]
---
+
 -- ventasC "Lavavajillas" lista == 31 
 -- Ya que 31 == 12+8+7+4
 -- ventasC "Lavavadora" lista == 47
 -- Ya que 47 == 20+15+5+2+5
---
 
 ventasC :: String -> [(String, [(String, Int)])] -> Int
-ventasC = undefined
---
+ventasC a ((x, y):xs) = ventasCAux (obtenerTipoElectrodomesticos a ((x, y):xs))
+
+ventasCAux :: [(String, Int)] -> Int
+ventasCAux xs = sum [y | (_, y) <- xs]
+
 -- EJERCICIO 4.2.
 -- Definir la version recursiva de la funcion anterior, ventasR.
---
 
 ventasR :: String -> [(String, [(String, Int)])] -> Int
-ventasR = undefined
+ventasR a ((x, y):xs) = ventasRAux (obtenerTipoElectrodomesticos a ((x, y):xs))
+
+ventasRAux :: [(String, Int)] -> Int
+ventasRAux ((x, y):xs) = y + ventasCAux xs
+
+-- Función auxiliar:
+obtenerTipoElectrodomesticos :: String -> [(String, [(String, Int)])] -> [(String, Int)]
+obtenerTipoElectrodomesticos a ((x, y):xs)
+    | a == x = y
+    | otherwise = obtenerTipoElectrodomesticos a xs
+obtenerTipoElectrodomesticos a [] = error "Tipo de electrodoméstico no encontrado."
