@@ -2,18 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 3 Parcial                                      21 de Diciembre 2017
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- # Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- # Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
-
--- -------------------------------------------------------------------
 -- Ejercicio 2 (4'5 ptos).
 -- -------------------------------------------------------------------
 -- (2.1) Definir los tipos Jugador (con dos posibles valores para
@@ -25,7 +13,7 @@
 -- para la definición de los tipos solicitados (salvo Mesa).
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.2) Definir el tipo NimFilas, utilizando data, para la
@@ -35,7 +23,7 @@
 -- definición de la función show.
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- Definición alternativa del tipo NimFilas si no se han resuelto los
@@ -48,6 +36,7 @@
 -- el tercero: 0 si no se ha escogido fila o el índice de la fila
 -- escogida.
 -- -------------------------------------------------------------------
+
 
 
 -- -------------------------------------------------------------------
@@ -71,7 +60,7 @@
 -- Tiene el turno el primer jugador
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.4) Definir una función,
@@ -86,7 +75,7 @@
 -- [1,2,3,4,5]
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.5) Definir una función,
@@ -101,7 +90,7 @@
 -- 1
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.6) Definir una función,
@@ -115,7 +104,7 @@
 -- Nothing
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.7) Definir una función, utilizando guardas,
@@ -144,7 +133,7 @@
 -- Exception: escogeFila: ya se ha escogido una fila
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.8) Definir una función,
@@ -173,7 +162,7 @@
 -- Tiene el turno el segundo jugador
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- (2.9) Añadir al inicio del fichero la definición del módulo

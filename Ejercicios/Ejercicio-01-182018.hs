@@ -28,9 +28,6 @@ import Test.QuickCheck
 -- PosicionUno en la clase Eq con la definición por defecto del
 -- operador (==).
 
--- Solución:
--- ---------
-
 type PosicionUno = Int -> Int
 
 -- -------------------------------------------------------------------
@@ -47,8 +44,6 @@ type PosicionUno = Int -> Int
 -- operador (<=). Para definir el operador utilizar equiparación de
 -- patrones (incluir tantas ecuaciones como sea necesario).
 
--- Solución:
--- ---------
 
 
 -- -------------------------------------------------------------------
@@ -64,8 +59,6 @@ type PosicionUno = Int -> Int
 -- con uno (o más) 1 utilizar una constructor recursivo que combine la
 -- posición de un 1 y un número binario.
 
--- Solución:
--- ---------
 
 
 -- -------------------------------------------------------------------
@@ -83,15 +76,11 @@ type PosicionUno = Int -> Int
 -- de: hay un 1 en la cuarta posición y el número 0000.
 -- -------------------------------------------------------------------
 -- (1.4) Definir la función
-
--- esCorrecta :: Binario -> Bool
-
 -- que dado un elemento de tipo Binario determine si representa
 -- correctamente a un número binario según lo descrito anteriormente.
 
--- Solución:
--- ---------
-
+esCorrecta :: Binario -> Bool
+esCorrecta = undefined
 
 -- -------------------------------------------------------------------
 

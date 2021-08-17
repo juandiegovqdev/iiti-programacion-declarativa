@@ -2,10 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 2                                      22 de Diciembre de 2020
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
 
 import System.Environment (getArgs)
 import Control.Exception (catch, SomeException)
@@ -14,10 +10,6 @@ import Text.CSV
 import Text.Printf
 import Data.List
 import Test.QuickCheck
-
--- ------------------------------ --
--- PARTE A del examen, 40 minutos --
--- ------------------------------ --
 
 -- ----------------------------------------------------------------------
 -- Ejercicio 1. (2 puntos)
