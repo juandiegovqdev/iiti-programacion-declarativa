@@ -1,16 +1,20 @@
--- PD 2020-21. Vectores y matrices con Data.Array.
+-- PD 2020-21. Solución. Vectores y matrices con Data.Array.
 -- Tomado de la asignatura I1M.
+-- Departamento de Ciencias de la Computación e I.A.
+-- Universidad de Sevilla
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
 
--- El objetivo de esta relación es hacer ejercicios sobre vectores y
+-- El objetivo de esta práctica es hacer ejercicios sobre vectores y
 -- matrices con el tipo de arrays, definido en el módulo
 -- Data.Array y detallado en 
 --    http://www.cs.us.es/~jalonso/cursos/i1m-19/temas/tema-18.html
- 
+-- Como ejemplo, vamos a desarrollar el método de Gauss para 
+-- triangularizar matrices.
+
 -- Además, en algunos ejemplos se usan matrices con números racionales.
 -- En Haskell, el número racional x/y se representa por x%y. El TAD de
 -- los números racionales está definido en el módulo Data.Ratio.
@@ -47,7 +51,8 @@ type Matriz a = Array (Int,Int) a
 -- ---------------------------------------------------------------------
 
 listaVector :: Num a => [a] -> Vector a
-listaVector xs = array (1, length xs) [(x+1, (xs!!x)) | x <- [0..length xs-1]]
+listaVector xs = listArray (1,n) xs
+    where n = length xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Definir la función
@@ -55,11 +60,9 @@ listaVector xs = array (1, length xs) [(x+1, (xs!!x)) | x <- [0..length xs-1]]
 -- tal que (listaMatriz xss) es la matriz cuyas filas son los elementos
 -- de xss. Por ejemplo,
 --    ghci> listaMatriz [[1,3,5],[2,4,7]]
---    array ((1,1),(2,3)) [((1,1),1), ((1,2),3), ((1,3),5), ((2,1),2), ((2,2),4), ((2,3),7)]
+--    array ((1,1),(2,3)) [((1,1),1),((1,2),3),((1,3),5),
+--                         ((2,1),2),((2,2),4),((2,3),7)]
 -- ---------------------------------------------------------------------
-
-posiciones :: Eq a => a -> [a] -> Int
-posiciones x xs = head [p | (p, y) <- zip [0 .. ] xs, x == y]
 
 listaMatriz :: Num a => [[a]] -> Matriz a
 listaMatriz xss = listArray ((1,1),(m,n)) (concat xss)
@@ -96,7 +99,7 @@ numColumnas = snd . snd . bounds
 -- ---------------------------------------------------------------------
 
 dimension :: Num a => Matriz a -> (Int,Int)
-dimension = snd . bounds
+dimension p = (numFilas p, numColumnas p)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Definir la función
@@ -109,7 +112,7 @@ dimension = snd . bounds
 
 separa :: Int -> [a] -> [[a]]
 separa _ [] = []
-separa x xs = take 3 xs : separa x (drop x xs)
+separa n xs = take n xs : separa n (drop n xs)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7. Definir la función
@@ -125,7 +128,7 @@ separa x xs = take 3 xs : separa x (drop x xs)
 -- ---------------------------------------------------------------------
 
 matrizLista :: Num a => Matriz a -> [[a]]
-matrizLista p = undefined
+matrizLista p = separa (numColumnas p) (elems p)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Definir la función
@@ -140,7 +143,7 @@ matrizLista p = undefined
 -- ---------------------------------------------------------------------
 
 vectorLista :: Num a => Vector a -> [a]
-vectorLista = undefined
+vectorLista = elems 
 
 -- ---------------------------------------------------------------------
 -- Suma de matrices                                                   --
@@ -157,8 +160,11 @@ vectorLista = undefined
 --    [[9,7,3],[4,7,8]]
 -- ---------------------------------------------------------------------
 
-sumaMatrices :: Num a => Matriz a -> Matriz a -> Matriz a
-sumaMatrices p q = undefined
+sumaMatrices:: Num a => Matriz a -> Matriz a -> Matriz a
+sumaMatrices p q = 
+    array ((1,1),(m,n)) [((i,j),p!(i,j)+q!(i,j))  
+                        | i <- [1..m], j <- [1..n]]
+    where (m,n) = dimension p
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10. Definir la función
@@ -173,7 +179,8 @@ sumaMatrices p q = undefined
 -- ---------------------------------------------------------------------
 
 filaMat :: Num a => Int -> Matriz a -> Vector a
-filaMat i p = undefined
+filaMat i p = array (1,n) [(j,p!(i,j)) | j <- [1..n]]
+    where n = numColumnas p
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11. Definir la función
@@ -188,7 +195,8 @@ filaMat i p = undefined
 -- ---------------------------------------------------------------------
 
 columnaMat :: Num a => Int -> Matriz a -> Vector a
-columnaMat j p = undefined
+columnaMat j p = array (1,m) [(i,p!(i,j)) | i <- [1..m]]
+    where m = numFilas p
 
 -- ---------------------------------------------------------------------
 -- Producto de matrices                                               --
@@ -205,7 +213,8 @@ columnaMat j p = undefined
 -- ---------------------------------------------------------------------
 
 prodEscalar :: Num a => Vector a -> Vector a -> a
-prodEscalar v1 v2 = undefined
+prodEscalar v1 v2 = 
+    sum [i*j | (i,j) <- zip (elems v1) (elems v2)]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13. Definir la función
@@ -225,7 +234,12 @@ prodEscalar v1 v2 = undefined
 -- ---------------------------------------------------------------------
 
 prodMatrices:: Num a => Matriz a -> Matriz a -> Matriz a
-prodMatrices p q = undefined
+prodMatrices p q = 
+    array ((1,1),(m,n))
+          [((i,j), prodEscalar (filaMat i p) (columnaMat j q)) |
+           i <- [1..m], j <- [1..n]]
+    where m = numFilas p
+          n = numColumnas q
 
 -- ---------------------------------------------------------------------
 -- Matriz identidad                                                   --
@@ -242,15 +256,19 @@ prodMatrices p q = undefined
 -- ---------------------------------------------------------------------
 
 identidad :: Num a => Int -> Matriz a
-identidad n = undefined     
+identidad n =     
+    array ((1,1),(n,n))
+          [((i,j),f i j) | i <- [1..n], j <- [1..n]]
+    where f i j | i == j    = 1
+                | otherwise = 0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 15. Definir la función
 --    potencia :: Num a => Matriz a -> Int -> Matriz a
 -- tal que (potencia p n) es la potencia n-ésima de la matriz cuadrada
--- p. Por ejemplo, si q0 es la matriz definida por
---    q0 :: Matriz Int
---    q0 = listArray ((1,1),(2,2)) [1,1,1,0] 
+-- p. Por ejemplo, si q es la matriz definida por
+--    q :: Matriz Int
+--    q = listArray ((1,1),(2,2)) [1,1,1,0] 
 -- entonces
 --    ghci> potencia q 2
 --    array ((1,1),(2,2)) [((1,1),2),((1,2),1),((2,1),1),((2,2),1)]
@@ -258,13 +276,17 @@ identidad n = undefined
 --    array ((1,1),(2,2)) [((1,1),3),((1,2),2),((2,1),2),((2,2),1)]
 --    ghci> potencia q 4
 --    array ((1,1),(2,2)) [((1,1),5),((1,2),3),((2,1),3),((2,2),2)]
+-- żQué relación hay entre las potencias de la matriz q y la sucesión de
+-- Fibonacci? 
 -- ---------------------------------------------------------------------
 
-q0 :: Matriz Int
-q0 = listArray ((1,1),(2,2)) [1,1,1,0] 
+q :: Matriz Int
+q = listArray ((1,1),(2,2)) [1,1,1,0] 
 
 potencia :: Num a => Matriz a -> Int -> Matriz a
-potencia = undefined
+potencia p 0 = identidad n
+    where (_,(n,_)) = bounds p
+potencia p m = prodMatrices p (potencia p (m-1))
 
 -- ---------------------------------------------------------------------
 -- Traspuestas                                                        --
@@ -284,7 +306,14 @@ potencia = undefined
 -- ---------------------------------------------------------------------
 
 traspuesta :: Num a => Matriz a -> Matriz a
-traspuesta p = undefined
+traspuesta p = 
+    array ((1,1),(n,m))
+          [((i,j), p!(j,i)) | i <- [1..n], j <- [1..m]]
+    where (m,n) = dimension p
+
+-- ---------------------------------------------------------------------
+-- Submatriz                                                          --
+-- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
 -- Tipos de matrices                                                  --
@@ -304,7 +333,7 @@ traspuesta p = undefined
 -- ---------------------------------------------------------------------
 
 esCuadrada :: Num a => Matriz a -> Bool
-esCuadrada x = undefined
+esCuadrada x = numFilas x == numColumnas x
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 18. Definir la función
@@ -320,7 +349,7 @@ esCuadrada x = undefined
 -- ---------------------------------------------------------------------    
 
 esSimetrica :: (Num a, Eq a) => Matriz a -> Bool
-esSimetrica x = undefined
+esSimetrica x = x == traspuesta x
 
 -- ---------------------------------------------------------------------
 -- Diagonales de una matriz                                           --
@@ -339,7 +368,8 @@ esSimetrica x = undefined
 -- ---------------------------------------------------------------------
 
 diagonalPral :: Num a => Matriz a -> Vector a
-diagonalPral p = undefined
+diagonalPral p = array (1,n) [(i,p!(i,i)) | i <- [1..n]]
+    where n = min (numFilas p) (numColumnas p)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 20. Definir la función
@@ -359,7 +389,8 @@ diagonalPral p = undefined
 -- ---------------------------------------------------------------------
 
 diagonalSec :: Num a => Matriz a -> Vector a
-diagonalSec p = undefined
+diagonalSec p = array (1,n) [(i,p!(i,n+1-i)) | i <- [1..n]]
+    where n = min (numFilas p) (numColumnas p)
 
 -- ---------------------------------------------------------------------
 -- Submatrices                                                        --
@@ -378,7 +409,14 @@ diagonalSec p = undefined
 -- ---------------------------------------------------------------------
 
 submatriz :: Num a => Int -> Int -> Matriz a -> Matriz a
-submatriz i j p = undefined 
+submatriz i j p = 
+    array ((1,1), (m-1,n -1))
+          [((k,l), p ! f k l) | k <- [1..m-1], l <- [1.. n-1]]
+    where (m,n) = dimension p
+          f k l | k < i  && l < j  = (k,l)
+                | k >= i && l < j  = (k+1,l)
+                | k < i  && l >= j = (k,l+1)
+                | otherwise        = (k+1,l+1)
 
 -- ---------------------------------------------------------------------
 -- Determinante                                                       --
@@ -387,8 +425,9 @@ submatriz i j p = undefined
 -- ---------------------------------------------------------------------
 -- Ejercicio 22. Definir la función
 --    determinante:: Matriz Double -> Double
--- tal que (determinante p) es el determinante de la matriz p. Por
--- ejemplo, 
+-- tal que (determinante p) es el determinante de la matriz p, calculado
+-- con la regla de Laplace (https://es.wikipedia.org/wiki/Teorema_de_Laplace).
+-- Por ejemplo, 
 --    ghci> determinante (listArray ((1,1),(3,3)) [2,0,0,0,3,0,0,0,1])
 --    6.0
 --    ghci> determinante (listArray ((1,1),(3,3)) [1..9])
@@ -397,8 +436,13 @@ submatriz i j p = undefined
 --    -33.0
 -- ---------------------------------------------------------------------
 
-determinante :: Matriz Double -> Double
-determinante p = undefined
+determinante:: Matriz Double -> Double
+determinante p 
+    | (m,n) == (1,1) = p!(1,1)
+    | otherwise = 
+        sum [((-1)^(i+1))*(p!(i,1))*determinante (submatriz i 1 p)
+             | i <- [1..m]]
+    where (_,(m,n)) = bounds p
 
 -- ---------------------------------------------------------------------
 -- Transformaciones elementales                                       --
@@ -419,7 +463,13 @@ determinante p = undefined
 -- ---------------------------------------------------------------------
 
 intercambiaFilas :: Num a => Int -> Int -> Matriz a -> Matriz a
-intercambiaFilas k l p = undefined
+intercambiaFilas k l p = 
+    array ((1,1), (m,n))
+          [((i,j), p! f i j) | i <- [1..m], j <- [1..n]]
+    where (m,n) = dimension p
+          f i j | i == k    = (l,j)
+                | i == l    = (k,j)
+                | otherwise = (i,j)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 24. Definir la función
@@ -432,7 +482,13 @@ intercambiaFilas k l p = undefined
 -- ---------------------------------------------------------------------
 
 intercambiaColumnas :: Num a => Int -> Int -> Matriz a -> Matriz a
-intercambiaColumnas k l p = undefined
+intercambiaColumnas k l p = 
+    array ((1,1), (m,n))
+          [((i,j), p ! f i j) | i <- [1..m], j <- [1..n]]
+    where (m,n) = dimension p
+          f i j | j == k    = (i,l)
+                | j == l    = (i,k)
+                | otherwise = (i,j)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 25. Definir la función
@@ -445,7 +501,12 @@ intercambiaColumnas k l p = undefined
 -- ---------------------------------------------------------------------
 
 multFilaPor :: Num a => Int -> a -> Matriz a -> Matriz a
-multFilaPor k x p = undefined
+multFilaPor k x p = 
+    array ((1,1), (m,n))
+          [((i,j), f i j)  | i <- [1..m], j <- [1..n]]
+    where (m,n) = dimension p
+          f i j | i == k    = x*(p!(i,j))
+                | otherwise = p!(i,j)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 26. Definir la función
@@ -458,7 +519,12 @@ multFilaPor k x p = undefined
 -- ---------------------------------------------------------------------
 
 sumaFilaFila :: Num a => Int -> Int -> Matriz a -> Matriz a
-sumaFilaFila k l p = undefined
+sumaFilaFila k l p = 
+    array ((1,1), (m,n))
+          [((i,j), f i j) | i <- [1..m], j <- [1..n]]
+    where (m,n) = dimension p
+          f i j | i == k    = p!(i,j) + p!(l,j)
+                | otherwise = p!(i,j)        
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 27. Definir la función
@@ -471,7 +537,12 @@ sumaFilaFila k l p = undefined
 -- ---------------------------------------------------------------------
 
 sumaFilaPor :: Num a => Int -> Int -> a -> Matriz a -> Matriz a
-sumaFilaPor k l x p = undefined
+sumaFilaPor k l x p = 
+    array ((1,1), (m,n))
+          [((i,j), f i j) | i <- [1..m], j <- [1..n]]
+    where (m,n) = dimension p
+          f i j | i == k    = p!(i,j) + x*p!(l,j)
+                | otherwise = p!(i,j)
 
 -- ---------------------------------------------------------------------
 -- Triangularización de matrices                                      --
@@ -493,7 +564,10 @@ sumaFilaPor k l x p = undefined
 -- ---------------------------------------------------------------------
 
 buscaIndiceDesde :: (Num a, Eq a) => Matriz a -> Int -> Int -> Maybe Int
-buscaIndiceDesde p j i = undefined
+buscaIndiceDesde p j i 
+    | null xs   = Nothing
+    | otherwise = Just (head xs)
+    where xs = [k | ((k,j'),y) <- assocs p, j == j', y /= 0, k>=i] 
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 29. Definir la función
@@ -510,12 +584,15 @@ buscaIndiceDesde p j i = undefined
 -- ---------------------------------------------------------------------
 
 buscaPivoteDesde :: (Num a, Eq a) => Matriz a -> Int -> Int -> Maybe a
-buscaPivoteDesde p j i = undefined
+buscaPivoteDesde p j i 
+    | null xs   = Nothing
+    | otherwise = Just (head xs)
+    where xs = [y | ((k,j'),y) <- assocs p, j == j', y /= 0, k>=i] 
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 30. Definir la función
 --    anuladaColumnaDesde :: (Num a, Eq a) => 
---                            Int -> Int -> Matriz a -> Bool
+--                           Int -> Int -> Matriz a -> Bool
 -- tal que (anuladaColumnaDesde j i p) se verifica si todos los
 -- elementos de la columna j de la matriz p desde i+1 en adelante son
 -- nulos. Por ejemplo,
@@ -528,7 +605,8 @@ buscaPivoteDesde p j i = undefined
 -- ---------------------------------------------------------------------
 
 anuladaColumnaDesde :: (Num a, Eq a) => Matriz a -> Int -> Int -> Bool
-anuladaColumnaDesde p j i = undefined
+anuladaColumnaDesde p j i = 
+    buscaIndiceDesde p j (i+1) == Nothing
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 31. Definir la función
@@ -544,7 +622,10 @@ anuladaColumnaDesde p j i = undefined
 
 anulaEltoColumnaDesde :: (Fractional a, Eq a) => 
                          Matriz a -> Int -> Int -> Matriz a
-anulaEltoColumnaDesde p j i = undefined
+anulaEltoColumnaDesde p j i = 
+    sumaFilaPor l i (-(p!(l,j)/a)) p
+    where Just l = buscaIndiceDesde p j (i+1)
+          a      = p!(i,j)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 32. Definir la función
@@ -564,7 +645,9 @@ anulaEltoColumnaDesde p j i = undefined
 
 anulaColumnaDesde :: (Fractional a, Eq a) => 
                      Matriz a -> Int -> Int -> Matriz a
-anulaColumnaDesde p j i = undefined
+anulaColumnaDesde p j i
+    | anuladaColumnaDesde p j i = p
+    | otherwise = anulaColumnaDesde (anulaEltoColumnaDesde p j i) j i 
 
 -- ---------------------------------------------------------------------
 -- Algoritmo de Gauss para triangularizar matrices                    --
@@ -582,7 +665,8 @@ anulaColumnaDesde p j i = undefined
 -- ---------------------------------------------------------------------
 
 elementosNoNulosColDesde :: (Num a, Eq a) => Matriz a -> Int -> Int -> [a]
-elementosNoNulosColDesde p j i = undefined
+elementosNoNulosColDesde p j i = 
+    [x | ((k,j'),x) <- assocs p, x /= 0, j' == j, k >= i]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 34. Definir la función
@@ -601,8 +685,16 @@ elementosNoNulosColDesde p j i = undefined
 -- ---------------------------------------------------------------------
   
 existeColNoNulaDesde :: (Num a, Eq a) => Matriz a -> Int -> Int -> Bool
-existeColNoNulaDesde p j i = undefined
+existeColNoNulaDesde p j i = 
+    or [not (null (elementosNoNulosColDesde p l i)) | l <- [j..n]]
+    where n = numColumnas p
 
+existeColNoNulaDesde2 :: (Num a, Eq a) => Matriz a -> Int -> Int -> Bool
+existeColNoNulaDesde2 p j i = any prop [j..n]
+  where m = numFilas p
+        n = numColumnas p
+        prop j = any (/=0) [p!(l,j) | l <-[i..m]]
+       
 -- ---------------------------------------------------------------------
 -- Ejercicio 35. Definir la función
 --    menorIndiceColNoNulaDesde :: (Num a, Eq a) => 
@@ -623,14 +715,19 @@ existeColNoNulaDesde p j i = undefined
 
 menorIndiceColNoNulaDesde :: (Num a, Eq a) => 
                              Matriz a -> Int -> Int -> Maybe Int
-menorIndiceColNoNulaDesde p j i = undefined
+menorIndiceColNoNulaDesde p j i 
+    | null js   = Nothing
+    | otherwise = Just (head js)
+    where n  = numColumnas p
+          js = [j' | j' <- [j..n], 
+                     not (null (elementosNoNulosColDesde p j' i))]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 36. Definir la función
 --    gaussAux :: (Fractional a, Eq a) => 
 --                Matriz a -> Int -> Int -> Matriz a
 -- tal que (gaussAux p) es la matriz que en el que las i-1 primeras
--- filas y las j-1 primeras columnas son las de p y las restantes están
+-- filas y las j-1 primeras columnas son las de p y las restantes están 
 -- triangularizadas por el método de Gauss; es decir,
 --    1. Si la dimensión de p es (i,j), entonces p.
 --    2. Si la submatriz de p sin las i-1 primeras filas y las j-1
@@ -653,7 +750,15 @@ menorIndiceColNoNulaDesde p j i = undefined
 -- ---------------------------------------------------------------------
 
 gaussAux :: (Fractional a, Eq a) => Matriz a -> Int -> Int -> Matriz a
-gaussAux p i j = undefined
+gaussAux p i j 
+    | dimension p == (i,j)             = p                        -- 1
+    | not (existeColNoNulaDesde p j i) = p                        -- 2  
+    | otherwise                        = gaussAux p' (i+1) (j+1)  -- 3
+    where Just j' = menorIndiceColNoNulaDesde p j i               -- 3.1 
+          p1      = intercambiaColumnas j j' p                    -- 3.2
+          Just i' = buscaIndiceDesde p1 j i                       -- 3.3
+          p2      = intercambiaFilas i i' p1                      -- 3.4
+          p'      = anulaColumnaDesde p2 j i                      -- 3.5
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 37. Definir la función
@@ -679,12 +784,11 @@ gaussAux p i j = undefined
 -- ---------------------------------------------------------------------
 
 gauss :: (Fractional a, Eq a) => Matriz a -> Matriz a
-gauss p = undefined
+gauss p = gaussAux p 1 1
 
 -- ---------------------------------------------------------------------
 -- Determinante                                                       --
 -- ---------------------------------------------------------------------
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 38. Definir la función
@@ -718,7 +822,16 @@ gauss p = undefined
 
 gaussCAux :: (Fractional a, Eq a) => 
              Matriz a -> Int -> Int -> Int -> (Int,Matriz a)
-gaussCAux p i j c = undefined
+gaussCAux p i j c 
+    | dimension p == (i,j)             = (c,p)                        -- 1
+    | not (existeColNoNulaDesde p j i) = (c,p)                        -- 2  
+    | otherwise                        = gaussCAux p' (i+1) (j+1) c'  -- 3
+    where Just j' = menorIndiceColNoNulaDesde p j i                   -- 3.1 
+          p1      = intercambiaColumnas j j' p                        -- 3.2
+          Just i' = buscaIndiceDesde p1 j i                           -- 3.3
+          p2      = intercambiaFilas i i' p1                          -- 3.4
+          p'      = anulaColumnaDesde p2 j i                          -- 3.5
+          c'      = c + signum (abs (j-j')) + signum (abs (i-i'))
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 39. Definir la función
@@ -734,20 +847,21 @@ gaussCAux p i j c = undefined
 -- ---------------------------------------------------------------------
 
 gaussC :: (Fractional a, Eq a) => Matriz a -> (Int,Matriz a)
-gaussC p = undefined
+gaussC p = gaussCAux p 1 1 0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 40. Definir la función
 --    determinante :: (Fractional a, Eq a) => Matriz a -> a
 -- tal que (determinanteG p) es el determinante de la matriz p calculado
--- con el método de Gauss.Esto es, el determinante de una matriz triangular
+-- con el método de Gauss. Esto es, el determinante de una matriz triangular
 -- superior es igual al producto de los elementos de la diagonal principal,
 -- multiplicado por -1 elevado al número de cambios de filas y columnas
--- necesarios para triangularizar la matriz. Por ejemplo,  
+-- necesarios para triangularizar la matriz. Por ejemplo, 
 --    ghci> determinanteG (listaMatriz [[1.0,2,3],[1,3,4],[1,2,5]])
 --    2.0
 -- ---------------------------------------------------------------------
 
 determinanteG :: (Fractional a, Eq a) => Matriz a -> a
-determinanteG p = undefined
+determinanteG p = (-1)^c * product (elems (diagonalPral p'))
+    where (c,p') = gaussC p
 

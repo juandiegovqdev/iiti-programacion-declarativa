@@ -1,12 +1,12 @@
 -- PD- 2020/21
 -- Correspondiente a Relación 22 de I1M 2019-20
 -- El TAD de las colas.
--- =====================================================================
-
+-- Departamento de Ciencias de la Computación e I.A.
+-- Universidad de Sevilla
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
-
+ 
 -- El objetivo de esta relación de ejercicios es definir funciones sobre 
 -- el TAD de las colas, utilizando las implementaciones estudiadas en el 
 -- tema 15 transparencias se encuentran en 
@@ -22,15 +22,19 @@
 -- de las colas:
 -- + ColaConListas.hs    que está en http://bit.ly/21z3wQL
 -- + ColaConDosListas.hs que está en http://bit.ly/21z3AQp
-
+ 
+-- ---------------------------------------------------------------------
+-- Importación de librerías                                           --
+-- ---------------------------------------------------------------------
+ 
 import Data.List
 import Test.QuickCheck
-
+ 
 -- Hay que elegir una implementación del TAD colas:
--- import Prácticas.ColaConListas 
-import Prácticas.ColaConDosListas
+-- import ColaConListas
+import ColaConDosListas
 -- import I1M.Cola
-    
+ 
 -- ---------------------------------------------------------------------
 -- Nota. A lo largo de la relación de ejercicios usaremos los siguientes
 -- ejemplos de colas:
@@ -42,6 +46,8 @@ c4 = foldr inserta vacia [4,-1,7,3,8,10,0,3,3,4]
 c5 = foldr inserta vacia [15..20]
 c6 = foldr inserta vacia (reverse [1..20])
 -- ---------------------------------------------------------------------
+ 
+-- ---------------------------------------------------------------------
 -- Ejercicio 1: Definir la función
 --    ultimoCola :: Cola a -> a
 -- tal que (ultimoCola c) es el último elemento de la cola c. Por
@@ -49,30 +55,29 @@ c6 = foldr inserta vacia (reverse [1..20])
 --    ultimoCola c4 == 4
 --    ultimoCola c5 == 15
 -- ---------------------------------------------------------------------
-
+ 
 ultimoCola :: Cola a -> a
 ultimoCola c
-    | esVacia c  = error "Cola vacía." 
+    | esVacia c  = error "cola vacia"
     | esVacia rc = pc
     | otherwise  = ultimoCola rc
     where pc = primero c
           rc = resto c
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2: Definir la función
 --    longitudCola :: Cola a -> Int
 -- tal que (longitudCola c) es el número de elementos de la cola c. Por
 -- ejemplo, 
---     longitudCola c2 == 6
+--    longitudCola c2 == 6
 -- ---------------------------------------------------------------------
-
+ 
 longitudCola :: Cola a -> Int
-longitudCola c
-    | esVacia c  = error "Cola vacía." 
-    | esVacia rc = 1
-    | otherwise  = 1 + longitudCola rc
-    where pc = primero c
-          rc = resto c
-
+longitudCola c 
+    | esVacia c = 0
+    | otherwise = 1 + longitudCola rc
+    where rc = resto c
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3: Definir la función 
 --    todosVerifican :: (a -> Bool) -> Cola a -> Bool
@@ -81,32 +86,30 @@ longitudCola c
 --    todosVerifican (>0) c1 == True
 --    todosVerifican (>0) c4 == False
 -- ---------------------------------------------------------------------
-
+ 
 todosVerifican :: (a -> Bool) -> Cola a -> Bool
 todosVerifican p c
-    | esVacia c  = error "Cola vacía." 
-    | esVacia rc = True
-    | otherwise  = p pc && todosVerifican p rc
+    | esVacia c = True
+    | otherwise = p pc && todosVerifican p rc
     where pc = primero c
           rc = resto c
-
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4: Definir la función
 --    algunoVerifica :: (a -> Bool) -> Cola a -> Bool
 -- tal que (algunoVerifica p c) se verifica si algún elemento de la cola
 -- c cumple la propiedad p. Por ejemplo,
---   algunoVerifica (<0) c1 == False
---   algunoVerifica (<0) c4 == True
+--    algunoVerifica (<0) c1 == False
+--    algunoVerifica (<0) c4 == True
 -- ---------------------------------------------------------------------
-
+ 
 algunoVerifica :: (a -> Bool) -> Cola a -> Bool
 algunoVerifica p c
-    | esVacia c  = error "Cola vacía." 
-    | esVacia rc = False
-    | otherwise  = p pc || algunoVerifica p rc
+    | esVacia c = False
+    | otherwise = p pc || algunoVerifica p rc
     where pc = primero c
           rc = resto c
-
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5: Definir la función
 --    ponAlaCola :: Cola a -> Cola a -> Cola a
@@ -114,14 +117,14 @@ algunoVerifica p c
 -- elementos de c2 a la cola de c1. Por ejemplo,
 --    ponAlaCola c2 c3 == C [17,14,11,8,5,2,10,9,8,7,6,5,4,3]
 -- ---------------------------------------------------------------------
-
+ 
 ponAlaCola :: Cola a -> Cola a -> Cola a
-ponAlaCola c1 c2
-    | esVacia rc = inserta pc c1
-    | otherwise  = ponAlaCola (inserta pc c1) rc
-    where pc = primero c2
-          rc = resto c2
-          
+ponAlaCola c1 c2 
+    | esVacia c2 = c1
+    | otherwise  = ponAlaCola (inserta pc2 c1) rq2 
+    where pc2 = primero c2
+          rq2 = resto c2
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 6: Definir la función
 --    mezclaColas :: Cola a -> Cola a -> Cola a
@@ -130,33 +133,18 @@ ponAlaCola c1 c2
 -- los elementos de c1. Por ejemplo,
 --    mezclaColas c2 c4 == C [17,4,14,3,11,3,8,0,5,10,2,8,3,7,-1,4]
 -- ---------------------------------------------------------------------
-
+ 
 mezclaColas :: Cola a -> Cola a -> Cola a
-mezclaColas c1 c2 = mezclaColasC1aC2 c1 c2 vacia
-
-mezclaColasC1aC2 :: Cola a -> Cola a -> Cola a -> Cola a
-mezclaColasC1aC2 c1 c2 c3
-    | esVacia rc && esVacia c2 = inserta pc c3
-    | esVacia rc               = añadirCola c2 c3
-    | otherwise                = mezclaColasC2aC1 rc c2 (inserta pc c3)
-        where pc = primero c1
-              rc = resto c1
-
-mezclaColasC2aC1 :: Cola a -> Cola a -> Cola a -> Cola a
-mezclaColasC2aC1 c1 c2 c3
-    | esVacia rc && esVacia c1 = inserta pc c3
-    | esVacia rc               = añadirCola c1 c3
-    | otherwise                = mezclaColasC1aC2 c1 rc (inserta pc c3)
-        where pc = primero c2
-              rc = resto c2
-
-añadirCola :: Cola a -> Cola a -> Cola a
-añadirCola c1 c2
-    | esVacia rc = inserta pc c2 
-    | otherwise  = añadirCola rc (inserta pc c2) 
-        where pc = primero c1 
-              rc = resto c1
-
+mezclaColas c1 c2 = aux c1 c2 vacia
+    where aux c1 c2 c
+              | esVacia c1 = ponAlaCola c c2 
+              | esVacia c2 = ponAlaCola c c1
+              | otherwise = aux rc1 rc2 (inserta pc2 (inserta pc1 c))
+              where pc1 = primero c1
+                    rc1 = resto c1
+                    pc2 = primero c2
+                    rc2 = resto c2
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7: Definir la función
 --    agrupaColas :: [Cola a] -> Cola a
@@ -166,11 +154,16 @@ añadirCola c1 c2
 --    ghci> agrupaColas [c3,c3,c4]
 --    C [10,4,10,3,9,3,9,0,8,10,8,8,7,3,7,7,6,-1,6,4,5,5,4,4,3,3]
 -- ---------------------------------------------------------------------
+ 
 agrupaColas :: [Cola a] -> Cola a
-agrupaColas []       = vacia 
-agrupaColas [c]      = c
-agrupaColas (x:y:xs) = agrupaColas (mezclaColas x y : xs)
-
+agrupaColas []            = vacia
+agrupaColas [c]           = c
+agrupaColas (c1:c2:colas) = agrupaColas (mezclaColas c1 c2 : colas)
+ 
+-- 2ª solución
+agrupaColas2 :: [Cola a] -> Cola a
+agrupaColas2 = foldl mezclaColas vacia
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8: Definir la función
 --    perteneceCola :: Eq a => a -> Cola a -> Bool
@@ -179,15 +172,14 @@ agrupaColas (x:y:xs) = agrupaColas (mezclaColas x y : xs)
 --    perteneceCola 7 c1  == True
 --    perteneceCola 70 c1 == False
 -- ---------------------------------------------------------------------
-
+ 
 perteneceCola :: Eq a => a -> Cola a -> Bool
-perteneceCola y c
-    | y == pc    = True
-    | esVacia rc = False
-    | otherwise  = perteneceCola y rc
+perteneceCola x c 
+    | esVacia c  = False
+    | otherwise  = pc == x || perteneceCola x rc
     where pc = primero c
-          rc = resto c 
-
+          rc = resto c
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9: Definir la función
 --    contenidaCola :: Eq a => Cola a -> Cola a -> Bool
@@ -196,15 +188,15 @@ perteneceCola y c
 --    contenidaCola c2 c1 == True
 --    contenidaCola c1 c2 == False
 -- ---------------------------------------------------------------------
-
+ 
 contenidaCola :: Eq a => Cola a -> Cola a -> Bool
 contenidaCola c1 c2 
-    | esVacia rc          = perteneceCola pc c2
-    | perteneceCola pc c2 = contenidaCola rc c2
-    | otherwise           = False
-        where pc = primero c1
-              rc = resto c1
-
+    | esVacia c1 = True
+    | esVacia c2 = False
+    | otherwise  = perteneceCola pc1 c2 && contenidaCola rc1 c2 
+    where pc1 = primero c1
+          rc1 = resto c1
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10: Definir la función
 --    prefijoCola :: Eq a => Cola a -> Cola a -> Bool
@@ -213,17 +205,17 @@ contenidaCola c1 c2
 --    prefijoCola c3 c2 == False
 --    prefijoCola c5 c1 == True
 -- ---------------------------------------------------------------------
-
+ 
 prefijoCola :: Eq a => Cola a -> Cola a -> Bool
 prefijoCola c1 c2 
     | esVacia c1 = True
-    | pc1 == pc2 = prefijoCola rc1 rc2
-    | otherwise = False
-        where pc1 = primero c1
-              pc2 = primero c2
-              rc1 = resto c1
-              rc2 = resto c2
-
+    | esVacia c2 = False
+    | otherwise  = pc1 == pc2 && prefijoCola rc1 rc2
+    where pc1 = primero c1
+          rc1 = resto c1
+          pc2 = primero c2
+          rc2 = resto c2
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11: Definir la función
 --    subCola :: Eq a => Cola a -> Cola a -> Bool
@@ -232,10 +224,18 @@ prefijoCola c1 c2
 --    subCola c2 c1 == False
 --    subCola c3 c1 == True
 -- ---------------------------------------------------------------------
-
+ 
 subCola :: Eq a => Cola a -> Cola a -> Bool
-subCola c1 c2 = undefined
-
+subCola c1 c2 
+    | esVacia c1 = True
+    | esVacia c2 = False
+    | pc1 == pc2 = prefijoCola rc1 rc2 || subCola c1 rc2
+    | otherwise  = subCola c1 rc2
+    where pc1 = primero c1
+          rc1 = resto c1
+          pc2 = primero c2
+          rc2 = resto c2
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 12: Definir la función
 --    ordenadaCola :: Ord a => Cola a -> Bool
@@ -244,18 +244,16 @@ subCola c1 c2 = undefined
 --    ordenadaCola c6 == True
 --    ordenadaCola c4 == False
 -- ---------------------------------------------------------------------
-
+ 
 ordenadaCola :: Ord a => Cola a -> Bool
-ordenadaCola c = ordenadaColaAux (resto c) (primero c)
-
-ordenadaColaAux :: Ord a => Cola a -> a -> Bool
-ordenadaColaAux c a
-    | a < pc && esVacia rc = True
-    | a < pc               = ordenadaColaAux rc pc
-    | otherwise            = False
-        where pc = primero c
-              rc = resto c
-
+ordenadaCola c 
+    | esVacia c = True
+    | esVacia rc = True
+    | otherwise = pc <= prc && ordenadaCola rc
+    where pc  = primero c
+          rc  = resto c
+          prc = primero rc
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13.1: Definir una función
 --    lista2Cola :: [a] -> Cola a
@@ -263,14 +261,10 @@ ordenadaColaAux c a
 -- Por ejemplo,
 --    lista2Cola [1..6] == C [1,2,3,4,5,6]
 -- ---------------------------------------------------------------------
-
+ 
 lista2Cola :: [a] -> Cola a
-lista2Cola xs = lista2ColaAux vacia xs
-
-lista2ColaAux :: Cola a -> [a] -> Cola a
-lista2ColaAux c (x:xs) = lista2ColaAux (inserta x c) (xs)
-lista2ColaAux c []     = c
-
+lista2Cola xs = foldr inserta vacia (reverse xs)
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13.2: Definir una función
 --    cola2Lista :: Cola a -> [a]
@@ -278,31 +272,33 @@ lista2ColaAux c []     = c
 -- Por ejemplo,
 --    cola2Lista c2 == [17,14,11,8,5,2]
 -- ---------------------------------------------------------------------
-
+ 
 cola2Lista :: Cola a -> [a]
 cola2Lista c
-    | esVacia rc = [pc]
-    | otherwise  = pc : cola2Lista rc
-        where pc = primero c
-              rc = resto c
-
+    | esVacia c = []
+    | otherwise = pc : cola2Lista rc
+    where pc = primero c
+          rc = resto c
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13.3. Comprobar con QuickCheck que la función cola2Lista es
 -- la inversa de  lista2Cola, y recíprocamente.
 -- ---------------------------------------------------------------------
-
+ 
 prop_cola2Lista :: Cola Int -> Bool
-prop_cola2Lista c = undefined
-
+prop_cola2Lista c =
+    lista2Cola (cola2Lista c) == c
+ 
 -- ghci> quickCheck prop_cola2Lista
 -- +++ OK, passed 100 tests.
-
+ 
 prop_lista2Cola :: [Int] -> Bool
-prop_lista2Cola xs = undefined
-
+prop_lista2Cola xs =
+    cola2Lista (lista2Cola xs) == xs
+ 
 -- ghci> quickCheck prop_lista2Cola
 -- +++ OK, passed 100 tests.
-
+ 
 -- ---------------------------------------------------------------------
 -- Ejercicio 14: Definir la función 
 --    maxCola :: Ord a => Cola a -> a
@@ -310,22 +306,26 @@ prop_lista2Cola xs = undefined
 -- ejemplo, 
 --    maxCola c4 == 10
 -- ---------------------------------------------------------------------
-
+ 
 maxCola :: Ord a => Cola a -> a
-maxCola p = maxColaAux (primero p) (resto p)
-
-maxColaAux :: Ord a => a -> Cola a -> a
-maxColaAux a p
-    | a < pc && not (esVacia rc) = maxColaAux pc rc
-    | esVacia rc = a
-    | otherwise =  maxColaAux a rc
-        where pc = primero p
-              rc = resto p
-
+maxCola c 
+    | esVacia c = error "cola vacia"
+    | esVacia rc = pc
+    | otherwise = max pc (maxCola rc)
+    where pc = primero c
+          rc = resto c
+ 
+prop_maxCola c =
+    not (esVacia c) ==>
+        maxCola c == maximum (cola2Lista c)
+ 
+-- ghci> quickCheck prop_maxCola
+-- +++ OK, passed 100 tests.
+ 
 -- ---------------------------------------------------------------------
 -- Generador de colas                                          --
 -- ---------------------------------------------------------------------
-
+ 
 -- genCola es un generador de colas de enteros. Por ejemplo,
 --    ghci> sample genCola
 --    C ([],[])
@@ -345,8 +345,7 @@ genCola = frequency [(1, return vacia),
                              xs <- vectorOf n arbitrary
                              return (creaCola xs))]
           where creaCola = foldr inserta vacia
-
+ 
 -- El tipo cola es una instancia del arbitrario.
 instance (Arbitrary a, Num a) => Arbitrary (Cola a) where
     arbitrary = genCola
-
