@@ -2,10 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 1                                      10 de Noviembre de 2020
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
 
 import Test.QuickCheck
 import Data.Char

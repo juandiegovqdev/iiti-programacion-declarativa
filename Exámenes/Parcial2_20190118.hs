@@ -2,20 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 2                                       17 de Enero de 2019
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Parcial2_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- -------------------------------------------------------------------
 
 import Text.CSV
 import PilaConTipoDeDatoAlgebraico

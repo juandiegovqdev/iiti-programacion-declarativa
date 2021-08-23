@@ -2,29 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 1                                       24 de Octubre de 2019
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Parcial1_<codigo>_<uvus>.hs
---   donde "<uvus>" es su usuario virtual de la Universidad de Sevilla, y
---   "<codigo>" es el código alfanumérico de arriba.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- · Una vez finalizado el examen, comprima el fichero .hs en un .tar.gz
---   con el siguiente nombre:
---                  ENTREGA-<uvus>.tar.gz
---   dejándolo en el escritorio. Reiniciar el equipo y en el menú de
---   selección del sistema elija "Enviar examen".
--- · Después, ponga sus apellidos, nombre y UVUS en el enunciado en papel,
---   y entréguelo al profesor.
--- ----------------------------------------------------------------------
 
 import Test.QuickCheck
 
@@ -40,8 +17,9 @@ import Test.QuickCheck
 -- λ> 5.0 *& 0.5 *& 0.5 == 2.0
 -- λ> 5.0 *& (0.5 *& 0.5) == 5.0
 -- Nota: la función 'ceiling' puede ser de ayuda.
-
 -- ----------------------------------------------------------------------
+
+
 
 -- ----------------------------------------------------------------------
 -- Ejercicio 2.1 (2 puntos)
@@ -67,8 +45,9 @@ import Test.QuickCheck
 -- Comprobar con quickCheck si se cumple lo siguiente: xs es igual al intervalo
 -- comprendido entre el mínimo y el máximo de xs calculado mediante la función
 -- intervalos.
-
 -- ----------------------------------------------------------------------
+
+
 
 -- ----------------------------------------------------------------------
 -- Ejercicio 3. (2,5 puntos)
@@ -84,8 +63,9 @@ import Test.QuickCheck
 -- 1) Usando recursión (zigzagR xs)
 -- 2) Usando comprensión (zigzagC xs)
 -- 3) Usando orden superior (zigzagO xs)
-
 -- ----------------------------------------------------------------------
+
+
 
 -- ----------------------------------------------------------------------  
 -- Ejercicio 4.1. (1,5 puntos)
@@ -109,5 +89,4 @@ maxListas xss = undefined
 -- λ> listasIncrementales [(1,1),(2,3),(3,3),(4,5)] == True
 -- λ> listasIncrementales [(1,1),(2,3),(4,3),(5,5)] == False
 -- λ> listasIncrementales [(1,1),(2,3),(3,3),(4,2)] == False
-
 -- ----------------------------------------------------------------------
