@@ -11,10 +11,6 @@ import Text.Printf
 import Data.List
 import Test.QuickCheck
 
--- ------------------------------ --
--- PARTE A del examen, 40 minutos --
--- ------------------------------ --
-
 -- ----------------------------------------------------------------------
 -- Ejercicio 1. (2 puntos)
 -- Define la función (parte ns xs), tal que dadas una lista de enteros 'ns' 

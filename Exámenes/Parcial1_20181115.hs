@@ -2,20 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 1                                   15 de Noviembre de 2018
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Parcial1_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- -------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. [0.75 ptos]
@@ -30,7 +16,11 @@
 -- Por ejemplo:
 --    area 6 9 7 2 ==> 30.
 -- ---------------------------------------------------------------------
-        
+
+area :: Double -> Double -> Double -> Double -> Double
+area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
+    where s = (a+b+c+d)/2
+
 -- -------------------------------------------------------------------
 -- Ejercicio 2. [0.75 ptos]
 -- Defina una función comparaDistintos, explicitando su tipo,
@@ -51,6 +41,8 @@
 --   comparaDistintos 4 4.0 ==> 4.0
 -- -------------------------------------------------------------------
 
+
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. [1 pto]
 -- Definir la función casi_extremos tal que (casi_extremos n xs) es
@@ -65,6 +57,8 @@
 --    casi_extremos 3 [2,6,7,1,2,4]  ==>  [6,7,1,8,9,2]
 -- ---------------------------------------------------------------------
 
+
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. [0.5 ptos]
 -- Definir una propiedad prop_casiext_reverse (y probarla con QuickCheck)
@@ -74,6 +68,8 @@
 -- Indique cómo debemos realizar la llamada a QuickCheck para probar
 -- la propiedad
 -- ---------------------------------------------------------------------
+
+
 
 -- -------------------------------------------------------------------
 -- Ejercicio 5. [1 pto]
@@ -94,6 +90,8 @@
 --   cumpleUnoDeTres (elem 'a') ["a","prob","e","b","r","o"] ==> False
 -- -------------------------------------------------------------------
 
+
+
 -- -------------------------------------------------------------------
 -- Ejercicio 6. [1.5 ptos]
 -- Desarrolle una función principal, main, con una animación usando
@@ -102,6 +100,8 @@
 -- y una parte móvil (círculo o cuadrado) que se vaya desplazando a
 -- izquierda y derecha o bien hacia arriba y hacia abajo.
 -- -------------------------------------------------------------------
+
+
 
 -- -------------------------------------------------------------------
 -- Ejercicio 7. [1 pto]
@@ -138,6 +138,24 @@ personas = [("Cervantes","Literatura",(1547,1616)),
 -- 
 -- -------------------------------------------------------------------
 
+primero_destacado :: String -> [(String,String,(Int,Int))] -> String
+primero_destacado s xs = primero_destacadoAux (filtrarPersonas xs s)  
+
+primero_destacadoAux :: [(String,String,(Int,Int))] -> String
+primero_destacadoAux ((x,y,(a,b)):xs) = obtenerMasJoven xs (x,y,(a,b))
+
+filtrarPersonas :: [(String,String,(Int,Int))] -> String -> [(String,String,(Int,Int))]
+filtrarPersonas [] _ = []
+filtrarPersonas ((x,y,(a,b)):xs) s
+    | y == s = (x,y,(a,b)) : filtrarPersonas xs s
+    | otherwise = filtrarPersonas xs s
+
+obtenerMasJoven :: [(String,String,(Int,Int))] -> (String,String,(Int,Int)) -> String
+obtenerMasJoven [] (s,d,(e,f)) = s
+obtenerMasJoven ((x,y,(a,b)):xs) (s,d,(e,f))
+    | a < e = obtenerMasJoven xs (x,y,(a,b))
+    | otherwise = obtenerMasJoven xs (s,d,(e,f))
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. [2 ptos]
 -- Se considera la función procesaNoValidos
@@ -154,6 +172,22 @@ personas = [("Cervantes","Literatura",(1547,1616)),
 -- 4. por plegado (a izquierda o derecha).
 -- ---------------------------------------------------------------------
 
+-- 1. usando map y filter
+
+
+
+-- 2. por recursión
+
+
+
+-- 3. por recursión con acumulador
+
+
+
+-- 4. por plegado (a izquierda o derecha)
+
+
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. [1.5 ptos]
 -- Escriba un programa de Entrada y Salida que haga lo siguiente:
@@ -165,3 +199,9 @@ personas = [("Cervantes","Literatura",(1547,1616)),
 -- 5. Almacene esa misma frase emitida a un fichero de texto.
 -- ---------------------------------------------------------------------
 
+{--
+main :: IO ()
+main = do
+    putStrLn "Introduce un número natural: "
+    xs <- getLine
+--}

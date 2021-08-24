@@ -2,16 +2,10 @@
 -- PD. Grado en Informatica. Tecnologias Informaticas. CURSO 2013-14
 -- PRUEBA 2 DE EVALUACION ALTERNATIVA (18 DICIEMBRE 2013)
 -- --------------------------------------------------------------------
--- --------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- GRUPO:
--- EMAIL:
--- --------------------------------------------------------------------
--- --------------------------------------------------------------------
 -- EJERCICIO 1. Define, utilizando funciones de orden superior, el valor 
 -- de la suma de todos cuadrados impares menores que 10000. Llamala p.
--- SOLUCION:
---
+-- --------------------------------------------------------------------
+
 p = undefined
 
 -- --------------------------------------------------------------------
@@ -27,8 +21,8 @@ p = undefined
 -- sumbaP head [[1,2],[0,9,4],[-2,3]] == [[1,2]]
 -- sumbaP sum [[1,2],[0,9,4],[-8,3],[],[-1,1],[3,4,5]] == 
 -- [[1,2],[0,9,4],[3,4,5]]
--- SOLUCION:
---
+--- --------------------------------------------------------------------
+
 sumbaP = undefined
                                                 
 p1 = undefined
@@ -41,8 +35,8 @@ p1 = undefined
 --
 -- cumplen even [[1..5], [2,4..20], [3,2,1,4,8]] == 
 -- [2,4,6,8,10,12,14,16,18,20]
--- SOLUCION:
---
+-- --------------------------------------------------------------------
+
 cumplen :: (a -> Bool) -> [[a]] -> [a]
 cumplen = undefined
 
@@ -73,8 +67,7 @@ data Form = V  Var | No Form | O Form Form | Y Form Form deriving Show
 -- de una variable es la formula negada.
 --
 -- D)  Calcula la negacion de la formula (-p) \/ (r \/ p)
--- SOLUCION:
---
+-- --------------------------------------------------------------------
 sust :: (Var, Var) -> Form -> Form
 sust = undefined
 
@@ -83,5 +76,3 @@ formulita = undefined
 
 negacion :: Form -> Form
 negacion = undefined
-
-        

@@ -2,14 +2,10 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 3 (turno 2)                                21 de Enero de 2021
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:                Puesto ocupado:
--- ----------------------------------------------------------------------
 
 import Data.Array
---import I1M.Pila
-import PilaConListas
+-- import I1M.Pila
+-- import PilaConListas
 import Data.List
 
 -- ---------------------------------------------------------------------
@@ -114,7 +110,12 @@ ej2 = N 3 [N 5 [N 6 []], N 4 [], N 7 [N 2 [], N 1 []]]
 -- N 3 [N 8 [N 14 []],N 7 [],N 10 [N 12 [],N 11 []]]
 -- ---------------------------------------------------------------------
 
-propaga = undefined
+-- propaga :: Arbol Int -> Arbol Int
+-- propaga (N x xs) = propagaAux (N x xs) x
+
+-- propagaAux :: Arbol Int -> Int -> Arbol Int
+-- propagaAux (N y (x:xs)) a = N (y+a) (propagaAux x a) ++  propagaAux xs a
+-- propagaAux (N y []) a = N (y+a) []
 
 -- -------------------------------------------------------------------
 -- Ejercicio 3. (2,5 puntos)

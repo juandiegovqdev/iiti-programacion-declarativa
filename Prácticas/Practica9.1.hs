@@ -31,9 +31,9 @@ import Data.List
 import Test.QuickCheck
 
 -- Hay que elegir una implementación del TAD pilas.
--- import PilaConTipoDeDatoAlgebraico
+import Prácticas.PilaConTipoDeDatoAlgebraico
 -- import PilaConListas
-import I1M.Pila
+-- import I1M.Pila
 
 -- ---------------------------------------------------------------------
 -- A lo largo de la relación de ejercicios usaremos los siguientes
@@ -60,8 +60,13 @@ ejP5 = foldr apila vacia [1..5]
 -- ---------------------------------------------------------------------
 
 filtraPila :: (a -> Bool) -> Pila a -> Pila a
-filtraPila = undefined
-
+filtraPila f p
+    | esVacia p = vacia
+    | f pc      = apila pc (filtraPila f rc)
+    | otherwise = filtraPila f rc
+    where pc = cima p
+          rc = desapila p
+        
 -- ---------------------------------------------------------------------
 -- Ejercicio 2: Definir la función
 --    mapPila :: (a -> a) -> Pila a -> Pila a
@@ -72,7 +77,11 @@ filtraPila = undefined
 -- ---------------------------------------------------------------------
 
 mapPila :: (a -> a) -> Pila a -> Pila a
-mapPila = undefined
+mapPila f p
+    | esVacia p = vacia
+    | otherwise = apila (f pc) (mapPila f rc)
+    where pc = cima p
+          rc = desapila p
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3: Definir la función
@@ -84,7 +93,12 @@ mapPila = undefined
 -- ---------------------------------------------------------------------
 
 pertenecePila :: (Eq a) => a -> Pila a -> Bool
-pertenecePila = undefined
+pertenecePila a p
+    | esVacia p = False
+    | a == pc = True
+    | otherwise = pertenecePila a rc
+    where pc = cima p
+          rc = desapila p
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4: definir la función
@@ -108,7 +122,14 @@ contenidaPila = undefined
 -- ---------------------------------------------------------------------
 
 prefijoPila :: (Eq a) => Pila a -> Pila a -> Bool
-prefijoPila = undefined 
+prefijoPila p1 p2
+    | esVacia p1 = True
+    | pc1 == pc2 = prefijoPila rc1 rc2
+    | otherwise = False
+    where pc1 = cima p1
+          pc2 = cima p2
+          rc1 = desapila p1
+          rc2 = desapila p2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5: Definir la función
@@ -132,7 +153,15 @@ subPila = undefined
 -- ---------------------------------------------------------------------
 
 ordenadaPila :: (Ord a) => Pila a -> Bool
-ordenadaPila = undefined 
+ordenadaPila p = ordenadaPilaAux (desapila p) (cima p)
+
+ordenadaPilaAux :: (Ord a) => Pila a -> a -> Bool
+ordenadaPilaAux p a
+    | esVacia p = True
+    | a < pc = ordenadaPilaAux rc pc
+    | otherwise = False 
+    where pc = cima p
+          rc = desapila p
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7.1: Definir una función
@@ -143,7 +172,11 @@ ordenadaPila = undefined
 -- ---------------------------------------------------------------------
 
 lista2Pila :: [a] -> Pila a
-lista2Pila xs = undefined
+lista2Pila xs = lista2PilaAux xs vacia
+
+lista2PilaAux :: [a] -> Pila a -> Pila a
+lista2PilaAux [] _ = vacia 
+lista2PilaAux (x:xs) p = apila x (lista2PilaAux xs p) 
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7.2: Definir una función
@@ -154,7 +187,14 @@ lista2Pila xs = undefined
 -- ---------------------------------------------------------------------
 
 pila2Lista :: Pila a -> [a]
-pila2Lista = undefined
+pila2Lista p = pila2ListaAux [] p
+
+pila2ListaAux :: [a] -> Pila a -> [a]
+pila2ListaAux xs p
+    | esVacia rc = reverse (pc : xs)
+    | otherwise = pila2ListaAux (pc:xs) rc 
+    where pc = cima p
+          rc = desapila p
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7.3: Comprobar con QuickCheck que la función pila2Lista es
@@ -236,7 +276,16 @@ prop_nubPila p = undefined
 -- ---------------------------------------------------------------------
 
 maxPila :: (Ord a) => Pila a -> a
-maxPila = undefined
+maxPila p = maxPilaAux (cima p) (desapila p)
+
+maxPilaAux :: (Ord a) => a -> Pila a -> a
+maxPilaAux a p
+    | a < pc && esVacia rc = pc
+    | esVacia  rc = a
+    | a < pc = maxPilaAux pc rc
+    | otherwise = maxPilaAux a rc
+    where pc = cima p
+          rc = desapila p
 
 -- ---------------------------------------------------------------------
 -- Generador de pilas                                                 --
@@ -262,5 +311,3 @@ genPila = do xs <- listOf arbitrary
 -- El tipo pila es una instancia del arbitrario. 
 instance (Arbitrary a, Num a) => Arbitrary (Pila a) where
     arbitrary = genPila
-
-

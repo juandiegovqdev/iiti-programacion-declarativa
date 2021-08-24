@@ -1,9 +1,19 @@
--- PD 2019-20: Practica 6.2
+-- PD Practica 6.2 Solución
 -- Funciones de orden superior y definiciones por plegados (II)
+-- Departamento de Ciencias de la Computación e Inteligencia Artificial
+-- Universidad de Sevilla
+-- ============================================================================
+
+-- ============================================================================
+-- Librerías auxiliares
 -- ============================================================================
 import Data.Char
 import Data.List
+-- cabal install primes
 import Data.Numbers.Primes
+import Test.QuickCheck
+
+
 -- ----------------------------------------------------------------------------
 -- Ejercicio 1. Se considera la función
 --      resultadoPos :: (a -> Integer) -> [a] -> [a]
@@ -13,24 +23,31 @@ import Data.Numbers.Primes
 --   resultadoPos sum [[1,2],[9],[-8,3],[],[3,5]]  ==  [[1,2],[9],[3,5]]
 --
 -- Define esta función
+-- 1) por comprensión,
+-- 2) por orden superior (map, filter, ...),
+-- 3) por recursión,
+-- 4) por plegado (con 'foldr').
 -- -----------------------------------------------------------------------------
--- 1) por comprensión
+
 resultadoPosC :: (a -> Integer) -> [a] -> [a]
-resultadoPosC f xss = [x | x <- xss, f x > 0]
+resultadoPosC f xs = [x | x <- xs, f x > 0]
 
--- 2) por orden superior (map, filter, ...)
-resultadoPosOS :: (a -> Integer) -> [a] -> [a]
-resultadoPosOS f xss = filter (\x -> f x > 0) xss
+resultadoPosS :: (a -> Integer) -> [a] -> [a]
+resultadoPosS f xs = filter (\x -> f x > 0) xs
 
--- 3) por recursión
+resultadoPosS' f xs = filter lp (zip (map f xs) xs)
+    where lp (a, b) = a > 0
+
+
 resultadoPosR :: (a -> Integer) -> [a] -> [a]
 resultadoPosR _ [] = []
 resultadoPosR f (x:xs) 
-    | f x > 0   = [x] ++ resultadoPosR f xs
+    | f x > 0   = x: resultadoPosR f xs
     | otherwise = resultadoPosR f xs
 
--- 4) por plegado (con 'foldr')
 
+resultadoPosP :: (a -> Integer) -> [a] -> [a]
+resultadoPosP f = foldr (\x acc -> if f x > 0 then x:acc else acc) []
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 2. Se considera la función
@@ -42,26 +59,30 @@ resultadoPosR f (x:xs)
 --   intercala 5 [6,7,9,8]      ==  [6,7,9,8]
 --
 -- Define esta función
--- ----------------------------------------------------------------------------
 -- 1) por comprensión,
-{--
-intercalaC :: Int -> [Int] -> [Int]
-intercalaC y xs = [b x y | x <- xs]
-    where b x y = if x < y then x y else x
---}
-
 -- 2) por orden superior (map, filter, ...)
-
-
 -- 3) por recursión,
+-- 4) por plegado (con 'foldr').
+-- ----------------------------------------------------------------------------
+
+intercalaC :: Int -> [Int] -> [Int]
+intercalaC y xs =  [x | xs <- xss, x <- xs]
+    where xss = [if x < y then [y, x] else [x] | x <- xs]
+
+intercalaS :: Int -> [Int] -> [Int]
+intercalaS y xs = concat (map (\x -> if x < y then [y, x] else [x]) xs)
+
+intercalaS' y xs = concatMap (\ x -> if y > x then [y, x] else [x]) xs
+
 intercalaR :: Int -> [Int] -> [Int]
 intercalaR _ [] = []
 intercalaR y (x:xs)
-    | x < y = y : x : intercalaR y xs
-    | otherwise = x : intercalaR y xs
+    | x < y         = [y,x] ++ intercalaR y xs
+    | otherwise     = x:intercalaR y xs
+    
 
--- 4) por plegado (con 'foldr').
-
+intercalaP :: Int -> [Int] -> [Int]
+intercalaP y = foldr (\x acc -> if x < y then [y, x] ++ acc else x:acc) []
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 3. Se considera la función
@@ -71,19 +92,29 @@ intercalaR y (x:xs)
 --   dec2ent [2,3,4,5]  ==  2345
 --   dec2ent [1..9]     ==  123456789
 --
--- Define esta función
--- ----------------------------------------------------------------------------
+-- Defie esta función
 -- 1) por comprensión,
-
-
 -- 2) por orden superior (map, filter, ...)
-
-
 -- 3) por recursión,
-
-
 -- 4) por plegado (con 'foldr').
+-- ----------------------------------------------------------------------------
+   
+dec2entC :: [Integer] -> Integer
+dec2entC xs = sum (reverse [x * (10^y) | (x, y) <- zip (reverse xs) [0,1..] ])
 
+dec2entS :: [Integer] -> Integer
+dec2entS xs = read (map intToDigit  (map fromIntegral xs)) :: Integer
+
+dec2entS' xs = sum (map (\ (x,n) -> x*10^n) (zip xs [n,(n-1)..]) )
+  where n = length xs - 1
+
+dec2entR xs = dec2entRaux (reverse xs)
+dec2entRaux [] = 0
+dec2entRaux (x:xs) = x + 10*dec2entRaux xs
+
+-- tambien con acululador
+
+dec2entP xs = foldr (\ x y -> 10*y + x) 0 (reverse xs)
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 4. Se considera la función
@@ -91,38 +122,34 @@ intercalaR y (x:xs)
 -- tal que (diferencia xs ys) es la diferencia entre los conjuntos xs e
 -- ys; es decir, el conjunto de los elementos de la lista xs que no se
 -- encuentran en la lista ys. Por ejemplo,
---   diferenciaOS [2,3,5,6] [5,2,7]  ==  [3,6]
+--   diferencia [2,3,5,6] [5,2,7]  ==  [3,6]
 --   diferencia [1,3,5,7] [2,4,6]  ==  [1,3,5,7]
 --   diferencia [1,3] [1..9]       ==  []
 --
 -- Define esta función
+-- 1) por comprensión,
+-- 2) por orden superior (map, filter, ...)
+-- 3) por recursión,
+-- 4) por plegado (con 'foldr').
 -- ----------------------------------------------------------------------------
 
-contieneElemento :: Eq a => a -> [a] -> Bool
-contieneElemento _ [] = False
-contieneElemento a (x:xs)
-    | a == x = True
-    | otherwise = contieneElemento a xs
+-- Por comprensión
+diferenciaC xs ys = [x | x <- xs, not (elem x ys)]
 
--- 1) por comprensión,
-diferenciaC :: Eq a => [a] -> [a] -> [a]
-diferenciaC xs ys = [xs!!x | x <- [0..length xs - 1], not (contieneElemento (xs!!x) ys)]
+-- Por orden superior
+diferenciaOS xs ys = filter (\ x -> not (elem x ys)) xs
 
--- 2) por orden superior (map, filter, ...)
-diferenciaOS :: Eq a => [a] -> [a] -> [a]
-diferenciaOS xs ys = filter (\ x -> not (contieneElemento x ys)) xs 
 
--- 3) por recursión,
+-- ESTOS DOS YA LO HICIMOS EN EL 6
 diferenciaR :: Eq a => [a] -> [a] -> [a]
-diferenciaR (x:xs) ys 
-    | not (contieneElemento x ys) = x : diferenciaR xs ys
-    | otherwise = diferenciaR xs ys
-diferenciaR _ ys = []
+diferenciaR [] _ = []
+diferenciaR xs [] = xs
+diferenciaR (x:xs) ys
+    | elem x ys         = diferenciaR xs ys
+    | otherwise         = x:diferenciaR xs ys
 
--- 4) por plegado (con 'foldr').
-diferenciaF :: Eq a => [a] -> [a] -> [a]
-diferenciaF = undefined
--- diferenciaF xs ys = foldr (\ x ys -> not (contieneElemento x ys)) []
+diferenciaP :: Eq a => [a] -> [a] -> [a]
+diferenciaP xs ys = foldr (\x acc -> if elem x ys then acc else x:acc) [] xs
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 5. Se considera la función
@@ -133,40 +160,29 @@ diferenciaF = undefined
 --   primerosYultimos [[1,2],[5,3,4],[],[9]]  ==  ([1,5,9],[2,4,9])
 --   primerosYultimos [[1,2],[1,2,3],[1..4]]  ==  ([1,1,1],[2,3,4])
 
+--
 -- Define esta función
--- ----------------------------------------------------------------------------
-eliminarListaVacia :: [[a]] -> [[a]]
-eliminarListaVacia [] = []
-eliminarListaVacia (xs:xss)
-    | null xs = eliminarListaVacia xss
-    | otherwise = xs : eliminarListaVacia xss
-
 -- 1) por comprensión,
-primerosYultimosC :: [[a]] -> ([a],[a])
-primerosYultimosC xss = ([head xs |xs <- xss, not (null xs)], [last xs |xs <- xss, not (null xs)])
-
 -- 2) por orden superior (map, filter, ...)
-primerosYultimosOS :: [[a]] -> ([a],[a])
-primerosYultimosOS xss = (map head (eliminarListaVacia xss), map last (eliminarListaVacia xss))
-
 -- 3) por recursión,
-primerosYultimosR :: [[a]] -> ([a],[a])
-primerosYultimosR xss = (primeros xss, ultimos xss)
-
-primeros :: [[a]] -> [a]
-primeros [] = []
-primeros (xs:xss)
-    | not (null xs) = head xs : primeros xss 
-    | otherwise = primeros xss
-
-ultimos :: [[a]] -> [a]
-ultimos [] = []
-ultimos (xs:xss)
-    | not (null xs) = last xs : ultimos xss 
-    | otherwise = ultimos xss
-
 -- 4) por plegado (con 'foldr').
+-- ----------------------------------------------------------------------------
 
+-- Por comprensión
+primerosYultimosC xss = unzip [(head xs, last xs) | xs <- xss, xs /= []]
+
+-- Por orden superior
+primerosYultimosS xss = unzip (map (\ x -> (head x, last x)) (filter (/= []) xss))
+
+-- Por recursión
+primerosYultimosR xss = unzip (primerosYultimosR' xss)
+primerosYultimosR' [] = []
+primerosYultimosR' (xs:xss)
+  | xs == []  = primerosYultimosR' xss
+  | otherwise = (head xs, last xs) : primerosYultimosR' xss
+
+-- Por plegado
+primerosYultimosP xss = unzip (foldr (\ x y -> (head x, last x) : y) [] (filter (/= []) xss))
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 6. Una lista hermanada es una lista de números estrictamente
@@ -182,20 +198,30 @@ ultimos (xs:xss)
 --    hermanada [2,3,5]        ==  False
 --
 -- Se pide definir esta función
+-- 1) por comprensión,
+-- 2) por orden superior (map, filter, ...)
+-- 3) por recursión,
+-- 4) por plegado (con 'foldr').
 -- ----------------------------------------------------------------------------
 -- Nota: Usa la función 'gcd'
 -- ----------------------------------------------------------------------------
--- 1) por comprensión,
 
+hermanos x y = x == 1 || y == 1 || (gcd x y /= 1)
 
--- 2) por orden superior (map, filter, ...)
+-- Por comprensión
+hermanadaC xs = and [hermanos x y | (x,y) <- zip xs (tail xs)]
 
+-- Por orden superior
+hermanadaOS xs = all (\ (x,y) -> hermanos x y) (zip xs (tail xs))
 
--- 3) por recursión,
+-- Por recursión
+hermanadaR :: [Int] -> Bool
+hermanadaR [] = True
+hermanadaR (x:[]) = True
+hermanadaR (x:y:xs) = (hermanos x y) && (hermanadaR (y:xs))
 
-
--- 4) por plegado (con 'foldr').
-
+-- Por plegado
+hermanadaP xs = foldr (\ (x,y) z -> (hermanos x y) && z) True (zip xs (tail xs))
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 7. Un elemento de una lista es permanente si ninguno de los que
@@ -206,31 +232,37 @@ ultimos (xs:xss)
 --   permanentes [80,1,7,8,4]  ==  [80,8,4]
 
 -- Se pide definir esta función
+-- 1) por comprensión,
+-- 2) por orden superior (map, filter, ...)
+-- 3) por recursión,
+-- 4) por plegado (con 'foldr').
 -- ---------------------------------------------------------------------------
 -- Nota: Usa la función 'tails' de Data.List.
 -- ----------------------------------------------------------------------------
-esPermanente :: Int -> [Int] -> Bool
-esPermanente a [] = True
-esPermanente a (x:xs)
-    | a >= x = esPermanente a xs
-    | otherwise = False
 
--- 1) por comprensión,
+head_permanente (y:[]) = True
+head_permanente (y:ys) = (maximum ys < y)
+
 permanentesC :: [Int] -> [Int]
-permanentesC xs = [xs!!x | x <- [0..length xs-1], esPermanente (xs!!x) (drop (x+1) xs)]
+permanentesC xs = [y | (y:ys) <- tails xs, head_permanente (y:ys)]
 
--- 2) por orden superior (map, filter, ...)
-permanentesF :: [Int] -> [Int]
-permanentesF (x:xs) = undefined
+-- Por orden superior               
+permanentesS :: [Int] -> [Int]
+permanentesS xs = map head (filter head_permanente (init (tails xs)))
 
--- 3) por recursión,
+-- Por composición de funciones
+permanentesS' :: [Int] -> [Int]
+permanentesS' = (map head) .  (filter head_permanente) .  init . tails
+
+-- Por recursión
 permanentesR :: [Int] -> [Int]
 permanentesR [] = []
 permanentesR (x:xs)
-    | esPermanente x xs = x : permanentesR xs
-    | otherwise = permanentesR xs
+  | head_permanente (x:xs) = x:permanentesR xs
+  | otherwise   = permanentesR xs
 
--- 4) por plegado (con 'foldr').
+-- Por plegado
+permanentesP xs = foldr (\xs acc -> if head_permanente xs then (head xs):acc else acc) [] (init (tails xs))
 
 
 -- ---------------------------------------------------------------------
@@ -246,11 +278,15 @@ permanentesR (x:xs)
 --    muyPrimo 71932 == False
 -- --------------------------------------------------------------------
 
+muyPrimo 0 = True
+muyPrimo n = isPrime n && (muyPrimo (div n 10))
 
 -- ---------------------------------------------------------------------
 -- ¿Cuántos números de cinco cifras son muy primos?
 -- ---------------------------------------------------------------------
 
 -- El cálculo es
-
+-- sum [if muyPrimo x then 1 else 0 | x <- [10^4..(10^5-1)]]
+-- > 15
 -- ---------------------------------------------------------------------
+

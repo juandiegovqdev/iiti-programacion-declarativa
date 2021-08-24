@@ -1,6 +1,12 @@
 -- PD: entrada/salida
 -- El juego del nim y las funciones de entrada/salida. 
+-- Departamento de Ciencias de la Computación e I.A.
+-- Universidad de Sevilla
 -- =====================================================================
+
+------------------------------------------------------------------------
+-- § Introducción                                                     --
+------------------------------------------------------------------------
 
 -- En el juego del nim el tablero tiene 5 filas numeradas de estrellas,
 -- cuyo contenido inicial es el siguiente 
@@ -16,7 +22,14 @@
 -- Nota: El juego debe de ejecutarse en una consola, no en la shell de
 -- emacs. 
 
+-- ---------------------------------------------------------------------
+-- § Librerías auxiliares                                             --
+-- ---------------------------------------------------------------------
+
 import Data.Char
+import Text.Printf
+import System.IO
+import System.Directory
 
 -- ---------------------------------------------------------------------
 -- § Representación                                                   --
@@ -43,7 +56,7 @@ inicial =  [5,4,3,2,1]
 -- ---------------------------------------------------------------------
 
 finalizado :: Tablero -> Bool
-finalizado t = all (==True) [t!!x == 0 | x <- [0..(length t) - 1]]
+finalizado t = (sum t) == 0
 
 -- ---------------------------------------------------------------------
 -- Ejecicio 2.2. Definir la función
@@ -57,7 +70,7 @@ finalizado t = all (==True) [t!!x == 0 | x <- [0..(length t) - 1]]
 -- ---------------------------------------------------------------------
 
 valida :: Tablero -> Int -> Int -> Bool
-valida t f n = t!!(f-1) >= n && n >= 1
+valida t f n = (n >= 1) && (t!!(f-1) >= n)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Definir la función
@@ -68,10 +81,7 @@ valida t f n = t!!(f-1) >= n && n >= 1
 -- ---------------------------------------------------------------------
 
 jugada :: Tablero -> Int -> Int -> Tablero
-jugada [] _ _ = []
-jugada (x:xs) f n
-    | f == 1 = (x-n) : jugada xs (f-1) n
-    | otherwise = x : jugada xs (f-1) n
+jugada t f n = [if i == f then  x - n else x | (x, i) <- zip t [1,2..]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Definir la acción
@@ -83,7 +93,7 @@ jugada (x:xs) f n
 -- ---------------------------------------------------------------------
 
 nuevaLinea :: IO ()
-nuevaLinea = putStr "\n"
+nuevaLinea = putChar '\n'
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Definir la función
@@ -95,8 +105,7 @@ nuevaLinea = putStr "\n"
 -- ---------------------------------------------------------------------
 
 estrellas :: Int -> String
-estrellas 0 = ""
-estrellas n = "* " ++ estrellas (n-1) 
+estrellas n = unwords ["*" | _ <- [1..n]]
                               
 -- ---------------------------------------------------------------------
 -- Ejercicio 6. Definir la acción
@@ -106,13 +115,10 @@ estrellas n = "* " ++ estrellas (n-1)
 --    ghci> escribeFila 2 3
 --    2: * * *
 -- ---------------------------------------------------------------------
- 
+
+
 escribeFila :: Int -> Int -> IO ()
-escribeFila f n = do
-    putStr (show f) 
-    putStr ": "
-    putStr (estrellas n) 
-    putChar '\n'
+escribeFila f n = printf "%d: %s\n" f (estrellas n)
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 7. Definir la acción
@@ -128,21 +134,12 @@ escribeFila f n = do
 -- ---------------------------------------------------------------------
 
 escribeTablero :: Tablero -> IO ()
-escribeTablero xs = escribeTableroAux xs 1
-
-escribeTableroAux :: Tablero -> Int -> IO ()
-escribeTableroAux [] _ = putStr ""
-escribeTableroAux (x:xs) n = do
-        putStr (show n) 
-        putStr ": "
-        putStr (estrellas x) 
-        putChar '\n'
-        escribeTableroAux (xs) (n+1)
+escribeTablero t = sequence_ [escribeFila i n | (n, i) <- zip t [1,2..]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Definir la acción
 --    leeDigito :: String -> IO Int
--- tal que (leeDigito c) escribe una nueva línea con la cadena "prueba",
+-- tal que (leeDigito c) escribe una nueva línea con l cadena "prueba",
 -- lee un carácter y comprueba que es un dígito. Además, si el carácter
 -- leido es un dígito entonces devuelve el entero correspondiente y si
 -- no lo es entonces escribe el mensaje "Entrada incorrecta" y vuelve a
@@ -157,17 +154,16 @@ escribeTableroAux (x:xs) n = do
 --    3
 -- ---------------------------------------------------------------------
 
-isInt x = x == fromInteger (round x)
-
-{--
 leeDigito :: String -> IO Int
 leeDigito c = do
     putStr c
-    x <- getChar  
-    if isInt toInt x then return x else do 
-        error "Entrada incorrecta"
-        leeDigito "prueba "
---}
+    x <- getChar
+    if isDigit x then
+        return (read [x])
+    else do
+        putStrLn "\nEntrada incorrecta (se esperaba un dígito)"
+        d <- leeDigito c
+        return d
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 9. Los jugadores se representan por los números 1 y 2.
@@ -177,8 +173,7 @@ leeDigito c = do
 -- ---------------------------------------------------------------------
 
 siguiente :: Int -> Int
-siguiente 1 = 2
-siguiente 2 = 1
+siguiente j = (mod j 2) + 1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10. Definir la acción
@@ -216,8 +211,42 @@ siguiente 2 = 1
 --    J 1 He ganado
 -- ---------------------------------------------------------------------
 
+limpiar = putStr "\ESC[2J"
+
+selecciona :: Tablero -> IO (Int, Int)
+selecciona t = do
+    f <- leeDigito "Elije una fila: "
+    putChar '\n'
+    n <- leeDigito "Elige cuantas estrellas retiras: "
+    putChar '\n'
+    if valida t f n then do       
+        return (f, n)
+    else do
+        putStrLn "Moviento no válido. Inténtalo de nuevo.\n"
+        r <- (selecciona t)
+        return r
+
+
 juego :: Tablero -> Int -> IO ()
-juego t j = undefined
+juego t j = do
+    limpiar
+    escribeTablero t
+    putChar '\n'
+    putStr "Turno para el jugador "
+    putStrLn (show j)
+    -- pedimos la jugada
+    (f, n) <- selecciona t
+    -- ejecutamos la jugada
+    let nt = jugada t f n
+    -- comprobamos is ha ganado
+    if finalizado nt then
+        putStrLn ("El jugado " ++ (show j) ++ " ha ganado !!!")
+    else do
+        juego nt (siguiente j)
+        return ()
+
+
+
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11. Definir la acción
@@ -306,7 +335,7 @@ juego t j = undefined
 -- ---------------------------------------------------------------------
 
 nim :: IO ()
-nim = undefined
+nim = juego inicial 1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 12. Definir la función principal para poder compilar el
@@ -314,3 +343,63 @@ nim = undefined
 -- ---------------------------------------------------------------------
 
 
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 13. Implementa un menú inicial que permita o bien comenzar
+-- un juego nuevo, o bien cargar una partida desde un fichero (nombre indicado 
+-- por el usuario). El formato del fichero debe ser:
+--   jugador
+--   n1 n2 n3 n4 n5
+-- Es decir, la primera línea indicará el jugador que tenía el turno,
+-- especificado por su número (1 o 2). La siguiente línea indica, con
+-- separación de comas, el número de estrellas en cada fila.
+-- ---------------------------------------------------------------------
+
+split:: Char -> String -> [String]
+split sep  = words . foldr (\x acc -> if x == sep then ' ':acc else x:acc) "" 
+
+leerPartida :: IO (Int, [Int])
+leerPartida = do
+    putChar '\n'
+    putStr "Indique el nombre de archivo: "
+    f <- getLine
+    existe <- doesFileExist f
+    if existe then do
+        contenido <- readFile f
+        let lineas = lines contenido
+        let jugador = read (head lineas) :: Int
+        let tablero =  [(read x :: Int) | x <- split ',' (last lineas)]
+        return (jugador, tablero)
+    else 
+        putStrLn "El archivo indicado no existe\n"
+        leerPartida
+
+
+nuevoJuego = do
+    putStrLn "1. Nuevo Juego"
+    putStrLn "2. Leer juego de archivo"
+    putStr "Elija una opción: "
+    o <- getChar
+    getChar
+    if o == '2' then do
+        (j, t) <- leerPartida
+        putChar '\n'
+        juego t j
+        
+    else do
+        putChar '\n'
+        juego inicial 1
+
+    return ()
+
+main = do
+    hSetBuffering stdout NoBuffering
+    nuevoJuego
+-- ---------------------------------------------------------------------
+-- Ejercicio 14. Re-implementa las funciones necesarias para que, cuando
+-- solicite una fila, si el usuario pulsa la letra 'q', el juego termine.
+-- Antes de salir, debe preguntar si se quiere guardar partida, si se 
+-- elige que 's', entonces debe preguntar por un nombre de fichero.
+-- Finalmente, la partida se guarda con el formato indicado en el
+-- ejercicio 13.
+-- ---------------------------------------------------------------------

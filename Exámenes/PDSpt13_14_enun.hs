@@ -5,6 +5,7 @@
 -- 04/09/2014
 
 import Data.List
+
 -- NOTA: AL IMPORTAR ESTE MÓDULO, PODEMOS UTILIZAR FUNCIONES
 -- COMO sort o nub, si son necesarias.
 -- -----------------------------------------------------------------
@@ -17,20 +18,26 @@ import Data.List
 -- [(1,4),(1,5),(2,4),(2,5),(3,4),(3,5)]
 -- *Main> parejas "casa" [4,5]
 -- [('c',4),('c',5),('a',4),('a',5),('s',4),('s',5),('a',4),('a',5)]
+
+parejaAux :: a -> [b] -> [(a, b)]
+parejaAux _ [] = []
+parejaAux a (x:xs) = (a, x) : parejaAux a xs
+
 -- RECURSIÓN
 parejasR :: [a] -> [b] -> [(a,b)]
-parejasR = undefined
+parejasR [] _ = []
+parejasR (x:xs) ys = parejaAux x ys ++ parejasR xs ys
 
 -- COMPRENSIÓN
 parejasC :: [a] -> [b] -> [(a,b)]
-parejasC = undefined
+parejasC xs ys = [(x, y) | x <- xs, y <- ys]
 
 -- -----------------------------------------------------------------
 -- EJERCICIO 2.(1,5 puntos)
 -- Definir POR RECURSIÓN Y COMPRENSIÓN una función (elimina l n) tal
 -- que, dada una lista l y un número natural n(mayor que 1), elimine
 -- de la lista todos los elementos cuyas posiciones sean múltiplos
--- de n. (Considerar que la primera  posición es la 0).
+-- de n. (Considerar que la primera posición es la 0).
 
 -- *Main> elimina "caminata" 3
 -- "amnaa"
@@ -101,4 +108,5 @@ repetidos = undefined
 -- ramaLarga :: Arbol a -> [a]
 -- ramaLarga = undefined
 -- -----------------------------------------------------------------
--- -----------------------------------------------------------------
+
+

@@ -4,7 +4,7 @@
 -- Sevilla, 11 de Septiembre de 2010
 -- ---------------------------------------------------------------------
 
-module Exámenes.PilaConListas
+module Prácticas.PilaConListas
     (Pila,
      vacia,    -- Pila a
      apila,    -- a -> Pila a -> Pila a

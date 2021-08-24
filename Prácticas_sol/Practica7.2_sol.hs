@@ -25,7 +25,7 @@ main0 = do
   putStrLn "posteriores para que su main vaya llamando a cada mainN"
   putStrLn "conforme vaya avanzando."
 
--- main = main0
+--main = main0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Crear un programa que lea el fichero "lorem_ipsum.txt"
@@ -51,7 +51,7 @@ cuentas fichero = do
 main1 :: IO ()
 main1 = cuentas "lorem_ipsum.txt"
 
--- main = main1
+--main = main1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Adaptar el ejercicio anterior para que podamos
@@ -79,8 +79,8 @@ main2 = do
     putStrLn "Debe indicar el nombre de archivo."
 
   return ()
-
-main = main2
+  
+--main = main2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Adaptar el ejercicio anterior para que trate el posible
@@ -98,9 +98,21 @@ main = main2
 -- ---------------------------------------------------------------------
 
 main3 :: IO ()
-main3 = undefined
+main3 = do
+  args <- getArgs
+  if length args > 0 then do
+    let fichero = head args
+    existe <- doesFileExist fichero
+    if existe then
+      cuentas fichero
+    else
+      putStrLn ("El archivo " ++ fichero ++ " no existe.")
+  else do 
+    putStrLn "Debe indicar el nombre de archivo."
 
--- main = main3
+  return ()
+
+--main = main3
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Procesar el archivo CSV "clima.csv" 
@@ -116,17 +128,20 @@ main3 = undefined
 -- ---------------------------------------------------------------------
 
 main4 :: IO ()
-main4 = undefined
-
+main4 = do
+  contenido <- parseCSVFromFile "clima.csv"
+  let filas = case contenido of
+             Right filas -> filas
+             _ -> []
+  sequence_ [putStrLn campo | campo <- head filas]
+  
 --main = main4
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Procesar el archivo CSV "clima.csv" 
 -- (descárgalo de http://www.cs.us.es/cursos/pd/ejercicios/clima.csv) 
 -- y devolver la frecuencia de cada atributo.
---
 -- Salida esperada:
---
 -- Cielo
 -- -----
 -- Soleado: 0.357
@@ -151,8 +166,38 @@ main4 = undefined
 -- No: 0.357
 -- ---------------------------------------------------------------------
 
-main5 :: IO ()
-main5 = undefined
+unicos :: (Eq a) => [a] -> [a]
+unicos = foldr (\x acc -> if elem x acc then acc else x:acc ) []
 
--- main = main5
+traspuesta :: [[a]] -> [[a]]
+traspuesta registros = [[(registros!!f)!!c | f <-[0..(length registros)-1]]  | c <- [0..(length (head registros))-1]]
+
+frecuencia :: (Eq a) => a -> [a] -> Float
+frecuencia valor valores = sum [1 | x <- valores, x == valor] / (fromIntegral (length valores))
+
+mostrar_frecuencia valor valores = do
+  putStr (valor ++ ": ")
+  let f = frecuencia valor valores
+  printf "%.3f\n" f
+
+frecuencias campo valores = do
+  putStrLn campo
+  putStrLn (take (length campo) (repeat '-'))
+  sequence_ [mostrar_frecuencia v  valores | v <- (unicos valores)]
+  putStrLn ""
+
+main5 :: IO ()
+main5 = do
+  contenido <- parseCSVFromFile "clima.csv"
+  let filas = case contenido of
+             Right filas -> filas
+             _ -> []
+
+  let cabecera = head filas
+  let registros = tail filas
+  sequence_ [frecuencias campo valores | (campo, valores) <- zip cabecera  (traspuesta registros)]
+
+--main = main5
+
+
 
