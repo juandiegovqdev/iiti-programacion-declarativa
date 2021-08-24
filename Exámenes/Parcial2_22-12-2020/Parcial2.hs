@@ -2,15 +2,11 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 2                                      22 de Diciembre de 2020
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
 
 import System.Environment (getArgs)
 import Control.Exception (catch, SomeException)
 import System.Directory
-import Text.CSV
+-- import Text.CSV
 import Text.Printf
 import Data.List
 import Test.QuickCheck
@@ -37,7 +33,9 @@ import Test.QuickCheck
 -- Ejercicio 1.a. (0,75 puntos) 
 -- Define la función (parte n xs) con recursión
 
-parte = undefined
+parte :: [Int] -> [Int] -> [[Int]]
+parte [] _ = []
+parte (x:xs) ys = take x ys : parte xs (drop x ys)
 
 -- Ejercicio 1.b. (0,75 puntos) 
 -- Define la función (parte n xs) haciéndote valer del plegado por la
@@ -51,8 +49,8 @@ parte' = undefined
 --   * la suma de los elementos de ns es igual a la longitud de xs.
 --   * todos los elementos de ns son mayores estrictos que 0
 
-prop_parte = undefined
-
+prop_parte xs ys = length xs == length (parte xs ys) 
+-- 
 -- La comprobación es quickCheck prop_parte
 -- *** Gave up! Passed only 9 tests; 1000 discarded tests.
 -- ---------------------------------------------------------------------
@@ -70,6 +68,7 @@ prop_parte = undefined
 --    xs, y si hay igualdad, después por ys. Por ejemplo, el resultado
 --    sería para xs, xs' = [1,1,1,2,2], y para ys, ys' = [2,2,3,1,2]. 
 --    Observa que los elementos de ys cambian de lugar junto con los de xs.
+-- sort xs y sort ys
 --  * Calcula para xs' (el resultado de aplicar lo anterior a xs) los 
 --    segmentos de elementos que son iguales de forma consecutiva. Por 
 --    ejemplo, si xs' = [1,1,1,2,2], entonces [[1,1,1],[2,2]]
@@ -87,11 +86,31 @@ prop_parte = undefined
 -- > agrupa ["S","S","N","L"] ["A","A","A","S"]  
 -- ([["L"],["N"],["S","S"]], [["S"],["A"],["A","A"]])
 
+parte'' :: [Int] -> [Int] -> [[Int]]
+parte'' [] _ = []
+parte'' (x:xs) ys = take x ys : parte'' xs (drop x ys)
+
 agrupa :: (Ord a) => [a] -> [a] -> ([[a]],[[a]])
-agrupa = undefined
+agrupa xs ys = (agrupaAux (sort xs), parte (obtenerLongitudes (agrupaAux (sort xs))) ys)
+
+agrupaAux :: (Ord a) => [a] -> [[a]] -- [4,3,3,1,2,5,4] == [[1],[2],[3,3],[4,4],[5]]
+agrupaAux [] = []
+agrupaAux xs = [a] ++ agrupaAux (drop b xs)
+    where a = agrupaAux1 xs
+          b = length (agrupaAux1 xs)
+
+agrupaAux1 :: (Ord a) => [a] -> [a]
+agrupaAux1 [] = []
+agrupaAux1 [y] = [y]
+agrupaAux1 (x:y:xs)
+    | x == y = x : agrupaAux1 (y:xs)
+    | otherwise = [x]
+
+obtenerLongitudes :: (Ord a) => [[a]] -> [a] -- [[4,2,1], [1,1,1,1], [0,2]] == [3, 4, 2]
+obtenerLongitudes [] = []
+obtenerLongitudes (x:xs) = length x : obtenerLongitudes xs
 
 -- ---------------------------------------------------------------------
-
 
 -- ------------------------------ --
 -- PARTE B del examen, 40 minutos --

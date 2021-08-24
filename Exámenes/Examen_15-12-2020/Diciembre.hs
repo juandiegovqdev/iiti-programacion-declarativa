@@ -2,14 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 3a Convocatoria                               15 de Diciembre de 2020
 -- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrate de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
 
 import Data.List as L
 -- import Data.Matrix as M
