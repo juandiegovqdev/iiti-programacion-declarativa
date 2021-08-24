@@ -199,4 +199,9 @@ obtenerMasJoven ((x,y,(a,b)):xs) (s,d,(e,f))
 -- 5. Almacene esa misma frase emitida a un fichero de texto.
 -- ---------------------------------------------------------------------
 
-
+{--
+main :: IO ()
+main = do
+    putStrLn "Introduce un número natural: "
+    xs <- getLine
+--}

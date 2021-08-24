@@ -14,6 +14,7 @@
 -- Nota: haga uso de tantas funciones auxiliares como necesite (por ejemplo, 
 -- para descomponer un n�mero en cifras).
 -- As�, esReversible 36 == True y esReversible 243 == False.
+-- ---------------------------------------------------------------------------
 
 
 
@@ -27,6 +28,7 @@
 -- principal de una matriz cuadrada; es decir, con el mismo n�mero de filas 
 -- que de columnas.
 -- As�, diagonal [[1,0,-7,5],[3,-1,4,2],[5,6,2,-3],[-8,0,9,4]] == [1,-1,2,4].
+-- ---------------------------------------------------------------------------
 
 
 
@@ -38,6 +40,7 @@
 -- L�gicamente, estas matrices deber�n ser num�ricas.
 -- Ejemplo:
 -- productoMatricesC [[1,0,-2],[0,3,-1]] [[0,3],[-2,-1],[0,4]] == [[0,-5],[-6,-7]].
+-- ---------------------------------------------------------------------------
 
 
 
@@ -48,5 +51,6 @@
 -- Esta matriz no tiene por qu� ser num�rica.
 -- Ejemplo:
 -- traspuestaR [[0,3],[-2,-1],[0,4]] == [[0,-2,0],[3,-1,4]].
+-- ---------------------------------------------------------------------------
 
 

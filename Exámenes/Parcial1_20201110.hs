@@ -20,6 +20,7 @@ import Data.Char
 -- ----------------------------------------------------------------------
 
 
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 2 (3 puntos). El centro de masas de un sistema discreto de cuerpos
 -- es el punto del espacio que se comporta como si en él estuviera aplicada
@@ -61,7 +62,6 @@ centroDeMasas = undefined
 -- ---------------------------------------------------------------------
 
 prop_masas = undefined
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. (3 puntos)

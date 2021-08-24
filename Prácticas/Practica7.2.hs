@@ -5,14 +5,17 @@
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
 
---
 -- Esta práctica trata de asentar algunos de los primeros conceptos
 -- introducidos en el tema de entrada y salida con ficheros.
 
- 
 -- ---------------------------------------------------------------------
 -- Importación de librerías                                           --
 -- ---------------------------------------------------------------------
+
+import System.Environment (getArgs)
+import System.Directory
+import Text.CSV
+import Text.Printf
 
 main0 :: IO ()
 main0 = do
@@ -22,7 +25,7 @@ main0 = do
   putStrLn "posteriores para que su main vaya llamando a cada mainN"
   putStrLn "conforme vaya avanzando."
 
-main = main0
+-- main = main0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Crear un programa que lea el fichero "lorem_ipsum.txt"
@@ -36,10 +39,19 @@ main = main0
 --    (5,[105,158,46,64,52],[41,60,16,24,28])
 -- ---------------------------------------------------------------------
 
-main1 :: IO ()
-main1 = undefined
+cuentas fichero = do
+  texto <- readFile fichero
+  let lineas = [l | l <- (lines texto), length l > 1]
+  let palabras = [length (words linea) | linea <- lineas]
+  let es = [length es | linea <- lineas, let es = filter (=='e') linea]
 
---main = main1
+  let resultado = (length lineas, palabras, es)
+  putStrLn (show resultado)
+
+main1 :: IO ()
+main1 = cuentas "lorem_ipsum.txt"
+
+-- main = main1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Adaptar el ejercicio anterior para que podamos
@@ -58,9 +70,17 @@ main1 = undefined
 -- ---------------------------------------------------------------------
 
 main2 :: IO ()
-main2 = undefined
-  
---main = main2
+main2 = do
+  args <- getArgs
+  if length args > 0 then do
+    let fichero = head args
+    cuentas fichero
+  else do 
+    putStrLn "Debe indicar el nombre de archivo."
+
+  return ()
+
+main = main2
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. Adaptar el ejercicio anterior para que trate el posible

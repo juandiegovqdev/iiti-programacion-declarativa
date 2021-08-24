@@ -24,6 +24,7 @@ import System.Environment (getArgs)
 -- ---------------------------------------------------------------------
 
 
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. [1,75 ptos]
 -- Se plantea la necesidad de trabajar con árboles que adopten tipos
@@ -40,6 +41,7 @@ import System.Environment (getArgs)
 --    la segunda de tipo c de las hojas que no cumplan p
 --
 -- ---------------------------------------------------------------------
+
 
 
 -- -------------------------------------------------------------------
@@ -69,6 +71,7 @@ import System.Environment (getArgs)
 --             junto con el número de residentes ilustres
 --             (ver residents)
 -- -------------------------------------------------------------------
+
 
 
 -----------------------------------------------------------------------

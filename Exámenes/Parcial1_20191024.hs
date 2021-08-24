@@ -47,7 +47,27 @@ import Test.QuickCheck
 -- intervalos.
 -- ----------------------------------------------------------------------
 
+intervalos :: Int -> Int -> [Int] -> ([Int], [Int], [Int])
+intervalos c b xs = (menores, entreIntervalo, mayores)
+    where menores = menoresQue c xs
+          entreIntervalo = entreNumeros c b (drop (length menores) xs)
+          mayores = mayoresQue (length menores + length entreIntervalo) xs
 
+menoresQue :: Int -> [Int] -> [Int]
+menoresQue _ [] = []
+menoresQue a (x:xs)
+    | x < a = x : menoresQue a xs
+    | otherwise = []
+
+entreNumeros :: Int -> Int -> [Int] -> [Int]
+entreNumeros _ _ [] = []
+entreNumeros a b (x:xs)
+    | x >= a && x <= b = x : entreNumeros a b xs
+    | otherwise = []
+
+mayoresQue :: Int -> [Int] -> [Int]
+mayoresQue 0 xs = xs
+mayoresQue c (x:xs) = mayoresQue (c-1) xs
 
 -- ----------------------------------------------------------------------
 -- Ejercicio 3. (2,5 puntos)
@@ -60,12 +80,31 @@ import Test.QuickCheck
 -- λ> zigzag "abcdefghi" == "acegihfdb"
 -- Se pide definir dicha función de tres formas distintas, usando un tipado
 -- polimórfico:
--- 1) Usando recursión (zigzagR xs)
--- 2) Usando comprensión (zigzagC xs)
--- 3) Usando orden superior (zigzagO xs)
 -- ----------------------------------------------------------------------
 
+-- 1) Usando recursión (zigzagR xs)
+zigzagR :: [Int] -> [Int]
+zigzagR xs = zigzagROdd xs ++ reverse (zigzagREven xs)
 
+zigzagREven :: [Int] -> [Int]
+zigzagREven [] = []
+zigzagREven (x:xs)
+    | even x = x : zigzagREven xs 
+    | otherwise = zigzagREven xs
+
+zigzagROdd :: [Int] -> [Int]
+zigzagROdd [] = []
+zigzagROdd (x:xs)
+    | odd x = x : zigzagROdd xs 
+    | otherwise = zigzagROdd xs
+
+-- 2) Usando comprensión (zigzagC xs)
+zigzagC :: [Int] -> [Int]
+zigzagC xs = [x | x <- xs, odd x] ++ reverse [x | x <- xs, even x]
+
+-- 3) Usando orden superior (zigzagO xs)
+zigzagO :: [Int] -> [Int]
+zigzagO xs = filter odd xs ++ reverse (filter even xs)
 
 -- ----------------------------------------------------------------------  
 -- Ejercicio 4.1. (1,5 puntos)
@@ -76,8 +115,22 @@ import Test.QuickCheck
 -- λ> maxListas [[4,2],[7],[2,8,1],[10,20]] == [(1,1),(2,1),(3,2),(4,2)]
 -- λ> maxListas [[1,2,3],[],[0,4,1],[10]] == [(1,3),(3,2),(4,1)]
 
-maxListas :: Ord a => [[a]] -> [(Int,Int)]
-maxListas xss = undefined
+-- TODO: Intentar de nuevo
+maxListas :: (Ord a, Num a) => [[a]] -> [(a,a)]
+maxListas [] = []
+maxListas ((x:xs):xss) = (obtenerIndice xs x 1 1, obtenerMayor xs x) :  maxListas xss
+
+obtenerMayor :: Ord a => [a] -> a -> a
+obtenerMayor [] b = b
+obtenerMayor (x:xs) b
+    | b < x = obtenerMayor xs x
+    | otherwise = obtenerMayor xs b
+
+obtenerIndice :: (Ord a, Num a) => [a] -> a -> a -> a -> a
+obtenerIndice [] _ indF _ = indF + 1
+obtenerIndice (x:xs) a indF ind 
+    | a < x = obtenerIndice xs x (indF+1) (ind+1)
+    | otherwise = obtenerIndice xs a (indF) (ind+1)
 
 -- Ejercicio 4.2. (1 punto)
 -- Definir la función (listaIncrementales xs) que reciba una lista de pares
@@ -90,3 +143,10 @@ maxListas xss = undefined
 -- λ> listasIncrementales [(1,1),(2,3),(4,3),(5,5)] == False
 -- λ> listasIncrementales [(1,1),(2,3),(3,3),(4,2)] == False
 -- ----------------------------------------------------------------------
+
+listasIncrementales :: [(Int, Int)] -> Bool
+listasIncrementales [] = True
+listasIncrementales ((a, b):(c, d):xs)
+    | c == (a+1) && b <= d = listasIncrementales ((c, d):xs)
+    | otherwise = False
+listasIncrementales ((c, d):_) = True
