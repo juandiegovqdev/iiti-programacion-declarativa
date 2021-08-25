@@ -41,8 +41,11 @@ main0 = do
 
 cuentas fichero = do
   texto <- readFile fichero
+  -- Número de párrafos de un texto.
   let lineas = [l | l <- (lines texto), length l > 1]
+  -- Número de palabras por párrafo.
   let palabras = [length (words linea) | linea <- lineas]
+  -- Número de apariciones de la letra 'e' por párrafo.
   let es = [length es | linea <- lineas, let es = filter (=='e') linea]
 
   let resultado = (length lineas, palabras, es)
