@@ -40,6 +40,7 @@ main0 = do
 -- ---------------------------------------------------------------------
 
 cuentas fichero = do
+  -- Texto del fichero
   texto <- readFile fichero
   -- Número de párrafos de un texto.
   let lineas = [l | l <- (lines texto), length l > 1]
