@@ -5,7 +5,7 @@
 
 import Text.CSV
 import PilaConTipoDeDatoAlgebraico
-import Data.Matrix
+-- import Data.Matrix
 import System.Environment (getArgs)
 
 -- -------------------------------------------------------------------
@@ -23,7 +23,8 @@ import System.Environment (getArgs)
 --
 -- ---------------------------------------------------------------------
 
-
+type Ficha = Rojo | Azul
+type Columna = [Ficha]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. [1,75 ptos]

@@ -152,10 +152,11 @@ mayorQuePosterior n z (x:xs)
 --  ([1,0],[0])
 -- ---------------------------------------------------------------------
 
+{-
 obtenereDigitos :: Integer -> Integer
 sumaDigitosR n
     | n < 10    = n
     | otherwise = n `rem` 10 + sumaDigitosR (n `div` 10)
-
+--}
 
 digitosConDecimales = undefined
