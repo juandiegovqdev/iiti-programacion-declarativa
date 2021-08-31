@@ -19,7 +19,11 @@ import Data.Char
 -- > 1-2.1 ~>= 2.3 || 2 ~>= 2.01 == False
 -- ----------------------------------------------------------------------
 
-
+{--
+infix 4 ~>=
+(~>=) :: (Fractional t, Ord t, Num t) => t -> t -> Bool
+x ~>= y = abs(y-x) >= 0.001
+--}
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2 (3 puntos). El centro de masas de un sistema discreto de cuerpos
@@ -46,7 +50,27 @@ import Data.Char
 --  *** Exception: No hay cuerpos
 -- ---------------------------------------------------------------------
 
-centroDeMasas = undefined
+centroDeMasas :: [(Float,(Float,Float,Float))] -> (Float, Float, Float)
+centroDeMasas xs = (a, b, c)
+    where a = obtenerA xs / obtenerM xs
+          b = obtenerB xs / obtenerM xs
+          c = obtenerC xs / obtenerM xs
+
+obtenerA :: [(Float,(Float,Float,Float))] -> Float
+obtenerA [] = 0
+obtenerA ((m,(a,b,c)):xs) = (m*a) + obtenerA xs
+
+obtenerB :: [(Float,(Float,Float,Float))] -> Float
+obtenerB [] = 0
+obtenerB ((m,(a,b,c)):xs) = (m*b) + obtenerB xs
+
+obtenerC :: [(Float,(Float,Float,Float))] -> Float
+obtenerC [] = 0
+obtenerC ((m,(a,b,c)):xs) = (m*c) + obtenerC xs
+
+obtenerM :: [(Float,(Float,Float,Float))] -> Float
+obtenerM [] = 0
+obtenerM ((m,(a,b,c)):xs) = m + obtenerM xs
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2.2 (1,5 punto)
@@ -86,7 +110,26 @@ prop_masas = undefined
 --  []
 -- ---------------------------------------------------------------------
 
-maximosLocales = undefined
+maximosLocales :: Float -> [Float] -> [(Int, Float)]
+maximosLocales _ [] = []
+maximosLocales n (x:y:xs) = maximosLocalesAux 2 n y [x] xs
+
+maximosLocalesAux :: Int -> Float -> Float -> [Float] -> [Float] -> [(Int, Float)]
+maximosLocalesAux ind n z anterior (x:posterior) 
+    | mayorQuePosterior n z (reverse anterior) && mayorQuePosterior n z (x:posterior) = (ind, z) : (maximosLocalesAux (ind+1) n x (anterior++[z]) posterior)
+    | otherwise = (maximosLocalesAux (ind+1) n x (anterior++[z]) posterior)
+maximosLocalesAux _ _ _ _ [x] = []
+maximosLocalesAux _ _ _ _ [] = []
+maximosLocalesAux ind n z anterior [x] 
+    | mayorQuePosterior n z (reverse anterior) = [(ind, z)]
+    | otherwise = []
+
+mayorQuePosterior :: Float -> Float -> [Float] -> Bool
+mayorQuePosterior _ _ [] = True
+mayorQuePosterior n z (x:xs)
+    | n /= 1 && z > x = True && mayorQuePosterior (n-1) z xs
+    | n == 1 && z > x = True
+    | otherwise       = False
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. (2,5 puntos)
@@ -108,5 +151,11 @@ maximosLocales = undefined
 --  > digitosConDecimales (-10)            -- descartamos el signo para los negativos
 --  ([1,0],[0])
 -- ---------------------------------------------------------------------
+
+obtenereDigitos :: Integer -> Integer
+sumaDigitosR n
+    | n < 10    = n
+    | otherwise = n `rem` 10 + sumaDigitosR (n `div` 10)
+
 
 digitosConDecimales = undefined
