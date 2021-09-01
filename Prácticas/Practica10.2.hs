@@ -1,28 +1,11 @@
--- PD 2020-21. Vectores y matrices: ejercicios de ex�menes.
--- =====================================================================
-
--- ---------------------------------------------------------------------
--- Introducci�n                                                       --
--- ---------------------------------------------------------------------
-
--- En esta relaci�n se presenta una recopilaci�n de ejercicios vectores
--- y matrices propuestos en ex�menes de la asignatura I1M.
-
--- ---------------------------------------------------------------------
--- � Librer�as auxiliares                                             --
--- ---------------------------------------------------------------------
-
 import Data.Array
 import Data.List
-
--- Nota. En la relaci�n usaremos los tipos de los vectores y las matrices 
--- definidos por 
 
 type Vector a = Array Int a
 type Matriz a = Array (Int,Int) a
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. Definir la funci�n 
+-- Definir la función 
 --    esTriangularS :: Num a => Matriz a -> Bool
 -- tal que (esTriangularS p) se verifica si p es una matriz triangular
 -- superior. Por ejemplo, 
