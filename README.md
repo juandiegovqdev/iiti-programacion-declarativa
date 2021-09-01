@@ -14,3 +14,12 @@ Para realizar los ejercicios hay que instalar la librería I1M que contiene la i
 + cabal update 
 + cabal install I1M
 ```
+
+### Librería "Matrix"
+
+Algunos ejercicios requieren de la instalación de matrix, una librería para poder usar matrices.
+
+```
++ cabal update 
++ cabal install matrix
+```
