@@ -127,8 +127,6 @@ raiz (H v) = v
 raiz (N v _ _) = v
 
 -- ============================================================================
-
--- ============================================================================
 -- Ejercicio 3. (2,5 ptos) El problema de las N torres consiste en colocar 
 -- N torres en un tablero con N filas y N columnas de forma que no haya dos
 -- torres en la misma fila ni en la misma columna.  

@@ -1,15 +1,5 @@
--- ------------------------------------------------------------------
--- PD.PRIMERA PRUEBA DE EVALUACIÓN ALTERNATIVA. CURSO 15-16
--- NOVIEMBRE 2015
--- ------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- UVUS:
--- ------------------------------------------------------------------
---
--- Antes de comenzar, renombra este fichero: uvus_1.hs
---
 -- --------------------------------------------------------------------
--- Definir la función
+-- Definir la funciÃ³n
 --   tieneRepeticiones :: Eq a => [a] -> Bool
 -- tal que (tieneRepeticiones xs) se verifica si xs tiene algun elemento
 -- repetido. Por ejemplo, 
@@ -21,18 +11,19 @@
 tieneRepeticiones [] = False
 tieneRepeticiones (x:xs) = elem x xs || tieneRepeticiones xs
 -- --------------------------------------------------------------------
--- Definir la función
+-- Definir la funciï¿½n
 -- particion :: [a] -> [Int] -> [[a]]
--- tal que (particion xs ns) es la partición de xs donde la longitud de
--- cada parte está determinada por los elementos de ns. Por ejemplo, 
+-- tal que (particion xs ns) es la particiï¿½n de xs donde la longitud de
+-- cada parte estï¿½ determinada por los elementos de ns. Por ejemplo, 
 --
 -- particion [1..10] [2,5,0,3]  ==  [[1,2],[3,4,5,6,7],[],[8,9,10]] 
 -- particion [1..10] [1,4,2,3]  ==  [[1],[2,3,4,5],[6,7],[8,9,10]]
--- SOLUCION:
--- RECURSION
+
+-- Usando recursiÃ³n:
 particion [] _     = []
 particion _ []     = []
 particion xs (n:ns) = take n xs : particion (drop n xs) ns
+
 -- --------------------------------------------------------------------
 -- Define la funcion
 -- sinRepe :: [a] -> [a]
@@ -41,9 +32,10 @@ particion xs (n:ns) = take n xs : particion (drop n xs) ns
 -- sinRepe [1,1,1,2] = [1,2]
 -- sinRepe [1,1,2,1,1] = [2,1]
 -- sinRepe [1,2,4,3,4,2,5,3,4,2] = [1,5,3,4,2]
--- SOLUCION:
+
 sinRepe [] = []
 sinRepe (x:xs) = if elem x xs then sinRepe xs else x:(sinRepe xs)
+
 -- --------------------------------------------------------------------
 -- Definir, POR RECURSION Y UTILIZANDO FUNCIONES DE ORDEN SUPERIOR, 
 -- la funcion 
@@ -52,7 +44,7 @@ sinRepe (x:xs) = if elem x xs then sinRepe xs else x:(sinRepe xs)
 -- contiene algun elemento que cumple el predicado p. Por ejemplo,
 --    alguno odd [[1,3,4,2], [4,5], [9]] == True
 --    alguno odd [[1,3,4,2], [4,8], [9]] == False
--- SOLUCION:
+-- 
 -- COMPRENSION-ORDEN SUPERIOR
 alguno :: (a -> Bool) -> [[a]] -> Bool
 alguno p xss = and [any p xs|xs<-xss]

@@ -166,11 +166,6 @@ dct = dctCS
 
 -- b) Define una función main, donde primero pida al usuario un nombre de
 --    de fichero, y se recoja el nombre en una variable (0.5 ptos)
-
-main :: IO()
-main = do
-    putStrLn("Introduzca el nombre de un fichero:");
-
 -- c) Si el fichero no existe, debe dar un error explicativo al usuario 
 --    y terminar (0.5 ptos)
 -- d) Si el fichero existe, cargar el contenido en una matriz de números
@@ -195,3 +190,19 @@ main = do
 -- │  4.7100604e-2    0.17165993      1.015995    0.21707146     2.1683674 │
 -- │ -6.9366634e-2    0.15452802    -2.0144224    0.40451404  1.1743596e-4 │
 -- └                                                                       ┘
+
+-- d) Si el fichero existe, cargar el contenido en una matriz de números
+--    reales, donde cada fila sea una fila de la matriz. (0.75ptos)
+-- e) Aplicar la DCT al contenido de la matriz. Para ello, hay que recorrer
+--    la matriz por columnas para construir la lista requerida para la función
+--    dct (0.75ptos).
+-- f) Construir una matriz con la salida de la DCT, rellenando primero por
+--    columnas (0.75ptos).
+-- g) Terminar imprimiendo la matriz (0.25ptos).
+
+main :: IO()
+main = do
+    -- putStrLn("Introduzca el nombre de un fichero:");
+    -- nombreFichero <- getLine
+    input <- catch (readFile "imagen.txt") (\err -> print (err::SomeException) >> return "El fichero introducido no existe.")
+    print input

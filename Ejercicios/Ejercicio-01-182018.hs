@@ -79,8 +79,10 @@ type PosicionUno = Int -> Int
 -- que dado un elemento de tipo Binario determine si representa
 -- correctamente a un número binario según lo descrito anteriormente.
 
+{--
 esCorrecta :: Binario -> Bool
 esCorrecta = undefined
+--}
 
 -- -------------------------------------------------------------------
 
@@ -202,23 +204,24 @@ ej = [[1,2,5],
       [3,0,7],
       [9,1,6],
       [6,4,2]]
+
 -- -------------------------------------------------------------------
 -- (4.1) Definir la función, utilizando plegado y/o listas por
--- compresión, 
-
-ordenaPor :: Ord a => [[a]] -> Int -> [[a]]
-
--- tal que, dada una matriz xss y el índice de una de sus columnas k,
--- devuelva la matriz obtenida ordenando la matriz xss por los
+-- compresión, tal que, dada una matriz xss y el índice de una de sus 
+-- columnas k, devuelva la matriz obtenida ordenando la matriz xss por los
 -- elementos de la columna k. Por ejemplo,
 --    ordenaPor ej 0  ==  [[1,2,5],[3,0,7],[6,4,2],[9,1,6]]
 --    ordenaPor ej 1  ==  [[3,0,7],[9,1,6],[1,2,5],[6,4,2]]
 --    ordenaPor ej 2  ==  [[6,4,2],[1,2,5],[9,1,6],[3,0,7]]
 
--- Solución:
--- ---------
+ordenaPor :: Ord a => [[a]] -> Int -> [[a]]
+ordenaPor xss 0 = sort xss
+ordenaPor xss j = sort xss
 
-ordenaPor = undefined
+obtenerElemento :: Ord a => Int -> [a] -> a 
+obtenerElemento _ [] = error "¡Error!"
+obtenerElemento 0 (x:xs) = x
+obtenerElemento i (x:xs) = obtenerElemento (i-1) xs
 
 -- -------------------------------------------------------------------
 -- Ejercicio 5 (2 ptos)
@@ -243,7 +246,7 @@ ej3 = NM 1 [NM 8 [NM 4 [], NM 5 [], NM 6 []], NM 3 [NM 7 []]]
 
 -- (5.1) Definir la función
 
-nodos :: Int -> ArbolM t -> [t]
+-- nodos :: Int -> ArbolM t -> [t]
 
 -- tal que, dado un número natural k y un árbol a, devuelva la lista
 -- de los nodos de a que tienen k sucesores. Por ejemplo,
@@ -254,9 +257,14 @@ nodos :: Int -> ArbolM t -> [t]
 --    nodos 3 ej2  ==  [3]
 -- ----------------------------------------------------------------------------
 
--- Solución:
--- ---------
+nodos :: Int -> ArbolM t -> [t]
+nodos 0 (NM a []) = [a]
+nodos _ (NM a []) = []
+nodos k (NM a (x:xs))
+  | length (x:xs) == k = a : nodosAux k xs
+  | otherwise          = nodosAux k (x:xs)
 
-nodos = undefined
-
--- -------------------------------------------------------------------
+nodosAux :: Int -> [ArbolM t] -> [t]
+nodosAux k [x] = (nodos k x)
+nodosAux k (x:xs) = (nodos k x) ++ (nodosAux k xs)
+nodosAux k _ = []

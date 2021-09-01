@@ -267,7 +267,7 @@ vigenere = undefined
 -- (5.1) Definir, utilizando recursión
 
 menoresR :: Int -> [[a]] -> [a]
-menoresR = undefined
+menoresR a xss = concatMap (++[]) [xs | xs <- xss, length xs < a]
 
 -- que, dado entero positivo k y una lista de listas lls, devuelva los
 -- elementos de las listas ls de lls que tienen menos de k elementos.
@@ -278,23 +278,14 @@ menoresR = undefined
 --   ==> "casasocio"
 
 -- -------------------------------------------------------------------
--- (5.2) Definir, sin utilizar recursión
-
-menoresA :: Int -> [[a]] -> [a]
-menoresA = undefined
-
--- análoga a la anterior.
--- Por ejemplo:
---   menoresA 3 [[], [1], [4, 4, 4, 4], [2, 2], [5, 5, 5, 5, 5]]
---   ==> [1, 2, 2]
---   menoresA 6 ["casa", "caminante", "ostracismo", "merienda", "socio"]
---   ==> "casasocio"
-
--- -------------------------------------------------------------------
 -- Ejercicio 6
 -- (6.1) Definir, proporcionando un tipo adecuado,
 
-longitud = undefined
+longitud :: (Double, Double) -> Double
+longitud (a, b)
+    | b < 0          = longitud (a, -b)
+    | a < 0          = longitud (-a, b) 
+    | otherwise      = a + b
 
 -- que calcule la longitud del segmento de la recta real determinado
 -- por los dos elementos del par. Por ejemplo:
@@ -306,7 +297,12 @@ longitud = undefined
 -- (6.2) Definir, proporcionando un tipo adecuado y con la
 -- menor cantidad de ecuaciones posibles (sin utilizar guardas), 
 
-cantidadVerdaderos = undefined
+cantidadVerdaderos :: (Bool, Bool, Bool) -> Int
+cantidadVerdaderos (a, b, c) = devuelveVerdadero a + devuelveVerdadero b + devuelveVerdadero c
+
+devuelveVerdadero :: Bool -> Int
+devuelveVerdadero True  = 1
+devuelveVerdadero False = 0
 
 -- que, dada una tupla con tres valores lógicos, calcule cuántos son
 -- verdaderos. Por ejemplo:

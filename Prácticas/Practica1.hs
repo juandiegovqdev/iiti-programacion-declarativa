@@ -4,6 +4,7 @@
 
 -- A continuación se importa el módulo QuickCheck. Necesita ser instalado
 -- previamente con Cabal o Stack
+
 import Test.QuickCheck
 
 -- ---------------------------------------------------------------------

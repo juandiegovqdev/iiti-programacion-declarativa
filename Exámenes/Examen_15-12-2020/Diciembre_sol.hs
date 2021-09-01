@@ -2,25 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 2a Convocatoria                               12 de Diciembre de 2020
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- Lugar ocupado:   laboratorio:            puesto:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:          Septiembre_<uvus>.hs
---    donde "<uvus>" es tu UVUS.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y NO lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
 -- ORIENTACIONES
 -- · Escribe la solución de cada ejercicio en el hueco reservado para
 --   ello.
@@ -35,7 +16,6 @@ import Data.Matrix as M
 import Data.Map as D
 import Control.Monad
 import Control.Exception (catch, SomeException)
-
 
 -- ============================================================================
 -- Ejercicio 1. (2,5 ptos) Define la función

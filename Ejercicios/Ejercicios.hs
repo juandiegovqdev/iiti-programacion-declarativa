@@ -2,12 +2,12 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- 3 Parcial                                      21 de Diciembre 2017
 -- -------------------------------------------------------------------
--- Ejercicio 3 (2 ptos).
+
 -- -------------------------------------------------------------------
 -- Una lista de números enteros se llama alternada si sus elementos
 -- son alternativamente par/impar o impar/par.
 -- -------------------------------------------------------------------
--- (3.1) Definir la función, utilizando el plegado foldl,
+-- Definir la función, utilizando el plegado foldl,
 --    alternada :: [Int] -> Bool
 -- tal que (alternada xs) reconoce si xs es una lista alternada.
 -- Por ejemplo: 
