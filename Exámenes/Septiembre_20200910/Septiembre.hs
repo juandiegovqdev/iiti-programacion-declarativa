@@ -1,14 +1,9 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 2a Convocatoria                               10 de Septiembre de 2020
--- ----------------------------------------------------------------------
-
 -- import Data.Matrix
 import Control.Monad
 import Control.Exception (catch, SomeException)
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (3,5 puntos)
+-- Ejercicio 1.
 -- ----------------------------------------------------------------------
 -- Muchos algoritmos de compresión de imágenes se basan en la transformada
 -- discreta del coseno (DCT en inglés). La DCT se aplica sobre una lista
@@ -42,12 +37,6 @@ import Control.Exception (catch, SomeException)
 -- *Main> dctOS [0.0, 0.1, 0.7, 0.1, -0.9, 0.5]
 -- [-0.12543519,0.27942222,-0.24141996,-0.74999976,1.3277059,-0.4999989]
 
---      _____ n               __                        __
---      \                    |     Pi          1          |
--- Y_k = \         x_i * cos |    ____ * (i + ___) * k    |
---       /                   |__    n          2        __|
---      /____ i=1     
-
 -- a)
 dctCS :: [Float] -> [Float]
 dctCS xs = [sum [xs!!(i-1)*(cos (pi/n'*(n'+0.5)*(fromIntegral i)*(fromIntegral k))) | i<-[1..n]] | k <- [1..n]]
@@ -76,7 +65,7 @@ sumatorioRS i k n (x:xs)
     | otherwise = 0
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (3 puntos)
+-- Ejercicio 2.
 -- ----------------------------------------------------------------------    
 -- En un árbol ternario los nodos tienen como máximo tres hijos.
 -- Suelen ser útiles para almacenar valores en orden: a la izquierda de
@@ -102,6 +91,9 @@ sumatorioRS i k n (x:xs)
 --    ternarios. Recuerda que cada nodo puede tener como mucho tres hijos.
 --    (0.5 ptos)
 
+data ArbolTO a = H | N a (ArbolTO a) (ArbolTO a) (ArbolTO a)
+    deriving (Show,Eq)
+
 -- El nombre del nuevo tipo de dato debe ser: ArbolTO
 
 -- b) Define los ejemplos 1, 2, 3, 4 y 5 con el tipo de dato definido.
@@ -109,6 +101,13 @@ sumatorioRS i k n (x:xs)
 --    es coherente con el tipo definido)
 
 -- ejA1, ejA2, ejA3, ejA4, ejA5 :: ArbolTO Int
+
+ejA1, ejA2, ejA3, ejA4, ejA5 :: ArbolTO Int
+ejA1 = N 5 (N 3 (N 1 H H H) H (N 4 H H H)) (N 5 H H H) (N 6 H H H)
+ejA2 = N 4 (N 3 H H H) H (N 7 (N 5 H H H) (N 7 H H H) (N 9 H H H))
+ejA3 = N 4 H (N 4 H (N 4 H H H) H) H
+ejA4 = N 4 (N 3 H H H) (N 1 H H H) (N 2 H H H)
+ejA5 = N 6 (N 4 H H H) H (N 9 (N 3 H H H) H (N 10 H H H))
 
 -- c) Define una función predicado, tal que reciba un árbol ternarnio e
 --    indique si es un árbol ternario ordenado. Se valorará que la signatura
@@ -126,8 +125,27 @@ sumatorioRS i k n (x:xs)
 -- > arbolTOrdenado ejA5
 -- False
 
--- arbolTOrdenado :: Dame una signatura
-arbolTOrdenado = undefined
+arbolTOrdenado :: (Ord a) => ArbolTO a -> Bool
+arbolTOrdenado H = True
+arbolTOrdenado (N a x1 x2 x3) = arbolTOrdenadoIzqAux a x1 && arbolTOrdenadoCentroAux a x2 && arbolTOrdenadoDerAux a x3
+
+arbolTOrdenadoCentroAux :: (Ord a) => a -> ArbolTO a -> Bool
+arbolTOrdenadoCentroAux _ H = True
+arbolTOrdenadoCentroAux a (N b x1 x2 x3)
+    | a == b    = arbolTOrdenadoIzqAux b x1 && arbolTOrdenadoCentroAux b x2 && arbolTOrdenadoDerAux b x3
+    | otherwise = False
+
+arbolTOrdenadoIzqAux :: (Ord a) => a -> ArbolTO a -> Bool
+arbolTOrdenadoIzqAux _ H = True
+arbolTOrdenadoIzqAux a (N b x1 x2 x3)
+    | a > b     = arbolTOrdenadoIzqAux b x1 && arbolTOrdenadoCentroAux b x2 && arbolTOrdenadoDerAux b x3
+    | otherwise = False
+
+arbolTOrdenadoDerAux :: (Ord a) => a -> ArbolTO a -> Bool
+arbolTOrdenadoDerAux _ H = True
+arbolTOrdenadoDerAux a (N b x1 x2 x3)
+    | a < b     = arbolTOrdenadoIzqAux b x1 && arbolTOrdenadoCentroAux b x2 && arbolTOrdenadoDerAux b x3
+    | otherwise = False
 
 -- ----------------------------------------------------------------------
 -- Ejercicio 3. (3,5 puntos)
@@ -141,13 +159,18 @@ arbolTOrdenado = undefined
 --    este ejercicio (0ptos, no cuenta para la nota la implementación usada, pero
 --    se valorará usar alguna versión del ejercicio 1 si se ha hecho):
 
-dct xs = xs  -- por defecto, si no has hecho el primer ejercicio
---dct = dctCS
+-- dct xs = xs  -- por defecto, si no has hecho el primer ejercicio
+dct = dctCS
 --dct = dctOS
 --dct = dctRS
 
 -- b) Define una función main, donde primero pida al usuario un nombre de
 --    de fichero, y se recoja el nombre en una variable (0.5 ptos)
+
+main :: IO()
+main = do
+    putStrLn("Introduzca el nombre de un fichero:");
+
 -- c) Si el fichero no existe, debe dar un error explicativo al usuario 
 --    y terminar (0.5 ptos)
 -- d) Si el fichero existe, cargar el contenido en una matriz de números
@@ -172,5 +195,3 @@ dct xs = xs  -- por defecto, si no has hecho el primer ejercicio
 -- │  4.7100604e-2    0.17165993      1.015995    0.21707146     2.1683674 │
 -- │ -6.9366634e-2    0.15452802    -2.0144224    0.40451404  1.1743596e-4 │
 -- └                                                                       ┘
-
-main = undefined
