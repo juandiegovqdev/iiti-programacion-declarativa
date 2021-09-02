@@ -1,7 +1,3 @@
--- PD 2020-21. Vectores y matrices con Data.Array.
--- Tomado de la asignatura I1M.
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
@@ -15,10 +11,6 @@
 -- En Haskell, el número racional x/y se representa por x%y. El TAD de
 -- los números racionales está definido en el módulo Data.Ratio.
   
--- ---------------------------------------------------------------------
--- Importación de librerías                                           --
--- ---------------------------------------------------------------------
-
 import Data.Array
 import Data.Ratio
 
@@ -205,7 +197,7 @@ columnaMat j p = undefined
 -- ---------------------------------------------------------------------
 
 prodEscalar :: Num a => Vector a -> Vector a -> a
-prodEscalar v1 v2 = undefined
+prodEscalar v1 v2 = sum [(v1!i) * (v2!i) | i <- [1..length v1]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 13. Definir la función
