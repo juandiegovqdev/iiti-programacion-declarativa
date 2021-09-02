@@ -18,6 +18,13 @@ type Matriz a = Array (Int,Int) a
 esTriangularS:: (Num a, Eq a) => Matriz a -> Bool
 esTriangularS p = undefined
 
+sonCeros :: (Num a, Eq a) => Int -> [a] -> Bool
+sonCeros _ [] = True
+sonCeros 0 _  = True
+sonCeros i (x:xs)
+    | i /= 0 && x == 0 = sonCeros (i-1) xs
+    | otherwise        = False
+
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Definir la funci�n
 --    antidiagonal :: (Num a, Eq a) => Matriz a -> Bool

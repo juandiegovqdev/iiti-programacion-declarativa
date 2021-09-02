@@ -80,8 +80,6 @@ prop_alternada xs = alternadaG even xs == alternada xs
 --    13995
 -- -------------------------------------------------------------------
 
--- Solución:
-
 numerosDeLaSuerte :: [Int]
 numerosDeLaSuerte = eliminarNumerosSieteEnSiete (eliminarNumerosTresEnTres (eliminarNumerosDosEnDos [1..1000000]))
 
