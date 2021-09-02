@@ -2,23 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Examen Diciembre                                   17 de Diciembre de 2019
 -- --------------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- --------------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · 1. Antes de continuar, cambie el nombre de este archivo por:
---                   diciembre_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · 2. Por favor, entregue un fichero que cargue correctamente, dejando
---   comentado todo código con errores.
--- · 3. Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · 4. Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- --------------------------------------------------------------------------
 
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}

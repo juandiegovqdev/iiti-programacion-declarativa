@@ -2,13 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Febrero                                          11 de Febrero de 2021
 -- ----------------------------------------------------------------------
--- Lee el fichero instrucciones.pdf adjunto en la carpeta material para 
--- ver cómo entregar el examen.
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
 
 import Data.Array
 import Data.Char

@@ -310,7 +310,7 @@ traspuesta p = listaMatriz [[p!(f, c) | f <- [1..numFilas p]] | c <- [1..numColu
 -- ---------------------------------------------------------------------
 
 esCuadrada :: Num a => Matriz a -> Bool
-esCuadrada x = undefined
+esCuadrada x = numFilas x == numColumnas x
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 18. Definir la función
@@ -326,7 +326,7 @@ esCuadrada x = undefined
 -- ---------------------------------------------------------------------    
 
 esSimetrica :: (Num a, Eq a) => Matriz a -> Bool
-esSimetrica x = undefined
+esSimetrica x = all (==True) [x!(f, c) == x!(c, f) | c <- [1..numColumnas x], f <- [1..numFilas x]]
 
 -- ---------------------------------------------------------------------
 -- Diagonales de una matriz                                           --

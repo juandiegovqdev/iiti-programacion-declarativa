@@ -2,32 +2,6 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Febrero                                          11 de Febrero de 2021
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- Lugar ocupado:         laboratorio:          puesto:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:       <uvus>.hs
---    donde "<uvus>" es tu UVUS.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y NO lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. Pregunta al profesor si ha llegado tu correo correctamente, si es
---    así, ya puedes dejar tu puesto SIN APAGAR EL EQUIPO.
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Se valorará el uso correcto de tipados para cada función definida.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
 
 import Data.Array
 import Data.Char

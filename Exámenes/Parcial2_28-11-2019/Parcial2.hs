@@ -2,24 +2,7 @@
 -- Grado de Ingeniería Informática - Tecnologías Informáticas
 -- Parcial 2                                       28 de Noviembre de 2019
 -- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES
--- · Antes de continuar, CAMBIA EL NOMBRE de este archivo por:
---                   Parcial2_<codigo>_<uvus>.hs
---   donde "<uvus>" es tu usuario virtual de la Universidad de Sevilla, y
---   "<codigo>" es el código alfanumérico de arriba.
--- · Una vez finalizado el examen, COMENTA LAS LÍNEAS con errores hasta
---   que el fichero .hs se pueda cargar, y COMPRÍMELO en un .tar.gz o
---   en un .tar.xz (¡NO en .zip!) con el siguiente nombre:
---                  ENTREGA-<uvus>.tar.gz
---   dejándolo en el escritorio. Reinicia el equipo y en el menú de
---   selección del sistema elige "Enviar examen".
--- · Después, pon tus apellidos, nombre y UVUS en el enunciado en papel,
---   entrégalo al profesor, y apaga el equipo.
--- ----------------------------------------------------------------------
+
 import Data.Maybe
 import ColaConListas
 
