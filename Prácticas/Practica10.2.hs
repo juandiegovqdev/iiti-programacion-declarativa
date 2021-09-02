@@ -1,8 +1,343 @@
-import Data.Array
-import Data.List
+-- ---------------------------------------------------------------------
+-- Introducción                                                       --
+-- ---------------------------------------------------------------------
 
+-- El objetivo de esta relación es hacer ejercicios sobre vectores y
+-- matrices con el tipo de arrays, definido en el módulo
+-- Data.Array y detallado en 
+--    http://www.cs.us.es/~jalonso/cursos/i1m-19/temas/tema-18.html
+ 
+-- Además, en algunos ejemplos se usan matrices con números racionales.
+-- En Haskell, el número racional x/y se representa por x%y. El TAD de
+-- los números racionales está definido en el módulo Data.Ratio.
+  
+import Data.List
+import Data.Array
+import Data.Ratio
+import GHC.Conc (numCapabilities)
+
+-- ---------------------------------------------------------------------
+-- Tipos de los vectores y de las matrices                            --
+-- ---------------------------------------------------------------------
+
+-- Los vectores son tablas cuyos índices son números naturales.
 type Vector a = Array Int a
+ 
+-- Las matrices son tablas cuyos índices son pares de números
+-- naturales. 
 type Matriz a = Array (Int,Int) a
+
+-- ---------------------------------------------------------------------
+-- Operaciones básicas con matrices                                   --
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 1. Definir la función
+--    listaVector :: Num a => [a] -> Vector a
+-- tal que (listaVector xs) es el vector correspondiente a la lista
+-- xs. Por ejemplo, 
+--    ghci> listaVector [3,2,5]
+--    array (1,3) [(1,3),(2,2),(3,5)]
+-- ---------------------------------------------------------------------
+
+listaVector :: Num a => [a] -> Vector a
+listaVector xs = array (1, length xs) [(x+1, (xs!!x)) | x <- [0..length xs-1]]
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 2. Definir la función
+--    listaMatriz :: Num a => [[a]] -> Matriz a
+-- tal que (listaMatriz xss) es la matriz cuyas filas son los elementos
+-- de xss. Por ejemplo,
+--    ghci> listaMatriz [[1,3,5],[2,4,7]]
+--    array ((1,1),(2,3)) [((1,1),1), ((1,2),3), ((1,3),5), ((2,1),2), ((2,2),4), ((2,3),7)]
+-- ---------------------------------------------------------------------
+
+posiciones :: Eq a => a -> [a] -> Int
+posiciones x xs = head [p | (p, y) <- zip [0 .. ] xs, x == y]
+
+listaMatriz :: Num a => [[a]] -> Matriz a
+listaMatriz xss = listArray ((1,1),(m,n)) (concat xss)
+    where m = length xss
+          n = length (head xss)
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 3. Definir la función
+--    numFilas :: Num a => Matriz a -> Int
+-- tal que (numFilas m) es el número de filas de la matriz m. Por
+-- ejemplo,
+--    numFilas (listaMatriz [[1,3,5],[2,4,7]])  ==  2
+-- ---------------------------------------------------------------------
+
+numFilas :: Num a => Matriz a -> Int
+numFilas = fst . snd . bounds
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 4. Definir la función
+--    numColumnas :: Num a => Matriz a -> Int
+-- tal que (numColumnas m) es el número de columnas de la matriz
+-- m. Por ejemplo,
+--    numColumnas (listaMatriz [[1,3,5],[2,4,7]])  ==  3
+-- ---------------------------------------------------------------------
+
+numColumnas:: Num a => Matriz a -> Int
+numColumnas = snd . snd . bounds
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 5. Definir la función
+--    dimension :: Num a => Matriz a -> (Int,Int)
+-- tal que (dimension m) es la dimensión de la matriz m. Por ejemplo, 
+--    dimension (listaMatriz [[1,3,5],[2,4,7]])  ==  (2,3)
+-- ---------------------------------------------------------------------
+
+dimension :: Num a => Matriz a -> (Int,Int)
+dimension = snd . bounds
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 6. Definir la función
+--    separa :: Int -> [a] -> [[a]]
+-- tal que (separa n xs) es la lista obtenida separando los elementos de
+-- xs en grupos de n elementos (salvo el último que puede tener menos de
+-- n elementos). Por ejemplo, 
+--    separa 3 [1..11]  ==  [[1,2,3],[4,5,6],[7,8,9],[10,11]]
+-- ---------------------------------------------------------------------
+
+separa :: Int -> [a] -> [[a]]
+separa _ [] = []
+separa x xs = take 3 xs : separa x (drop x xs)
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 7. Definir la función
+--    matrizLista :: Num a => Matriz a -> [[a]]
+-- tal que (matrizLista x) es la lista de las filas de la matriz x. Por
+-- ejemplo, 
+--    ghci> let m = listaMatriz [[5,1,0],[3,2,6]]
+--    ghci> m
+--    array ((1,1),(2,3)) [((1,1),5),((1,2),1),((1,3),0),
+--                         ((2,1),3),((2,2),2),((2,3),6)]
+--    ghci> matrizLista m
+--    [[5,1,0],[3,2,6]]
+-- ---------------------------------------------------------------------
+
+matrizLista :: Num a => Matriz a -> [[a]]
+matrizLista p = [[p!(f, c) | c <- [1..numColumnas p]] | f <- [1..numFilas p]]
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 8. Definir la función
+--    vectorLista :: Num a => Vector a -> [a]
+-- tal que (vectorLista x) es la lista de los elementos del vector
+-- v. Por ejemplo, 
+--    ghci> let v = listaVector [3,2,5]
+--    ghci> v
+--    array (1,3) [(1,3),(2,2),(3,5)]
+--    ghci> vectorLista v
+--    [3,2,5]
+-- ---------------------------------------------------------------------
+
+vectorLista :: Num a => Vector a -> [a]
+vectorLista x = [x!i | i <- [1..(length (elems x))]]
+
+-- ---------------------------------------------------------------------
+-- Suma de matrices                                                   --
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 9. Definir la función
+--    sumaMatrices:: Num a => Matriz a -> Matriz a -> Matriz a
+-- tal que (sumaMatrices x y) es la suma de las matrices x e y. Por
+-- ejemplo, 
+--    ghci> let m1 = listaMatriz [[5,1,0],[3,2,6]]
+--    ghci> let m2 = listaMatriz [[4,6,3],[1,5,2]]
+--    ghci> matrizLista (sumaMatrices m1 m2)
+--    [[9,7,3],[4,7,8]]
+-- ---------------------------------------------------------------------
+
+sumaMatrices :: Num a => Matriz a -> Matriz a -> Matriz a
+sumaMatrices p q = listaMatriz (sumaMatricesAux (matrizLista p) (matrizLista q))
+
+sumaMatricesAux :: Num a => [[a]] -> [[a]] -> [[a]]
+sumaMatricesAux _ [] = []
+sumaMatricesAux [] _ = []
+sumaMatricesAux (xs:xss) (ys:yss) = sumaListasAux xs ys : sumaMatricesAux xss yss
+
+sumaListasAux :: Num a => [a] -> [a] -> [a]
+sumaListasAux [] _ = []
+sumaListasAux _ [] = []
+sumaListasAux (x:xs) (y:ys) = (x+y) : sumaListasAux xs ys
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 10. Definir la función
+--    filaMat :: Num a => Int -> Matriz a -> Vector a
+-- tal que (filaMat i p) es el vector correspondiente a la fila i-ésima
+-- de la matriz p. Por ejemplo,
+--    ghci> let p = listaMatriz [[5,1,0],[3,2,6],[4,5,7]]
+--    ghci> filaMat 2 p
+--    array (1,3) [(1,3),(2,2),(3,6)]
+--    ghci> vectorLista (filaMat 2 p)
+--    [3,2,6]
+-- ---------------------------------------------------------------------
+
+filaMat :: Num a => Int -> Matriz a -> Vector a
+filaMat i p = listaVector [p!(i, c) | c <- [1..numColumnas p]]
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 11. Definir la función
+--    columnaMat :: Num a => Int -> Matriz a -> Vector a
+-- tal que (columnaMat j p) es el vector correspondiente a la columna
+-- j-ésima de la matriz p. Por ejemplo,
+--    ghci> let p = listaMatriz [[5,1,0],[3,2,6],[4,5,7]]
+--    ghci> columnaMat 2 p
+--    array (1,3) [(1,1),(2,2),(3,5)]
+--    ghci> vectorLista (columnaMat 2 p)
+--    [1,2,5]
+-- ---------------------------------------------------------------------
+
+columnaMat :: Num a => Int -> Matriz a -> Vector a
+columnaMat j p = listaVector [p!(f, j) | f <- [1..numFilas p]]
+
+-- ---------------------------------------------------------------------
+-- Producto de matrices                                               --
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 12. Definir la función
+--    prodEscalar :: Num a => Vector a -> Vector a -> a
+-- tal que (prodEscalar v1 v2) es el producto escalar de los vectores v1
+-- y v2. Por ejemplo,
+--    ghci> let v = listaVector [3,1,10]
+--    ghci> prodEscalar v v
+--    110
+-- ---------------------------------------------------------------------
+
+prodEscalar :: Num a => Vector a -> Vector a -> a
+prodEscalar v1 v2 = sum [(v1!i) * (v2!i) | i <- [1..length v1]]
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 13. Definir la función
+--    prodMatrices:: Num a => Matriz a -> Matriz a -> Matriz a
+-- tal que (prodMatrices p q) es el producto de las matrices p y q. Por
+-- ejemplo, 
+--    ghci> let p = listaMatriz [[3,1],[2,4]]
+--    ghci> prodMatrices p p
+--    array ((1,1),(2,2)) [((1,1),11),((1,2),7),((2,1),14),((2,2),18)]
+--    ghci> matrizLista (prodMatrices p p)
+--    [[11,7],[14,18]]
+--    ghci> let q = listaMatriz [[7],[5]]
+--    ghci> prodMatrices p q
+--    array ((1,1),(2,1)) [((1,1),26),((2,1),34)]
+--    ghci> matrizLista (prodMatrices p q)
+--    [[26],[34]]
+-- ---------------------------------------------------------------------
+
+prodMatrices:: Num a => Matriz a -> Matriz a -> Matriz a
+prodMatrices p q = undefined
+
+-- ---------------------------------------------------------------------
+-- Matriz identidad                                                   --
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 14. Definir la función
+--    identidad :: Num a => Int -> Matriz a
+-- tal que (identidad n) es la matriz identidad de orden n. Por ejemplo, 
+--    ghci> identidad 3
+--    array ((1,1),(3,3)) [((1,1),1),((1,2),0),((1,3),0),
+--                         ((2,1),0),((2,2),1),((2,3),0),
+--                         ((3,1),0),((3,2),0),((3,3),1)]
+-- ---------------------------------------------------------------------
+
+identidad :: Num a => Int -> Matriz a
+identidad n = listaMatriz [[(valor f c) | c <- [1..n]] | f <- [1..n]]
+    where valor f c 
+            | f == c    = 1
+            | otherwise = 0
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 15. Definir la función
+--    potencia :: Num a => Matriz a -> Int -> Matriz a
+-- tal que (potencia p n) es la potencia n-ésima de la matriz cuadrada
+-- p. Por ejemplo, si q0 es la matriz definida por
+--    q0 :: Matriz Int
+--    q0 = listArray ((1,1),(2,2)) [1,1,1,0] 
+-- entonces
+--    ghci> potencia q 2
+--    array ((1,1),(2,2)) [((1,1),2),((1,2),1),((2,1),1),((2,2),1)]
+--    ghci> potencia q 3
+--    array ((1,1),(2,2)) [((1,1),3),((1,2),2),((2,1),2),((2,2),1)]
+--    ghci> potencia q 4
+--    array ((1,1),(2,2)) [((1,1),5),((1,2),3),((2,1),3),((2,2),2)]
+-- ---------------------------------------------------------------------
+
+q0 :: Matriz Int
+q0 = listArray ((1,1),(2,2)) [1,1,1,0] 
+
+potencia :: Num a => Matriz a -> Int -> Matriz a
+potencia = undefined
+
+-- ---------------------------------------------------------------------
+-- Traspuestas                                                        --
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 16. Definir la función
+--    traspuesta :: Num a => Matriz a -> Matriz a
+-- tal que (traspuesta p) es la traspuesta de la matriz p. Por ejemplo,
+--    ghci> let p = listaMatriz [[5,1,0],[3,2,6]]
+--    ghci> traspuesta p
+--    array ((1,1),(3,2)) [((1,1),5),((1,2),3),
+--                         ((2,1),1),((2,2),2),
+--                         ((3,1),0),((3,2),6)]
+--    ghci> matrizLista (traspuesta p)
+--    [[5,3],[1,2],[0,6]]
+-- ---------------------------------------------------------------------
+
+traspuesta :: Num a => Matriz a -> Matriz a
+traspuesta p = listaMatriz [[p!(f, c) | f <- [1..numFilas p]] | c <- [1..numColumnas p]]
+
+-- ---------------------------------------------------------------------
+-- Tipos de matrices                                                  --
+-- ---------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 17. Definir la función
+--    esCuadrada :: Num a => Matriz a -> Bool
+-- tal que (esCuadrada p) se verifica si la matriz p es cuadrada. Por
+-- ejemplo, 
+--    ghci> let p = listaMatriz [[5,1,0],[3,2,6]]
+--    ghci> esCuadrada p
+--    False
+--    ghci> let q = listaMatriz [[5,1],[3,2]]
+--    ghci> esCuadrada q
+--    True
+-- ---------------------------------------------------------------------
+
+esCuadrada :: Num a => Matriz a -> Bool
+esCuadrada x = numFilas x == numColumnas x
+
+-- ---------------------------------------------------------------------
+-- Ejercicio 18. Definir la función
+--    esSimetrica :: (Num a, Eq a) => Matriz a -> Bool
+-- tal que (esSimetrica p) se verifica si la matriz p es simétrica. Por
+-- ejemplo, 
+--    ghci> let p = listaMatriz [[5,1,3],[1,4,7],[3,7,2]]
+--    ghci> esSimetrica p
+--    True
+--    ghci> let q = listaMatriz [[5,1,3],[1,4,7],[3,4,2]]
+--    ghci> esSimetrica q
+--    False
+-- ---------------------------------------------------------------------    
+
+esSimetrica :: (Num a, Eq a) => Matriz a -> Bool
+esSimetrica x = all (==True) [x!(f, c) == x!(c, f) | c <- [1..numColumnas x], f <- [1..numFilas x]]
+
+
+
+
+
+
+
+
+
+
 
 -- ---------------------------------------------------------------------
 -- Definir la función 
@@ -16,7 +351,11 @@ type Matriz a = Array (Int,Int) a
 -- ---------------------------------------------------------------------
 
 esTriangularS:: (Num a, Eq a) => Matriz a -> Bool
-esTriangularS p = undefined
+esTriangularS p = esTriangularAux 0 (matrizLista p)
+
+esTriangularAux :: (Num a, Eq a) => Int -> [[a]] -> Bool
+esTriangularAux _ [] = True
+esTriangularAux i (xs:xss) = sonCeros i xs && esTriangularAux (i+1) xss
 
 sonCeros :: (Num a, Eq a) => Int -> [a] -> Bool
 sonCeros _ [] = True
@@ -26,10 +365,10 @@ sonCeros i (x:xs)
     | otherwise        = False
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. Definir la funci�n
+-- Ejercicio 2. Definir la función
 --    antidiagonal :: (Num a, Eq a) => Matriz a -> Bool
 -- tal que (antidiagonal m) se verifica si es cuadrada y todos los
--- elementos de m que no est�n en su diagonal secundaria son nulos. Por
+-- elementos de m que no están en su diagonal secundaria son nulos. Por
 -- ejemplo,   
 --    ghci> antidiagonal (listArray ((1,1),(3,3)) [0,0,4, 0,6,0, 0,0,0])
 --    True
@@ -45,7 +384,7 @@ antidiagonal :: (Num a, Eq a) => Matriz a -> Bool
 antidiagonal p = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. Definir la funci�n
+-- Ejercicio 3. Definir la función
 --    esEscalar:: Num a => Matriz a -> Bool
 -- tal que (esEscalar p) se verifica si p es una matriz es escalar; es
 -- decir, diagonal con todos los elementos de la diagonal principal
@@ -61,7 +400,7 @@ esEscalar p = undefined
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Definir la funci�n 
 --    aplicaT :: (Ix a, Num b) => Array a b -> (b -> c) -> Array a c
--- tal que (aplicaT t f) es la tabla obtenida aplicado la funci�n f a
+-- tal que (aplicaT t f) es la tabla obtenida aplicado la función f a
 -- los elementos de la tabla t. Por ejemplo,
 --    ghci> aplicaT (array (1,5) [(1,6),(2,3),(3,-1),(4,9),(5,20)]) (+1)
 --    array (1,5) [(1,7),(2,4),(3,0),(4,10),(5,21)]
