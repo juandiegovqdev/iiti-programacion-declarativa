@@ -13,6 +13,7 @@
   
 import Data.Array
 import Data.Ratio
+import GHC.Conc (numCapabilities)
 
 -- ---------------------------------------------------------------------
 -- Tipos de los vectores y de las matrices                            --
@@ -117,7 +118,7 @@ separa x xs = take 3 xs : separa x (drop x xs)
 -- ---------------------------------------------------------------------
 
 matrizLista :: Num a => Matriz a -> [[a]]
-matrizLista p = undefined
+matrizLista p = [[p!(f, c) | c <- [1..numColumnas p]] | f <- [1..numFilas p]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 8. Definir la función
@@ -132,7 +133,7 @@ matrizLista p = undefined
 -- ---------------------------------------------------------------------
 
 vectorLista :: Num a => Vector a -> [a]
-vectorLista = undefined
+vectorLista x = [x!i | i <- [1..(length (elems x))]]
 
 -- ---------------------------------------------------------------------
 -- Suma de matrices                                                   --
@@ -150,7 +151,17 @@ vectorLista = undefined
 -- ---------------------------------------------------------------------
 
 sumaMatrices :: Num a => Matriz a -> Matriz a -> Matriz a
-sumaMatrices p q = undefined
+sumaMatrices p q = listaMatriz (sumaMatricesAux (matrizLista p) (matrizLista q))
+
+sumaMatricesAux :: Num a => [[a]] -> [[a]] -> [[a]]
+sumaMatricesAux _ [] = []
+sumaMatricesAux [] _ = []
+sumaMatricesAux (xs:xss) (ys:yss) = sumaListasAux xs ys : sumaMatricesAux xss yss
+
+sumaListasAux :: Num a => [a] -> [a] -> [a]
+sumaListasAux [] _ = []
+sumaListasAux _ [] = []
+sumaListasAux (x:xs) (y:ys) = (x+y) : sumaListasAux xs ys
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 10. Definir la función
@@ -165,7 +176,7 @@ sumaMatrices p q = undefined
 -- ---------------------------------------------------------------------
 
 filaMat :: Num a => Int -> Matriz a -> Vector a
-filaMat i p = undefined
+filaMat i p = listaVector [p!(i, c) | c <- [1..numColumnas p]]
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 11. Definir la función
@@ -180,7 +191,7 @@ filaMat i p = undefined
 -- ---------------------------------------------------------------------
 
 columnaMat :: Num a => Int -> Matriz a -> Vector a
-columnaMat j p = undefined
+columnaMat j p = listaVector [p!(f, j) | f <- [1..numFilas p]]
 
 -- ---------------------------------------------------------------------
 -- Producto de matrices                                               --
@@ -234,7 +245,10 @@ prodMatrices p q = undefined
 -- ---------------------------------------------------------------------
 
 identidad :: Num a => Int -> Matriz a
-identidad n = undefined     
+identidad n = listaMatriz [[(valor f c) | c <- [1..n]] | f <- [1..n]]
+    where valor f c 
+            | f == c    = 1
+            | otherwise = 0
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 15. Definir la función
