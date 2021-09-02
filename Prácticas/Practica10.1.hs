@@ -290,7 +290,7 @@ potencia = undefined
 -- ---------------------------------------------------------------------
 
 traspuesta :: Num a => Matriz a -> Matriz a
-traspuesta p = undefined
+traspuesta p = listaMatriz [[p!(f, c) | f <- [1..numFilas p]] | c <- [1..numColumnas p]]
 
 -- ---------------------------------------------------------------------
 -- Tipos de matrices                                                  --
