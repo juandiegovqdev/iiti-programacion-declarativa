@@ -1,9 +1,3 @@
--- PD: entrada/salida
--- El juego del nim y las funciones de entrada/salida. 
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 ------------------------------------------------------------------------
 -- § Introducción                                                     --
 ------------------------------------------------------------------------

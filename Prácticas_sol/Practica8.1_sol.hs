@@ -1,9 +1,3 @@
--- PD-Práctica 8.1 solución
--- Tipos: Definiciones básicas de tipos de datos algebráicos
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Haciendo uso de la decraración de tipos (type) define un
 -- tipo nuevo, Punto2D, para los Puntos del Plano (de 2 dimensiones).
