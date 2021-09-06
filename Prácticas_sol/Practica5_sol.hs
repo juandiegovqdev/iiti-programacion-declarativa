@@ -1,9 +1,3 @@
--- PD-Práctica 5 Sol
--- Definiciones por recursión.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Definir, por recursión, la función
 --    sumaCuadradosImpares :: [Integer] -> Integer
