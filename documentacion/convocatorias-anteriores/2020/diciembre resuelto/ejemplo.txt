@@ -1,0 +1,3 @@
+usuario Grogu
+modo Superusuario
+pantalla Primaria

@@ -1,42 +1,7 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 3                                       16 de Enero de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:   Parcial3_<codigo>_<uvus>.hs
---    donde "<uvus>" es tu UVUS y "<codigo>" es el código alfanumérico
---    en tu hoja del enunciado.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y no lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. ESCRIBE tus apellidos, nombre y UVUS en la hoja del enunciado, y
---    entrégala al profesor.
--- 6. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrate de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Matrix
 import qualified Data.Vector as V
-import CodeWorld
 import Control.Parallel.Strategies
 
 -- ----------------------------------------------------------------------
@@ -59,7 +24,10 @@ import Control.Parallel.Strategies
 --   λ> take 4 serieThueMorse == [[0],[0,1],[0,1,1,0],[0,1,1,0,1,0,0,1]]
 
 serieThueMorse :: [[Integer]]
-serieThueMorse = undefined
+serieThueMorse = [0] : serieThueMorseAux ([0]++[1])
+
+serieThueMorseAux :: [Integer] -> [[Integer]]
+serieThueMorseAux xs = xs : serieThueMorseAux (xs ++ (complementario xs)) 
 
 -- Ejercicio 1.2. Cada término de la serie de Thue-Morse se puede obtener
 -- del anterior sustituyendo los 1 por 1,0 y los 0 por 0,1. Define la
@@ -70,7 +38,11 @@ serieThueMorse = undefined
 serieThueMorse2 :: [[Integer]]
 serieThueMorse2 = undefined
   
--- ----------------------------------------------------------------------
+complementario :: [Integer] -> [Integer]
+complementario [] = []
+complementario (x:xs)
+  | x == 0    = 1 : complementario xs
+  | otherwise = 0 : complementario xs
 
 -- ----------------------------------------------------------------------
 -- Ejercicio 2. (2,5 puntos)

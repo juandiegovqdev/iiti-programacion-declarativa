@@ -9,7 +9,7 @@ import Data.Array
 import Data.List
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. (2,5 puntos)
+-- Ejercicio 1.
 -- ---------------------------------------------------------------------
 -- La sucesión de Loomis generada por un número entero positivo 'x' es la 
 -- sucesión cuyos términos se definen por:
@@ -26,7 +26,7 @@ import Data.List
 -- Generada por 4: 4, 8, 16, 22, 26, 38, 62, 74, 102, 104, 108, 116, 122, 126, 138, …
 -- Generada por 5: 5, 10, 11, 12, 14, 18, 26, 38, 62, 74, 102, 104, 108, 116, 122, …
 
--- Ejercicio 1.a (1 punto) Define la función  
+-- Ejercicio 1.a. Define la función  
 --    sucLoomis :: Integer -> [Integer]
 -- tal que (sucLoomis x) es la sucesión de Loomis generada por x. Por ejemplo,
 --  λ> take 15 (sucLoomis 1)
@@ -43,11 +43,25 @@ import Data.List
 --  235180736652
 -- ---------------------------------------------------------------------
  
+digitos :: Integer -> [Integer]
+digitos n = reverse (digitosR' n)
+ 
+digitosR' n
+    | n < 10    = [n]
+    | otherwise = (n `rem` 10) : digitosR' (n `div` 10)
+
+multiplicarElementosLista :: [Integer] -> Integer
+multiplicarElementosLista [] = 1
+multiplicarElementosLista (x:xs) 
+  | x /= 0    = x * multiplicarElementosLista xs
+  | otherwise = multiplicarElementosLista xs
+
 sucLoomis :: Integer -> [Integer]
-sucLoomis = undefined
+sucLoomis 0 = [0]
+sucLoomis x = x : sucLoomis (x + multiplicarElementosLista (digitos x))
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1.b (1,5 puntos) Se observa que a partir de un término todas 
+-- Ejercicio 1.b. Se observa que a partir de un término todas 
 -- coinciden con la generada por el 1. Dicho término se llama el punto de
 -- convergencia. Por ejemplo,
 
@@ -74,7 +88,7 @@ convergencia :: Integer -> Integer
 convergencia = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. (2 puntos)
+-- Ejercicio 2.
 -- ---------------------------------------------------------------------
 -- Los árboles se pueden representar mediante el siguiente tipo de datos
 
@@ -110,11 +124,12 @@ ej2 = N 3 [N 5 [N 6 []], N 4 [], N 7 [N 2 [], N 1 []]]
 -- N 3 [N 8 [N 14 []],N 7 [],N 10 [N 12 [],N 11 []]]
 -- ---------------------------------------------------------------------
 
--- propaga :: Arbol Int -> Arbol Int
--- propaga (N x xs) = propagaAux (N x xs) x
+propaga :: Num a => Arbol a -> Arbol a
+propaga (N x as) = N x (map (prop x) as)
+  where prop x (N y as) = (N (x+y) (map (prop (x+y)) as))
 
 -- propagaAux :: Arbol Int -> Int -> Arbol Int
--- propagaAux (N y (x:xs)) a = N (y+a) (propagaAux x a) ++  propagaAux xs a
+-- propagaAux (N y (x:xs)) a = N (y+a) [(propagaAux x a) ++  (propagaAux xs a)]
 -- propagaAux (N y []) a = N (y+a) []
 
 -- -------------------------------------------------------------------
