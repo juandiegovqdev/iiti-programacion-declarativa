@@ -51,7 +51,7 @@ cuentas fichero = do
 main1 :: IO ()
 main1 = cuentas "lorem_ipsum.txt"
 
---main = main1
+-- main = main1
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. Adaptar el ejercicio anterior para que podamos
@@ -112,7 +112,7 @@ main3 = do
 
   return ()
 
---main = main3
+-- main = main3
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 4. Procesar el archivo CSV "clima.csv" 
@@ -135,7 +135,7 @@ main4 = do
              _ -> []
   sequence_ [putStrLn campo | campo <- head filas]
   
---main = main4
+-- main = main4
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. Procesar el archivo CSV "clima.csv" 
