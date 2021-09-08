@@ -1,14 +1,9 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Febrero                                          11 de Febrero de 2021
--- ----------------------------------------------------------------------
-
 import Data.Array
 import Data.Char
 import Data.List
 import Control.Exception (catch, SomeException)
 import PilaConListas
---import I1M.Pila
+-- import I1M.Pila
 
 -- ----------------------------------------------------------------------
 -- En esta prueba vamos a implementar una codificación Huffman sencilla.
