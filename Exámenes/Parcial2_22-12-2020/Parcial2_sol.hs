@@ -1,12 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 2                                      22 de Diciembre de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
-
 import System.Environment (getArgs)
 import Control.Exception (catch, SomeException)
 import System.Directory
