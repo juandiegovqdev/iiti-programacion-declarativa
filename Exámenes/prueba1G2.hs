@@ -1,7 +1,4 @@
 -- ---------------------------------------------------------------------------
--- PD. Grado en Informatica. Tecnologias Informaticas. CURSO 2013-14
--- PRUEBA 1 DE EVALUACION ALTERNATIVA (6 NOVIEMBRE 2013). GRUPO DE TARDE
--- ---------------------------------------------------------------------------
 -- EJERCICIO 1. 
 -- Se dice que un n�mero natural, n, es reversible si su �ltima cifra NO es 0 
 -- y la suma de n y el n�mero que se obtiene escribiendo las cifras de n 
