@@ -1,10 +1,5 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 1                                   15 de Noviembre de 2018
--- -------------------------------------------------------------------
-
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [0.75 ptos]
+-- Ejercicio 1. 
 -- En geometría, la fórmula de Brahmagupta, dice que:
 -- el área de un cuadrilátero cuyo lados miden a, b, c y d es la raíz
 -- cuadrada de (s-a)(s-b)(s-c)(s-d), donde s es el semiperímetro 
@@ -22,7 +17,7 @@ area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
     where s = (a+b+c+d)/2
 
 -- -------------------------------------------------------------------
--- Ejercicio 2. [0.75 ptos]
+-- Ejercicio 2.
 -- Defina una función comparaDistintos, explicitando su tipo,
 -- tal que reciba dos argumentos y devuelva un resultado, de modo que:
 -- a. El tipo de los argumentos sea polimórfico (no concreto):
@@ -44,7 +39,7 @@ area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [1 pto]
+-- Ejercicio 3. 
 -- Definir la función casi_extremos tal que (casi_extremos n xs) es
 -- la lista formada por los n primeros elementos de xs (salvo el primero)
 -- y los n elementos finales de xs (salvo el ultimo).
@@ -60,7 +55,7 @@ area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. [0.5 ptos]
+-- Ejercicio 4. 
 -- Definir una propiedad prop_casiext_reverse (y probarla con QuickCheck)
 -- que indique que invertir la lista de los casi extremos n xs
 -- es equivalente a
@@ -72,7 +67,7 @@ area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
 
 
 -- -------------------------------------------------------------------
--- Ejercicio 5. [1 pto]
+-- Ejercicio 5.
 -- Defina una función cumpleUnoDeTres,
 -- que reciba como argumentos un predicado y una lista de elementos,
 -- e indique si uno y solo uno de cada grupo de 3 elementos de la
@@ -93,7 +88,7 @@ area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
 
 
 -- -------------------------------------------------------------------
--- Ejercicio 6. [1.5 ptos]
+-- Ejercicio 6. 
 -- Desarrolle una función principal, main, con una animación usando
 -- CodeWorld, de modo que la escena incluya un fondo estático (basta
 -- con un cuadrado negro que ocupe la mayor parte de la pantalla),
@@ -104,7 +99,7 @@ area a b c d = sqrt ((s-a)*(s-b)*(s-c)*(s-d))
 
 
 -- -------------------------------------------------------------------
--- Ejercicio 7. [1 pto]
+-- Ejercicio 7. 
 -- Dada la siguiente información acerca de personas, incluyendo su
 -- nombre, ámbito en que destacaron, y rango en que vivieron dado por
 -- (inicio, fin):
@@ -157,7 +152,7 @@ obtenerMasJoven ((x,y,(a,b)):xs) (s,d,(e,f))
     | otherwise = obtenerMasJoven xs (s,d,(e,f))
 
 -- ---------------------------------------------------------------------
--- Ejercicio 8. [2 ptos]
+-- Ejercicio 8. 
 -- Se considera la función procesaNoValidos
 -- :: (Num a, Ord b) => (a -> b) -> (a -> b) -> (a -> Bool) -> [a] -> [b]
 -- tal que (procesaNoValidos f g p xs) es la lista obtenida aplicándole a
@@ -189,7 +184,7 @@ obtenerMasJoven ((x,y,(a,b)):xs) (s,d,(e,f))
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 9. [1.5 ptos]
+-- Ejercicio 9. 
 -- Escriba un programa de Entrada y Salida que haga lo siguiente:
 -- 1. Imprima un mensaje por pantalla solicitando un número natural al
 --    usuario
