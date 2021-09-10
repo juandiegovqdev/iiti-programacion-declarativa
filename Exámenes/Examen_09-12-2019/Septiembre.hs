@@ -1,8 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Examen Septiembre                          12 de Septiembre de 2019
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 
 -- import TADPila
