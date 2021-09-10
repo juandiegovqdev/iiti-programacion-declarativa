@@ -1,9 +1,3 @@
--- ColaConListas.hs
--- Implementación de las colas mediante listas.
--- José A. Alonso Jiménez <jalonso@us.es>
--- Sevilla, 11 de Septiembre de 2010
--- ---------------------------------------------------------------------
-
 module Prácticas.ColaConListas 
     (Cola,
      vacia,   -- Cola a

@@ -1,7 +1,5 @@
 -- PilaConListas.hs
 -- Implementación de las pilas mediante listas.
--- José A. Alonso Jiménez <jalonso@us.es>
--- Sevilla, 11 de Septiembre de 2010
 -- ---------------------------------------------------------------------
 
 module PilaConListas

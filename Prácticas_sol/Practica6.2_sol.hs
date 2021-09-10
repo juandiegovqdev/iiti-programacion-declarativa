@@ -1,18 +1,12 @@
--- PD Practica 6.2 Solución
--- Funciones de orden superior y definiciones por plegados (II)
--- Departamento de Ciencias de la Computación e Inteligencia Artificial
--- Universidad de Sevilla
--- ============================================================================
-
 -- ============================================================================
 -- Librerías auxiliares
 -- ============================================================================
+
 import Data.Char
 import Data.List
 -- cabal install primes
 import Data.Numbers.Primes
 import Test.QuickCheck
-
 
 -- ----------------------------------------------------------------------------
 -- Ejercicio 1. Se considera la función

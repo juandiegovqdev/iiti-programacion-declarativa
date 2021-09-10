@@ -1,24 +1,9 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- # Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- # Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 import CodeWorld
 import DefinicionesNim
 
 -- -------------------------------------------------------------------
--- Ejercicio 1 (3'5 ptos).
+-- Ejercicio 1
 -- -------------------------------------------------------------------
 -- (1.1) Definir los tipos Eleccion (con dos valores posibles para
 -- indicar si tras la última selección de estrellas se ha podido
@@ -58,8 +43,6 @@ pintaEstado :: Estado -> Picture
 -- de la situación de la partida contenida en e (ver ejemplos en el
 -- enunciado).
 -- -------------------------------------------------------------------
-
--- Solución:
 
 pintaEstado (E n _)
   | estrellasRestantes n == 0 = pintaGanador (jugador n)
@@ -178,4 +161,3 @@ manejaEvento _ e = e
 nim =
   interactionOf (E (inicio 20) Correcta)
   (\_ e -> e) manejaEvento pintaEstado 
-

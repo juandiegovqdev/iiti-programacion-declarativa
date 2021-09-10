@@ -1,7 +1,7 @@
 import Test.QuickCheck
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1.1
+-- Ejercicio 1.1 (2 puntos)
 -- Definir el operador infijo (*&) tal que reciba y devuelva nÃºmeros
 -- reales de doble precisiÃ³n. El cÃ¡lculo realizado es la multiplicaciÃ³n
 -- de los dos argumentos redondeado al siguiente entero. El operador debe
@@ -16,7 +16,7 @@ import Test.QuickCheck
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2.1 
+-- Ejercicio 2.1 (2 puntos)
 -- Definir la funciÃ³n (intervalos a b xs), donde xs es una lista de posiciones
 -- en una recta (nÃºmeros reales) que puede venir desordenada, a y b son dos
 -- valores reales que definen un intervalo en dicha recta. Necesitamos que la
@@ -35,7 +35,7 @@ import Test.QuickCheck
 -- Î»> intervalos 0.0 10.0 [9.5,10.0,-3,0.3,5.0,-10.56,114.5] ==
 -- ([-10.56,-3.0],[0.3,5.0,9.5,10.0],[114.5])
 
--- Ejercicio 2.2. 
+-- Ejercicio 2.2. (1 punto)
 -- Comprobar con quickCheck si se cumple lo siguiente: xs es igual al intervalo
 -- comprendido entre el mÃ­nimo y el mÃ¡ximo de xs calculado mediante la funciÃ³n
 -- intervalos.
@@ -43,7 +43,7 @@ import Test.QuickCheck
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3.
+-- Ejercicio 3. (2,5 puntos)
 -- La funciÃ³n (zigzag xs) sobre una lista cambia el orden de los elementos de
 -- xs tal que el primero de xs va al comienzo, el segundo de xs al final, el
 -- tercero en la segunda posiciÃ³n, el cuarto en la penÃºltima posiciÃ³n, etc. Es
@@ -60,7 +60,7 @@ import Test.QuickCheck
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------  
--- Ejercicio 4.1. 
+-- Ejercicio 4.1. (1,5 puntos)
 -- Definir la funciÃ³n (maxListas xss) tal que reciba una lista de listas xss,
 -- y devuelva una lista de pares (i,j), donde i es el Ã­ndice de la sublista no
 -- vacÃ­a i-Ã©sima dentro de xss y j es la posiciÃ³n donde sucede el mÃ¡ximo de la
@@ -71,8 +71,8 @@ import Test.QuickCheck
 maxListas :: Ord a => [[a]] -> [(Int,Int)]
 maxListas xss = undefined
 
--- Ejercicio 4.2. 
--- Definir la función (listaIncrementales xs) que reciba una lista de pares
+-- Ejercicio 4.2. (1 punto)
+-- Definir la funciÃ³n (listaIncrementales xs) que reciba una lista de pares
 -- como la calculada en el ejercicio anterior. Dado que cada par (i,j) indica
 -- el Ã­ndice de la lista, i, y la posiciÃ³n de su mÃ¡ximo, j, la funciÃ³n debe
 -- devolver True si no falta ninguna lista i (porque era vacÃ­a), y la posiciÃ³n

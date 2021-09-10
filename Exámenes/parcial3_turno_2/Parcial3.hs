@@ -1,8 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 3 (turno 2)                                21 de Enero de 2021
--- ----------------------------------------------------------------------
-
 import Data.Array
 -- import I1M.Pila
 -- import PilaConListas

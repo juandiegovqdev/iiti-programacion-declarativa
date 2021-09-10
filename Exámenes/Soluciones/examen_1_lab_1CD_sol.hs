@@ -1,8 +1,3 @@
--- PD 2009-10: Examen 1a (20 de enero de 2010, grupos 1C y 1D)
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 import Data.List
 
 -- Apellidos: 
@@ -10,7 +5,7 @@ import Data.List
 -- Grupo:
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. Definir la función
+-- Ejercicio 1. Definir la funciï¿½n
 --    comprime :: Eq a => [a] -> [(a,Int)]
 -- tal que (comprime xs) es la lista obtenida comprimiendo xs de forma
 -- que represente los pares formados por los elementos de xs y sus
@@ -18,7 +13,7 @@ import Data.List
 --    comprime "aaabbaccc"  ==>  [('a',3),('b',2),('a',1),('c',3)]
 -- ---------------------------------------------------------------------
 
--- 1ª definición 
+-- 1ï¿½ definiciï¿½n 
 comprime :: Eq a => [a] -> [(a,Int)]
 comprime [] = []
 comprime [x] = [(x,1)]
@@ -27,18 +22,18 @@ comprime (x:y:xs) | x == y    = (x,n+1) : tail ys
                   where ys = comprime (y:xs)
                         n  = snd (head ys)
 
--- 2ª definición (usando group)
+-- 2ï¿½ definiciï¿½n (usando group)
 comprime_2 :: Eq a => [a] -> [(a,Int)]
 comprime_2 xs = [(head ys, length ys) | ys <- group xs]
 
--- 3ª definición (usando takeWile y dropWhile)
+-- 3ï¿½ definiciï¿½n (usando takeWile y dropWhile)
 comprime_3 :: Eq a => [a] -> [(a,Int)]
 comprime_3 [] = []
 comprime_3 (x:xs) = (x,1 + length (takeWhile (==x) xs)) : 
                     comprime_3 (dropWhile (==x) xs)
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. Definir la función
+-- Ejercicio 2. Definir la funciï¿½n
 --    producto :: [[a]] -> [[a]]
 -- tal que (producto xss) es el producto cartesiano de los conjuntos
 -- xss. Por ejemplo,

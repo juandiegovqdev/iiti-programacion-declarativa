@@ -2,23 +2,8 @@ module DefinicionesNimFilas_Sol
        (NimFilas, inicioFilas, estrellasRestantesFilas, jugadorFilas,
         fila, escogeFila, eliminaEstrellasFilas) where
 
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
 -- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- # Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- # Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
-
--- -------------------------------------------------------------------
--- Ejercicio 2 (4'5 ptos).
+-- Ejercicio 2
 -- -------------------------------------------------------------------
 -- (2.1) Definir los tipos Jugador (con dos posibles valores para
 -- poder distinguir quien tiene el turno en cada momento), Mesa (como

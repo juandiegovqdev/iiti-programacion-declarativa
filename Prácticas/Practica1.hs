@@ -1,10 +1,3 @@
--- PD-Practica 1
--- Definiciones de funciones, tipos y clases.
--- =====================================================================
-
--- A continuación se importa el módulo QuickCheck. Necesita ser instalado
--- previamente con Cabal o Stack
-
 import Test.QuickCheck
 
 -- ---------------------------------------------------------------------

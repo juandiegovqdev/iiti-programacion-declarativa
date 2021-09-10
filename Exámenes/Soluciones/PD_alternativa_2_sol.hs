@@ -1,13 +1,3 @@
--- ------------------------------------------------------------------
--- PD.SEGUNDA PRUEBA DE EVALUACION ALTERNATIVA
--- 12 ENERO 2015
--- ------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- UVUS:
--- ------------------------------------------------------------------
---
--- Antes de comenzar, renombra estefichero: uvus_dic.hs
---
 -- --------------------------------------------------------------------
 -- Ejercicio 1 . (3 puntos)
 -- A) Definir una funcion (ramaCentral ar) que, dado un arbol ternario
@@ -54,8 +44,8 @@ mini (H x) = x
 mini (N x ai ac ad) = minimum [x, mini ai, mini ac, mini ad]
 -- --------------------------------------------------------------------
 -- Ejercicio 2 . (4 puntos)
--- Los divisores medios de un número son los que ocupan la
--- posición media entre los divisores de n, ordenados de menor a mayor. Por
+-- Los divisores medios de un nï¿½mero son los que ocupan la
+-- posiciï¿½n media entre los divisores de n, ordenados de menor a mayor. Por
 -- ejemplo, los divisores de 60 son [1,2,3,4,5,6,10,12,15,20,30,60] y sus
 -- divisores medios son 6 y 10. En el caso de 36, sus divisores son 
 -- [1,2,3,4,6,9,12,18,36] y la posicion media la ocupa el 6.
@@ -73,18 +63,18 @@ divisoresMedios x = if even l
     where xs = divisores x
           l = length xs
 -- B)
--- El árbol binario de factorización de un número compuesto n se
+-- El ï¿½rbol binario de factorizaciï¿½n de un nï¿½mero compuesto n se
 -- construye de la siguiente manera:
--- * la raíz es el número n,
--- * la rama izquierda es el árbol de factorización de su primer divisor medio
--- * la rama derecha es el árbol de factorización de su segundo divisor medio 
+-- * la raï¿½z es el nï¿½mero n,
+-- * la rama izquierda es el ï¿½rbol de factorizaciï¿½n de su primer divisor medio
+-- * la rama derecha es el ï¿½rbol de factorizaciï¿½n de su segundo divisor medio 
 --
--- Si el número es primo, su árbol de factorización sólo tiene una hoja con
--- dicho número.
+-- Si el nï¿½mero es primo, su ï¿½rbol de factorizaciï¿½n sï¿½lo tiene una hoja con
+-- dicho nï¿½mero.
 -- El tipo de dato arbol binario sera:
 data ArbolBin a = Hoja a | Nodo a (ArbolBin a) (ArbolBin a)
                   deriving Show
--- Por ejemplo, el árbol de factorización de 60 es
+-- Por ejemplo, el ï¿½rbol de factorizaciï¿½n de 60 es
 --
 --        60
 --       /  \
@@ -92,9 +82,9 @@ data ArbolBin a = Hoja a | Nodo a (ArbolBin a) (ArbolBin a)
 --     / \   / \
 --    2   3 2   5
 --
--- Definir la función
+-- Definir la funciï¿½n
 -- arbolFac :: Int -> ArbolBin Int
--- tal que '(arbolFac n)' es el árbol de factorización de 'n'. Por
+-- tal que '(arbolFac n)' es el ï¿½rbol de factorizaciï¿½n de 'n'. Por
 -- ejemplo,
 -- arbolFac 60  ==  Nodo 60 (Nodo 6 (Hoja 2) (Hoja 3)) (Nodo 10 (Hoja 2) (Hoja 5))
 -- arbolFac 45  ==  Nodo 45 (Hoja 5) (Nodo 9 (Hoja 3) (Hoja 3))
@@ -110,14 +100,14 @@ arbolFac x |primo x = Hoja x
 -- Una tanda de longitud n de una lista xs es una sublista de xs
 -- formada por n elementos iguales.
 --
--- Definir la función
+-- Definir la funciï¿½n
 --    tandas :: Eq a => Int -> [a] -> [[a]]
 -- tal que (tandas n xs) es la lista de las tandas de xs que tienen
--- n elementos como mínimo. Por ejemplo,
+-- n elementos como mï¿½nimo. Por ejemplo,
 --    tandas 3  "aabbbcddddffxffxx" ==  ["bbb","dddd"]
 --    tandas 4  "aabbbcddddffxffxx" ==  ["dddd"]
 --    tandas 5  "aabbbcddddffxffxx" ==  []
--- Definición (por recursión con takeWhile y dropWhile):
+-- Definiciï¿½n (por recursiï¿½n con takeWhile y dropWhile):
 tandas :: Eq a => Int -> [a] -> [[a]]
 tandas _ [] = []
 tandas n xs@(x:_) 
@@ -127,7 +117,7 @@ tandas n xs@(x:_)
 
 -- --------------------------------------------------------------------
 -- Ejercicio 4 . (1 punto)
--- Una función de precio determina el precio de cada elemento; por
+-- Una funciï¿½n de precio determina el precio de cada elemento; por
 -- ejemplo,
 precioCI :: String -> Int
 precioCI "leche"       = 10
@@ -135,22 +125,22 @@ precioCI "mantequilla" = 18
 precioCI "patatas"     = 22
 precioCI "chocolate"   = 16
 -- 
--- Definir (POR COMPRENSION, RECURSION Y PLEGADO) la función
+-- Definir (POR COMPRENSION, RECURSION Y PLEGADO) la funciï¿½n
 --    precioTotal :: (String -> Int) -> [String] -> Int
 -- tal que (precioTotal f xs) es el precio total de los elementos de xs
--- respecto de la función de precio f. Por ejemplo,
+-- respecto de la funciï¿½n de precio f. Por ejemplo,
 --    precioTotal precioCI ["leche", "leche", "mantequilla"]  ==  38
 --    precioTotal precioCI ["chocolate", "mantequilla"]       ==  34
--- 1ª solución (por comprensión):
+-- 1ï¿½ soluciï¿½n (por comprensiï¿½n):
 precioTotal1 :: (String -> Int) -> [String] -> Int
 precioTotal1 f xs = sum [f x | x <- xs]
  
--- 2ª solución (por recursión):
+-- 2ï¿½ soluciï¿½n (por recursiï¿½n):
 precioTotal2 :: (String -> Int) -> [String] -> Int
 precioTotal2 f []     = 0
 precioTotal2 f (x:xs) = f x + precioTotal2 f xs
  
--- 3ª solución (por plegado)
+-- 3ï¿½ soluciï¿½n (por plegado)
 precioTotal3 :: (String -> Int) -> [String] -> Int
 precioTotal3 f = foldr g 0
     where g x y = f x + y

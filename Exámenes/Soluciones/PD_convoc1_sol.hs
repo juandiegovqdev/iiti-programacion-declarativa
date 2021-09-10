@@ -1,13 +1,3 @@
--- ------------------------------------------------------------------
--- PD.PRIMERA CONVOCATORIA. CURSO 14-15
--- 23 ENERO 2015
--- ------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- UVUS:
--- ------------------------------------------------------------------
---
--- Antes de comenzar, renombra estefichero: uvus_dic.hs
---
 -- --------------------------------------------------------------------
 -- Ejercicio 1 . (4 puntos)
 -- A) Definir una funcion (ramaFinal ar) que, dado un arbol
@@ -15,7 +5,7 @@
 data Arbol a =  N a [Arbol a]
                 deriving Show
 -- devuelva la rama situada mas a la derecha del arbol, es decir, 
--- la lista de los valores que están a la derecha.
+-- la lista de los valores que estï¿½n a la derecha.
 -- Un arbol de este tipo, se caracteriza por que de cada nodo sale una
 -- lista de subarboles. Cada lista puede tener  longitud
 -- distinta, de forma que unos nodos pueden tener cero, uno, dos, tres o

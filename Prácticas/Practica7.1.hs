@@ -1,6 +1,6 @@
 -- PD: entrada/salida
 -- El juego del nim y las funciones de entrada/salida. 
--- =====================================================================
+-- ---------------------------------------------------------------------
 
 -- En el juego del nim el tablero tiene 5 filas numeradas de estrellas,
 -- cuyo contenido inicial es el siguiente 

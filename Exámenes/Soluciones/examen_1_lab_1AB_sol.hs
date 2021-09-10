@@ -1,8 +1,3 @@
--- PD 2009-10: Examen 1a (20 de enero de 2010, grupos 1A y 1B)
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 import Data.List
 
 -- Apellidos: 
@@ -10,14 +5,14 @@ import Data.List
 -- Grupo:
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. Supongamos que queremos convertir la sucesión ordenada
--- de las páginas en las que aparece un concepto en la entrada de dicho
--- concepto en el índice del libro. Por ejemplo, la sucesión 1, 3, 4, 6,
+-- Ejercicio 1. Supongamos que queremos convertir la sucesiï¿½n ordenada
+-- de las pï¿½ginas en las que aparece un concepto en la entrada de dicho
+-- concepto en el ï¿½ndice del libro. Por ejemplo, la sucesiï¿½n 1, 3, 4, 6,
 -- 7, 8, 9, 12, 13, 14 se transforma en 1, 3-4, 6-9, 12-14. Definir la
--- función 
+-- funciï¿½n 
 --    indice :: [Int] -> [[Int]]
--- tal que (indice xs) la lista obtenida aplicando la transformación
--- anterior a la sucesión xs. Por ejemplo,
+-- tal que (indice xs) la lista obtenida aplicando la transformaciï¿½n
+-- anterior a la sucesiï¿½n xs. Por ejemplo,
 --    indice [1,3,4,6,7,8,9,12,13,14]  => [[1],[3,4],[6,9],[12,14]]
 -- ---------------------------------------------------------------------
 
@@ -30,7 +25,7 @@ indice (x:y:xs) | x+1 == y  = [x,last ys]:(tail yss)
                       ys  = head yss
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. Definir la función 
+-- Ejercicio 2. Definir la funciï¿½n 
 --    diferencias :: Num a => [a] -> [a]
 -- tal que (diferencias xs) es la lista de las diferencias entre los
 -- elementos consecutivos de xs. Por ejemplo, 

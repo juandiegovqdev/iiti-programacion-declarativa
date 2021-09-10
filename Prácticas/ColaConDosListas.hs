@@ -1,21 +1,3 @@
--- ColaConDosListas.hs
--- Implementación de las colas mediante dos listas.
--- José A. Alonso Jiménez <jalonso@us.es>
--- Sevilla, 11 de Septiembre de 2010
--- ---------------------------------------------------------------------
-
--- En esta implementación, una cola c se representa mediante un par de
--- listas (xs,ys) de modo que los elementos de c son, en ese orden, los
--- elementos de la lista xs++(reverse ys).
-
--- Al dividir la lista en dos parte e invertir la segunda de ellas,
--- esperamos hacer más eficiente las operaciones sobre las colas.
-
--- Impondremos también una restricción adicional sobre la
--- representación: las colas serán representadas mediante pares (xs,ys)
--- tales que si xs es vacía, entonces ys será también vacía. Esta
--- restricción ha de ser conservada por los programas que crean colas.
-
 module Prácticas.ColaConDosListas
     (Cola,
      vacia,   -- Cola a

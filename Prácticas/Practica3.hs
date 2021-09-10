@@ -1,11 +1,3 @@
--- PD-Práctica 3 
--- Definiciones por comprensión
--- =====================================================================
-
--- En esta relación se presentan ejercicios con definiciones de
--- funciones por comprensión. Estos ejercicios se corresponden con el
--- tema 5 
- 
 import Test.QuickCheck
 import Data.Char
 

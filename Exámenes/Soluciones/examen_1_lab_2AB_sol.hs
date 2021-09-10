@@ -1,8 +1,3 @@
--- PD 2009-10: Examen 1a (20 de enero de 2010, grupos 2A y 2B)
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 import Data.List
 
 -- Apellidos: 
@@ -10,7 +5,7 @@ import Data.List
 -- Grupo:
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. Definir la función
+-- Ejercicio 1. Definir la funciï¿½n
 --    duplica :: Eq a => a -> [a] -> [a]
 -- tal que (duplica x xs) devuelve la lista obtenida al duplicar cada
 -- ocurrencia de x en xs. Por ejemplo, 
@@ -24,9 +19,9 @@ duplica x (y:ys) | x == y    = y:y:duplica x ys
                  | otherwise = y:duplica x ys
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. Definir la función 
+-- Ejercicio 2. Definir la funciï¿½n 
 --    listaconSuma :: Int -> [[Int]] 
--- que, dado un número natural n, devuelve todas las listas de enteros
+-- que, dado un nï¿½mero natural n, devuelve todas las listas de enteros
 -- positivos (esto es, enteros mayores o iguales que 1) cuya suma sea
 -- n. Por ejemplo,
 --    Main> listaconSuma 4

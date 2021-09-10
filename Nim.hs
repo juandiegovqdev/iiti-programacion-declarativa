@@ -1,14 +1,9 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 import CodeWorld
 import DefinicionesNim
 
 -- -------------------------------------------------------------------
--- Ejercicio 1 (3'5 ptos).
+-- Ejercicio 1 
 -- -------------------------------------------------------------------
 -- (1.1) Definir los tipos Eleccion (con dos valores posibles para
 -- indicar si tras la última selección de estrellas se ha podido
@@ -19,7 +14,7 @@ import DefinicionesNim
 -- solicitados.
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------
 -- Definición alternativa del tipo Estado si no se ha resuelto el
@@ -32,6 +27,8 @@ import DefinicionesNim
 -- en caso contrario).
 -- -------------------------------------------------------------------
 
+
+
 -- -------------------------------------------------------------------
 -- (1.2) Definir una función, utilizando listas por compresión,
 
@@ -42,7 +39,6 @@ import DefinicionesNim
 -- enunciado).
 -- -------------------------------------------------------------------
 
--- Solución:
 
 
 -- -------------------------------------------------------------------
@@ -60,7 +56,6 @@ import DefinicionesNim
 -- Main> drawingOf (pintaEstado est3)
 -- -------------------------------------------------------------------
 
--- Solución:
 
 
 -- -------------------------------------------------------------------
@@ -81,6 +76,6 @@ import DefinicionesNim
 -- fig3 = drawingOf (pintaEstado (manejaEvento (KeyPress "1") est2))
 -- -------------------------------------------------------------------
 
--- Solución:
+
 
 -- -------------------------------------------------------------------

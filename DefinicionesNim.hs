@@ -19,7 +19,6 @@ showEAux n | n == 0 = "No quedan estrellas\n"
            | n == 1 = "Queda 1 estrella\n"
            | otherwise = "Quedan " ++ show n ++ " estrellas\n"
 
-
 inicio :: Int -> Nim
 inicio n
   | n `elem` [1..20] = Uno n

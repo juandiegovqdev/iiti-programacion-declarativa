@@ -1,8 +1,5 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
 -- -------------------------------------------------------------------
--- Ejercicio 2 (4'5 ptos).
+-- Ejercicio 2 
 -- -------------------------------------------------------------------
 -- (2.1) Definir los tipos Jugador (con dos posibles valores para
 -- poder distinguir quien tiene el turno en cada momento), Mesa (como

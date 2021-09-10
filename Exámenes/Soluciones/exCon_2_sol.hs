@@ -1,13 +1,3 @@
--- ------------------------------------------------------------------
--- PD.SEGUNDA CONVOCATORIA. CURSO 14-15
--- 2 DE SEPTIEMBRE 2015
--- ------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- UVUS:
--- ------------------------------------------------------------------
---
--- Antes de comenzar, renombra estefichero: uvus_sep.hs
---
 -- --------------------------------------------------------------------
 -- ORDEN SUPERIOR (FILTER, MAP, ALL, etc.) 1PUNTO
 -- Definir la funcion 
@@ -44,7 +34,7 @@ data Arbol a = H a
 a1 :: Arbol Int
 a1 = N 9 (N 3 (H 2) (N 4 (H 1) (H 5))) (H 8)
 
--- Diremos que una propiedad es AF en un arbol si se cumple en algún 
+-- Diremos que una propiedad es AF en un arbol si se cumple en algï¿½n 
 -- nodo de cada posible rama del arbol (una rama es la  secuencia de 
 -- nodos  desde el nodo inicial o raiz hasta una hoja). 
 -- En este arbol a1 se cumple (AF par); es decir, en todas las ramas hay un

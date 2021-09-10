@@ -1,9 +1,11 @@
 -- PD 2019-20: Practica 6.2
 -- Funciones de orden superior y definiciones por plegados (II)
--- ============================================================================
+-- ----------------------------------------------------------------------------
+
 import Data.Char
 import Data.List
 import Data.Numbers.Primes
+
 -- ----------------------------------------------------------------------------
 -- Ejercicio 1. Se considera la función
 --      resultadoPos :: (a -> Integer) -> [a] -> [a]

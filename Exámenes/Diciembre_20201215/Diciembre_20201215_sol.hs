@@ -4,7 +4,6 @@ import Data.Map as D
 import Control.Monad
 import Control.Exception (catch, SomeException)
 
-
 -- ============================================================================
 -- Ejercicio 1. (2,5 ptos) Define la función
 --   maximoConsecutivos :: (Eq a) => [a] -> Integer

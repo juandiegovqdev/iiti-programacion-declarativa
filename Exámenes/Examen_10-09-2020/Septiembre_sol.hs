@@ -5,7 +5,7 @@ import System.Environment (getArgs)
 
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (3,5 puntos)
+-- Ejercicio 1.
 -- ----------------------------------------------------------------------
 -- Muchos algoritmos de compresión de imágenes se basan en la transformada
 -- discreta del coseno (DCT en inglés). La DCT se aplica sobre una lista

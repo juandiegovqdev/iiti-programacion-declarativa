@@ -1,20 +1,10 @@
--- ------------------------------------------------------------------
--- PD.SEGUNDA PRUEBA DE EVALUACIÓN ALTERNATIVA. CURSO 15-16
--- ENERO 2016
--- ------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- UVUS:
--- ------------------------------------------------------------------
---
--- Antes de comenzar, renombra este fichero: uvus_2.hs
---
 -- --------------------------------------------------------------------
 -- Ejercicio 1. Definir POR COMPRENSION Y RECURSION la funcion
 --   igualDistancia :: Eq a => a -> [a] -> Bool
 -- tal que (igualDistancia x xs) se verifica si hay instancias de x en
 -- xs que esten a igual distancia del principio que del final de la lista.
 -- Por ejemplo, 
--- igualDistancia 2 [3,2,5,2,7]          ==  True ya que el dos está a
+-- igualDistancia 2 [3,2,5,2,7]          ==  True ya que el dos estï¿½ a
 -- un elemento del principio y a un elemento del final de la lista.
 -- igualDistancia 3  [1,3,3,4,7] ==  True
 -- igualDistancia 3  [1,3,4] == True
@@ -48,7 +38,7 @@ parImpar :: Num a =>  Arbol1 a -> Arbol2 a
 -- tal que, dado un arbol de tipo Arbol1, lo convierte en un arbol de
 -- tipo Arbol2 cambiando cada elemento x del primero por el par obtenido
 -- con el anterior y el siguiente de x. 
--- Por ejemplo: la función parImpar aplicada al arbol 
+-- Por ejemplo: la funciï¿½n parImpar aplicada al arbol 
 ar1 = N1 3     (H1 1)     (N1 6     (N1 5     (H1 2)     (H1 5))     (H1 3))
 -- devuelve el siguiente:
 ar2 = N2 (2,4) (H2 (0,2)) (N2 (5,7) (N2 (5,6) (H2 (1,3)) (H2 (4,6))) (H2 (2,4)))
@@ -100,7 +90,7 @@ conexiones :: Ord a => [(a,[a])] -> [(a,a)]
 conexiones g = concat[[(z,y)|y<-xs, z<y] | (z,xs)<- g]
 -- ---------------------------------------------------------------------
 -- Ejercicio 4B. PROLOG.
--- COPIA LA SOLUCIÓN EN UN FICHERO DE EXTENSION .pl para comprobar.
+-- COPIA LA SOLUCIï¿½N EN UN FICHERO DE EXTENSION .pl para comprobar.
 -- Define el predicado duplica(L1,L2) que se verifique si la lista L2
 -- se obtiene duplicando los elementos de L1. Por ejemplo,
 --    ?- duplica([a,b,c],L).

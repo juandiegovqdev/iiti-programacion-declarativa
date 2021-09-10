@@ -13,4 +13,3 @@ numeroLetra 14 = 'ñ'
 numeroLetra n | n < 0 || 26 < n = error "numeroLetra: sólo hay 27 letras disponibles (numeradas de 0 a 26)."
               | n < 14 = chr (n + 97)
               | otherwise = chr (n + 96)
-

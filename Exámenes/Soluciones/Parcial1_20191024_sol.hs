@@ -1,31 +1,3 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 1 Solución                               24 de Octubre de 2019
--- ----------------------------------------------------------------------
--- Apellidos: Doe
--- Nombre: John
--- UVUS: dojo
--- ----------------------------------------------------------------------
--- INSTRUCCIONES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Parcial1_<codigo>_<uvus>.hs
---   donde "<uvus>" es su usuario virtual de la Universidad de Sevilla, y
---   "<codigo>" es el código alfanumérico de arriba.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- · Una vez finalizado el examen, comprima el fichero .hs en un .tar.gz
---   con el siguiente nombre:
---                  ENTREGA-<uvus>.tar.gz
---   dejándolo en el escritorio. Reiniciar el equipo y en el menú de
---   selección del sistema elija "Enviar examen".
--- · Después, ponga sus apellidos, nombre y UVUS en el enunciado en papel,
---   entréguela al profesor, y compruebe que se ha entregado sin problema.
--- ----------------------------------------------------------------------
-
 import Test.QuickCheck
 import Data.List
 

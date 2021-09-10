@@ -1,18 +1,8 @@
--- ------------------------------------------------------------------
--- PROGRAMACIÓN DECLARATIVA (3ºTI). 
--- EXAMEN DE LA TERCERA CONVOCATORIA
--- 2 DICIEMBRE 2015
--- ------------------------------------------------------------------
--- NOMBRE Y APELLIDOS:
--- UVUS:
--- ------------------------------------------------------------------
--- Antes de comenzar, renombra este fichero: uvus_1.hs
--- Todos los ejercicios valen lo mismo.
 -- --------------------------------------------------------------------
 -- Ejercicio 1. Consideremos la secuencia infinita de todos los numeros
 -- naturales. 
 --    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,...]
--- La lista de sus digitos será una lista infinita:
+-- La lista de sus digitos serï¿½ una lista infinita:
 --    [1,2,3,4,5,6,7,8,9,1,0,1,1,1,2,1,3,1,4,1,5,1,6,1,7,1,8,1,9,2,,...]
 -- 
 -- Definir la funcion 

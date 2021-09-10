@@ -2,7 +2,7 @@ import Test.QuickCheck
 import Data.Char
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1 
+-- Ejercicio 1 (1,5 puntos)
 -- Definir el operador infijo (~>=) tal que reciba números de cualquier 
 -- tipo de la clase fractional, y devuelva un Booleano indicando si el 
 -- primer argumento es aproximadamente igual al segundo con una precisión
