@@ -1,8 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Febrero                                          11 de Febrero de 2021
--- ----------------------------------------------------------------------
-
 import Data.Array
 import Data.Char
 import Data.List
