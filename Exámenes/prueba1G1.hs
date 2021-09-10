@@ -1,8 +1,4 @@
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
--- ---------------------------------------------------------------------------
--- PD. Grado en Informatica. Tecnologias Informaticas. CURSO 2013-14
--- PRUEBA 1 DE EVALUACION ALTERNATIVA (6 NOVIEMBRE 2013)
--- ---------------------------------------------------------------------------
 
 import Test.QuickCheck
 
