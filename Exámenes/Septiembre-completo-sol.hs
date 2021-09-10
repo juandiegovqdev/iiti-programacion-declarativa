@@ -1,24 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Examen Septiembre                          12 de Septiembre de 2019
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · 1. Antes de continuar, cambie el nombre de este archivo por:
---                   Septiembre_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · 2. Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · 3. Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
---   4. Se recomienda entregar un fichero que cargue correctamente,
---   dejando comentado todo código con errores.
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 
 import TADPila
