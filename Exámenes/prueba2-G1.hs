@@ -1,7 +1,4 @@
 -- --------------------------------------------------------------------
--- PD. Grado en Informatica. Tecnologias Informaticas. CURSO 2013-14
--- PRUEBA 2 DE EVALUACION ALTERNATIVA (18 DICIEMBRE 2013)
--- --------------------------------------------------------------------
 -- EJERCICIO 1. Define, utilizando funciones de orden superior, el valor 
 -- de la suma de todos cuadrados impares menores que 10000. Llamala p.
 -- --------------------------------------------------------------------
