@@ -1,8 +1,3 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 1a Convocatoria                                   3 de Febrero de 2020
--- ----------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Matrix
