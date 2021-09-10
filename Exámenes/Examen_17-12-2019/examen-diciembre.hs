@@ -1,8 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Examen Diciembre                                   17 de Diciembre de 2019
--- --------------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 
@@ -12,11 +7,10 @@ import GHC.Generics
 import System.Environment (getArgs)
 import qualified Data.ByteString.Lazy as B
 import Data.Matrix
-import TADPila
-
+-- import TADPila
 
 -- --------------------------------------------------------------------------
--- Ejercicio 1. [2 ptos]
+-- Ejercicio 1.
 -- --------------------------------------------------------------------------
 -- La función extremosCumplen recibe un predicado p, una función f y
 -- una lista de listas xss, y devuelve una lista de pares de elementos
@@ -42,15 +36,17 @@ import TADPila
 --  e) Plegado: extremosCumplenP
 
 extremosCumplenL = undefined
+
 extremosCumplenR = undefined
+
 extremosCumplenR2 = undefined
+
 extremosCumplenO = undefined
+
 extremosCumplenP = undefined
--- --------------------------------------------------------------------------
-
 
 -- --------------------------------------------------------------------------
--- Ejercicio 2. [2 ptos]
+-- Ejercicio 2.
 -- --------------------------------------------------------------------------
 -- 1. Defina, con sintaxis de registro, los tipos necesarios para almacenar
 --    la información sobre personajes de Star Wars contenida en el
@@ -99,11 +95,9 @@ ejar1 = (N (H 1) (N (N (H 1) (H 2)) (H 1)))
 --       Nothing
 
 elemNivel = undefined
--- --------------------------------------------------------------------------
-
 
 -- --------------------------------------------------------------------------
--- Ejercicio 4. [2 ptos]
+-- Ejercicio 4.
 -- --------------------------------------------------------------------------
 -- En el problema de las torres de Hanoi se consideran tres varillas donde se
 -- apilan discos de distinto tamaño. Una forma de codificar las varillas es
@@ -137,11 +131,9 @@ comprueba = undefined
 -- 1|2|3|6|8|9|4|5|7|10|-
 
 transfiere = undefined
--- --------------------------------------------------------------------------
-
 
 -- --------------------------------------------------------------------------
--- Ejercicio 5. [2 ptos]
+-- Ejercicio 5.
 -- --------------------------------------------------------------------------
 -- Representamos el tablero del ajedrez con una matriz donde los elementos son
 -- del tipo Pieza. Este tipo tiene como posibles valores: V, C, T, A, P, RY y
@@ -174,6 +166,3 @@ ejm2 = fromLists [[V, V, V, V],
 --       False
 
 jaquecaballo = undefined
-
--- --------------------------------------------------------------------------
-

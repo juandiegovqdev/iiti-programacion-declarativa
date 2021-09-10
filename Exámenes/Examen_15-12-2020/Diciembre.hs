@@ -1,8 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3a Convocatoria                               15 de Diciembre de 2020
--- ----------------------------------------------------------------------
-
 import Data.List as L
 -- import Data.Matrix as M
 import Data.Map as D
