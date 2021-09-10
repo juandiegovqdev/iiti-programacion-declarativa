@@ -1,8 +1,3 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 2a Convocatoria                               10 de Septiembre de 2020
--- ----------------------------------------------------------------------
-
 import Data.Matrix
 import Control.Monad
 import Control.Exception (catch, SomeException)
