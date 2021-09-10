@@ -1,8 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
--- -------------------------------------------------------------------
-
 -- -------------------------------------------------------------------
 -- Una lista de números enteros se llama alternada si sus elementos
 -- son alternativamente par/impar o impar/par.
