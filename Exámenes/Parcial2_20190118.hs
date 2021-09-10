@@ -1,15 +1,10 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 2                                       17 de Enero de 2019
--- -------------------------------------------------------------------
-
 import Text.CSV
 import PilaConTipoDeDatoAlgebraico
 -- import Data.Matrix
 import System.Environment (getArgs)
 
 -- -------------------------------------------------------------------
--- Ejercicio 1. [1,75 ptos]
+-- Ejercicio 1.
 -- En relación con el juego del cuatro en raya...
 --
 -- 1. Defina los tipos siguientes:
@@ -27,7 +22,7 @@ type Ficha = Rojo | Azul
 type Columna = [Ficha]
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. [1,75 ptos]
+-- Ejercicio 2.
 -- Se plantea la necesidad de trabajar con árboles que adopten tipos
 -- flexibles. Para ello:
 --
@@ -46,7 +41,7 @@ type Columna = [Ficha]
 
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3. 
 
 -- 1. Defina, con sintaxis de registro, un nuevo tipo que contenga la
 --    información sobre planetas que aparecen en las películas
@@ -76,7 +71,7 @@ type Columna = [Ficha]
 
 
 -----------------------------------------------------------------------
--- Ejercicio 4. [1 pto]
+-- Ejercicio 4. 
 --
 -- El siguiente programa carga el contenido del fichero "cars-2018.csv",
 -- lo parsea y posteriormente procesa cabecera y cuerpo, que
@@ -123,7 +118,7 @@ pasaALista :: Field -> [String]
 pasaALista cadena = read cadena::[String]
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5. 
 -- Se denomina matriz dispersa aquella cuyos elementos son 
 -- mayoritariamente nulos. La representación de matrices dispersas se
 -- suele realizar de forma densa, es decir, dejando los elementos no
