@@ -1,8 +1,3 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 2                                       28 de Noviembre de 2019
--- ----------------------------------------------------------------------
-
 import Data.Maybe
 import ColaConListas
 
