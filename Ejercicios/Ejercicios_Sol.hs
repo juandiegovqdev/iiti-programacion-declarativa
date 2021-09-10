@@ -1,18 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- # Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- # Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
-
 import Test.QuickCheck
 
 -- -------------------------------------------------------------------
