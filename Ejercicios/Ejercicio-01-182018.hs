@@ -1,8 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                          18 de Enero 2018
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 import Data.List 
 import Test.QuickCheck
