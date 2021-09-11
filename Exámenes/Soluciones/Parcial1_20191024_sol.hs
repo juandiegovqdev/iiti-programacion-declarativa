@@ -2,7 +2,7 @@ import Test.QuickCheck
 import Data.List
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1.1 (2 puntos)
+-- Ejercicio 1.1 
 -- Definir el operador infijo (*&) tal que reciba y devuelva números
 -- reales de doble precisión. El cálculo realizado es la multiplicación
 -- de los dos argumentos redondeado al siguiente entero. El operador debe
@@ -21,7 +21,7 @@ infixl 7 *&   -- es asociativo por la izquierda, precedencia de (*) = 7
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2.1 (2 puntos)
+-- Ejercicio 2.1 
 -- Definir la función (intervalos a b xs), donde xs es una lista de posiciones
 -- en una recta (números reales) que puede venir desordenada, a y b son dos
 -- valores reales que definen un intervalo en dicha recta. Necesitamos que la
@@ -67,7 +67,7 @@ intervalosP a b xs = (takeWhile (<a) xs', takeWhile (<=b) xs'', xs''')
         xs''= dropWhile (<a) xs'
         xs'''= dropWhile (<=b) xs''
 
--- Ejercicio 2.2. (1 punto)
+-- Ejercicio 2.2. 
 -- Comprobar con quickCheck si se cumple lo siguiente: xs es igual al intervalo
 -- comprendido entre el mínimo y el máximo de xs calculado mediante la función
 -- intervalos.
@@ -82,7 +82,7 @@ prop_intervalos xs = (xs == zs)
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (2,5 puntos)
+-- Ejercicio 3.
 -- La función (zigzag xs) sobre una lista cambia el orden de los elementos de
 -- xs tal que el primero de xs va al comienzo, el segundo de xs al final, el
 -- tercero en la segunda posición, el cuarto en la penúltima posición, etc. Es
@@ -128,7 +128,7 @@ zigzagOS xs = map fst (posicionesImpares ++ posicionesPares)
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------  
--- Ejercicio 4.1. (1,5 puntos)
+-- Ejercicio 4.1.
 -- Definir la función (maxListas xss) tal que reciba una lista de listas xss, y devuelva una lista
 -- de pares (i,j), donde i es el índice de la sublista no vacía i-ésima dentro
 -- de xss y j es la posición donde sucede el máximo de la sublista i-ésima, por
