@@ -5,7 +5,7 @@ import Control.Monad
 import Control.Exception (catch, SomeException)
 
 -- ============================================================================
--- Ejercicio 1. (2,5 ptos) Define la función
+-- Ejercicio 1. Define la función
 --   maximoConsecutivos :: (Eq a) => [a] -> Integer
 -- tal que '(maximoConsecutivos xs)' es el número máximo de elementos
 -- consecutivos iguales en la lista 'xs'. Por ejemplo,
@@ -36,7 +36,7 @@ maximoConsecutivos2 xs =
 -- ============================================================================
 
 -- ============================================================================
--- Ejercicio 2. (2,5 ptos) Los árboles binarios con datos en nodos internos y
+-- Ejercicio 2. Los árboles binarios con datos en nodos internos y
 -- hojas se pueden representar con el siguiente tipo de dato:
 
 data Arbol a = H a
@@ -121,7 +121,7 @@ raiz (H v) = v
 raiz (N v _ _) = v
 
 -- ============================================================================
--- Ejercicio 3. (2,5 ptos) El problema de las N torres consiste en colocar 
+-- Ejercicio 3. El problema de las N torres consiste en colocar 
 -- N torres en un tablero con N filas y N columnas de forma que no haya dos
 -- torres en la misma fila ni en la misma columna.  
 --
@@ -191,7 +191,7 @@ torres3 = L.map M.fromLists . L.permutations . M.toLists . M.identity
 -- ============================================================================
 
 -- ============================================================================
--- Ejercicio 4. (2,5 puntos) Define el siguiente programa:
+-- Ejercicio 4. Define el siguiente programa:
 
 -- a) Define una función main, donde primero pida al usuario un nombre de
 -- de fichero, y se recoja el nombre en una variable (0.5 ptos)
