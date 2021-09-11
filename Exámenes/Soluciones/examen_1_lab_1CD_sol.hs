@@ -1,9 +1,5 @@
 import Data.List
 
--- Apellidos: 
--- Nombre:
--- Grupo:
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Definir la funci�n
 --    comprime :: Eq a => [a] -> [(a,Int)]
