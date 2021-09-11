@@ -128,7 +128,7 @@ propaga (N x as) = N x (map (prop x) as)
 -- propagaAux (N y []) a = N (y+a) []
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. (2,5 puntos)
+-- Ejercicio 3. 
 -- ------------------------------------------------------------------- 
 -- Una forma de detectar que todos los paréntesis de una cadena están
 -- cerrados es empleando el siguiente algoritmo basado en pilas:
@@ -161,7 +161,7 @@ comprueba = undefined
 -- -------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 4. (3 puntos)
+-- Ejercicio 4. 
 -- ------------------------------------------------------------------- 
 -- En este ejercicio vamos a trabajar con un Sudoku de 9x9 (solo de 
 -- este tamaño, así que puedes usar el 9 sin problema en las
