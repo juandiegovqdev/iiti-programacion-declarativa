@@ -1,7 +1,7 @@
 import Test.QuickCheck
 
 -- -------------------------------------------------------------------
--- Ejercicio 3 (2 ptos).
+-- Ejercicio 3 
 -- -------------------------------------------------------------------
 -- Una lista de números enteros se llama alternada si sus elementos
 -- son alternativamente par/impar o impar/par.
