@@ -5,7 +5,7 @@ import System.Environment (getArgs)
 
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (3,5 puntos)
+-- Ejercicio 1.
 -- ----------------------------------------------------------------------
 -- Muchos algoritmos de compresión de imágenes se basan en la transformada
 -- discreta del coseno (DCT en inglés). La DCT se aplica sobre una lista
@@ -67,7 +67,7 @@ dctRS' xs k
           dctRF (x:xs) i = x*(cos (pi/n'*(n'+0.5)*i*k)) + (dctRF xs (i+1))
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (3 puntos)
+-- Ejercicio 2. 
 -- ----------------------------------------------------------------------    
 -- En un árbol ternario los nodos tienen como máximo tres hijos.
 -- Suelen ser útiles para almacenar valores en orden: a la izquierda de
@@ -130,7 +130,7 @@ arbolTOrdenado (N v i c d) = (todos (<v) i) && (todos (==v) c) && (todos (>v) d)
           todos p (N v' i _ d) = p v' && todos p i && todos p d
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (3,5 puntos)
+-- Ejercicio 3. 
 -- ----------------------------------------------------------------------
 -- Vamos a aplicar la función DCT definida antes sobre una imagen. Para ello
 -- vamos a cargar una matriz con los valores de los píxeles desde un fichero.
@@ -147,17 +147,17 @@ dct = dctCS
 -- dct = dctRS
 
 -- b) Define una función main, donde primero pida al usuario un nombre de
--- de fichero, y se recoja el nombre en una variable (0.5 ptos)
+-- de fichero, y se recoja el nombre en una variable
 -- c) Si el fichero no existe, debe dar un error explicativo al usuario 
--- y terminar (0.5 ptos)
+-- y terminar 
 -- d) Si el fichero existe, cargar el contenido en una matriz de números
--- reales, donde cada fila sea una fila de la matriz. (0.75ptos)
+-- reales, donde cada fila sea una fila de la matriz
 -- e) Aplicar la DCT al contenido de la matriz. Para ello, hay que recorrer
 -- la matriz por columnas para construir la lista requerida para la función
--- dct (0.75ptos).
+-- dct 
 -- f) Construir una matriz con la salida de la DCT, rellenando primero por
--- columnas (0.75ptos).
--- g) Terminar imprimiendo la matriz (0.25ptos).
+-- columnas 
+-- g) Terminar imprimiendo la matriz
 
 -- Un ejemplo (usando el fichero imagen.txt adjunto al examen):
 -- > main
