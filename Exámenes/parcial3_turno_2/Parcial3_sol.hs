@@ -3,7 +3,7 @@ import I1M.Pila
 import Data.List
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. (2,5 puntos)
+-- Ejercicio 1
 -- ---------------------------------------------------------------------
 -- La sucesión de Loomis generada por un número entero positivo 'x' es la 
 -- sucesión cuyos términos se definen por:
@@ -20,7 +20,7 @@ import Data.List
 -- Generada por 4: 4, 8, 16, 22, 26, 38, 62, 74, 102, 104, 108, 116, 122, 126, 138, …
 -- Generada por 5: 5, 10, 11, 12, 14, 18, 26, 38, 62, 74, 102, 104, 108, 116, 122, …
 
--- Ejercicio 1.a (1 punto) Define la función  
+-- Ejercicio 1.a. Define la función  
 --    sucLoomis :: Integer -> [Integer]
 -- tal que (sucLoomis x) es la sucesión de Loomis generada por x. Por ejemplo,
 --  λ> take 15 (sucLoomis 1)
@@ -60,7 +60,7 @@ siguienteLoomis :: Integer -> Integer
 siguienteLoomis y = y + productoDigitosNoNulos y
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1.b (1,5 puntos) Se observa que a partir de un término todas 
+-- Ejercicio 1.b. Se observa que a partir de un término todas 
 -- coinciden con la generada por el 1. Dicho término se llama el punto de
 -- convergencia. Por ejemplo,
 
@@ -111,7 +111,7 @@ convergencia2 x = aux (sucLoomis2 1) (sucLoomis2 x)
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. (2 puntos)
+-- Ejercicio 2.
 -- ---------------------------------------------------------------------
 -- Los árboles se pueden representar mediante el siguiente tipo de datos
 
@@ -152,7 +152,7 @@ propaga (N x as) = N x (map (prop x) as)
   where prop x (N y as) = (N (x+y) (map (prop (x+y)) as))
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. (2,5 puntos)
+-- Ejercicio 3.
 -- ------------------------------------------------------------------- 
 -- Una forma de detectar que todos los paréntesis de una cadena están
 -- cerrados es empleando el siguiente algoritmo basado en pilas:
@@ -193,7 +193,7 @@ comprueba' ((c,i):cs) p
 -- -------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 4. (3 puntos)
+-- Ejercicio 4.
 -- ------------------------------------------------------------------- 
 -- En este ejercicio vamos a trabajar con un Sudoku de 9x9 (solo de 
 -- este tamaño, así que puedes usar el 9 sin problema en las
