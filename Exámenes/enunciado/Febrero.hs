@@ -11,7 +11,7 @@ import Text.CSV
 import Data.Matrix
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [1 pto]
+-- Ejercicio 1. 
 -- Definir la función largas tal que (largas xs) es la
 -- lista de las palabras más largas de la lista xs. Por ejemplo,
 --    largas ["no", "tengo", "claro", "que", "haga", "sol", "estos", "dias"]
@@ -21,7 +21,7 @@ import Data.Matrix
 largas = undefined
 
 -- -------------------------------------------------------------------
--- Ejercicio 2. [1 pto]
+-- Ejercicio 2. 
 -- Desarrollar una funcion principal (juego) con un programa
 -- interactivo basado en CodeWorld, que inicialmente pinte un círculo
 -- rojo en la parte izquierda de la pantalla y un cuadrado verde
@@ -36,7 +36,7 @@ largas = undefined
 juego = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [1,5 ptos]
+-- Ejercicio 3.
 -- Se considera la funcion aplicaNSats tal que (aplicaNSats n f ps xs)
 -- es la lista obtenida aplicándole la función f a los n primeros
 -- elementos de xs que cumplan alguno de los predicados de ps.
@@ -60,7 +60,7 @@ aplicaNSats2 = undefined
 aplicaNSats3 = undefined
 
 -- -------------------------------------------------------------------
--- Ejercicio 4. [1 pto]
+-- Ejercicio 4. 
 -- Definir la función extremosCola, tal que (extremosCola c) devuelve
 -- un par de elementos con el mínimo y el máximo de la misma, tras
 -- recorrerla una sola vez y sin pasar a lista. Si la cola tiene menos
@@ -82,7 +82,7 @@ c7 = foldr C.inserta C.vacia ([1..10]++[20,19..10])
 extremosCola = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5. 
 -- Se denomina matriz dispersa aquella cuyos elementos son 
 -- mayoritariamente nulos. La representación de matrices dispersas se
 -- suele comprimir en una forma densa, donde se dejan en las filas
@@ -118,7 +118,7 @@ matrizDispersa = undefined
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6. [2,5 ptos]
+-- Ejercicio 6. 
 -- Un árbol Trie es un árbol de búsqueda donde los nodos internos codifican
 -- un alfabeto de Claves y las hojas contienen Valores asociados
 -- a las Claves. A continuación se muestra un ejemplo, donde las Claves
@@ -202,7 +202,7 @@ consultaValor = undefined
 -- ---------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 7. [1,5 ptos]
+-- Ejercicio 7. 
 -- Se desea representar una estructura que almacena datos sobre
 -- categorías deportivas diferenciadas por la web de una importante
 -- cadena especializada en deportes. En relación con esto:
