@@ -3,7 +3,7 @@ import Data.List
 import Test.QuickCheck
 
 -- -------------------------------------------------------------------
--- Ejercicio 1 (1.5 ptos)
+-- Ejercicio 1
 -- Los siguientes apartados están encaminados a representar y manejar
 -- los números binarios con cuatro bits.
 
@@ -82,7 +82,7 @@ esCorrecta = undefined
 -- -------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 2 (2 ptos)
+-- Ejercicio 2
 -- Consideremos la siguientes definiciones para representar números
 -- binarios con cualquier cantidad de bits.
 
@@ -156,7 +156,7 @@ ceros = undefined
 -- -------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 3 (2.5 ptos)
+-- Ejercicio 3 
 -- Los siguientes apartados están encaminados a representar árboles
 -- binarios, mostrarlos gráficamente y colorear sus ramas de forma
 -- interactiva.
@@ -185,7 +185,7 @@ ejemplo = N (True, N (False, (H '*')) '+' (True, (H '*')))
           '*' (False, (H '*'))
 
 -- -------------------------------------------------------------------
--- Ejercicio 4 (2 ptos)
+-- Ejercicio 4 
 -- Las matrices se pueden representar mediante listas de listas. Por
 -- ejemplo, la matriz
 --    |1 2 5| 
@@ -219,7 +219,7 @@ obtenerElemento 0 (x:xs) = x
 obtenerElemento i (x:xs) = obtenerElemento (i-1) xs
 
 -- -------------------------------------------------------------------
--- Ejercicio 5 (2 ptos)
+-- Ejercicio 5 
 -- Los árboles se pueden representar mediante el siguiente tipo de
 -- datos
 
