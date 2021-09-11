@@ -1,7 +1,7 @@
 -- ------------------------------------------------------------------
 import Data.List
 -- ------------------------------------------------------------------
--- Ejercicio 1. (2 puntos)
+-- Ejercicio 1.
 --   Dada una lista de elementos de un tipo a, queremos obtener la longitud de
 --   la secuencia de valores consecutivos de la lista iguales a uno dado.
 --   Por ejemplo, dada la lista numerica:
@@ -29,7 +29,7 @@ secuenciaMasLarga ls c |ls == [] = 0
                        |otherwise =  maximum longs     
                               where longs = longitudes (secuencias ls c)
 -- --------------------------------------------------------------------
--- Ejercicio 2. (3 puntos)
+-- Ejercicio 2. 
 -- Definir una funcion (sumInvImp n) que se verifique si n es un numero
 -- que no termina en cero y
 -- la suma de n con su inverso es un numero con todas las cifras
@@ -72,7 +72,7 @@ inverso n = read (reverse (show n))
 impares :: [Int] -> Bool
 impares xs = and [odd x | x <- xs]
 -- --------------------------------------------------------------------
--- Ejercicio 3. (2 puntos)
+-- Ejercicio 3. 
 -- Definir una funcion (ramaAladerecha ar) que, dado un arbol del tipo
 data Arbol a =  Nodo a [Arbol a] deriving Show
 -- devuelva la rama mas a la derecha del arbol ar, es decir, la lista de
