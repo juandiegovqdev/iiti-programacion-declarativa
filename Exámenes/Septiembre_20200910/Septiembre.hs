@@ -148,7 +148,7 @@ arbolTOrdenadoDerAux a (N b x1 x2 x3)
     | otherwise = False
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (3,5 puntos)
+-- Ejercicio 3.
 -- ----------------------------------------------------------------------
 -- Vamos a aplicar la función DCT definida antes sobre una imagen. Para ello
 -- vamos a cargar una matriz con los valores de los píxeles desde un fichero.
@@ -165,17 +165,17 @@ dct = dctCS
 --dct = dctRS
 
 -- b) Define una función main, donde primero pida al usuario un nombre de
---    de fichero, y se recoja el nombre en una variable (0.5 ptos)
+--    de fichero, y se recoja el nombre en una variable
 -- c) Si el fichero no existe, debe dar un error explicativo al usuario 
---    y terminar (0.5 ptos)
+--    y terminar 
 -- d) Si el fichero existe, cargar el contenido en una matriz de números
---    reales, donde cada fila sea una fila de la matriz. (0.75ptos)
+--    reales, donde cada fila sea una fila de la matriz. 
 -- e) Aplicar la DCT al contenido de la matriz. Para ello, hay que recorrer
 --    la matriz por columnas para construir la lista requerida para la función
---    dct (0.75ptos).
+--    dct 
 -- f) Construir una matriz con la salida de la DCT, rellenando primero por
---    columnas (0.75ptos).
--- g) Terminar imprimiendo la matriz (0.25ptos).
+--    columnas
+-- g) Terminar imprimiendo la matriz 
 
 -- Un ejemplo (usando el fichero imagen.txt adjunto al examen):
 -- > main
@@ -192,13 +192,13 @@ dct = dctCS
 -- └                                                                       ┘
 
 -- d) Si el fichero existe, cargar el contenido en una matriz de números
---    reales, donde cada fila sea una fila de la matriz. (0.75ptos)
+--    reales, donde cada fila sea una fila de la matriz
 -- e) Aplicar la DCT al contenido de la matriz. Para ello, hay que recorrer
 --    la matriz por columnas para construir la lista requerida para la función
---    dct (0.75ptos).
+--    dct
 -- f) Construir una matriz con la salida de la DCT, rellenando primero por
---    columnas (0.75ptos).
--- g) Terminar imprimiendo la matriz (0.25ptos).
+--    columnas 
+-- g) Terminar imprimiendo la matriz 
 
 main :: IO()
 main = do
