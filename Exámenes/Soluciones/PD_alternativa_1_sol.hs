@@ -2,7 +2,7 @@
 import Test.QuickCheck
 import Data.List -- Se puede utilizar la funcion nub
 -- =================================================================
--- Ejercicio 1 [3 puntos]
+-- Ejercicio 1 
 -- (a) Define usando listas por comprension la funcion
 --      mulPosC :: Int ->  [Int] -> [Int]
 -- tal que (mulPosC x xs) devuelve los elementos de xs que son 
@@ -20,7 +20,7 @@ mulPosR x (y:ys) | y > 0 && rem y x == 0 = y:mulPosR x ys
                  | otherwise = mulPosR x ys
 
 -- ==================================================================
--- Ejercicio 2 [3 puntos]
+-- Ejercicio 2 
 -- Diremos que una lista numerica es muy creciente si cada elemento es
 -- mayor estricto que el doble del anterior. 
 -- (a) Define el predicado 
@@ -50,7 +50,7 @@ f x n = 2*f x (n-1) + 1
 lista :: Int -> Integer -> [Integer]
 lista n x = take n [f x i | i <- [0..]]
 -- ===================================================================
--- Ejercicio 3.  (1 puntos)
+-- Ejercicio 3.  
 -- Decimos que los numeros m y n estan relacionados si
 -- tienen los mismos divisores primos.
 -- (a) Definir la funcion 
@@ -75,9 +75,8 @@ esPrimo n = divisores n == [1,n]
 divisoresPrimos n = 
     [x | x <- [1..n], n `rem` x == 0, esPrimo x]
 
--- ==================================================================
 -- ----------------------------------------------------------------------------
--- Ejercicio 4. (3 puntos) El nivel de una lista es el numero de
+-- Ejercicio 4. El nivel de una lista es el numero de
 -- elementos mayores que 1 menos el numero de elementos menores que 1.
 -- Definir POR COMPRENSION, POR RECURSION Y PLEGADO la funcion 
 --    nivel :: [Integer] -> Integer
