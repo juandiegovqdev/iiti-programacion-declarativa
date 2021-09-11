@@ -1,9 +1,5 @@
 import Data.List
 
--- Apellidos: 
--- Nombre:
--- Grupo:
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 1. Supongamos que queremos convertir la sucesi�n ordenada
 -- de las p�ginas en las que aparece un concepto en la entrada de dicho
