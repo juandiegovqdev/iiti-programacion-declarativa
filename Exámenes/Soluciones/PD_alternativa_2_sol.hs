@@ -1,5 +1,5 @@
 -- --------------------------------------------------------------------
--- Ejercicio 1 . (3 puntos)
+-- Ejercicio 1 . 
 -- A) Definir una funcion (ramaCentral ar) que, dado un arbol ternario
 -- que responde al tipo:
 data Arbol a =  H a  | N a (Arbol a) (Arbol a) (Arbol a)
@@ -43,7 +43,7 @@ ramas (N x ai ac ad) = [x:ys|ys<-ramas ai]++[x:ys|ys<-ramas ac]++[x:ys|ys<-ramas
 mini (H x) = x
 mini (N x ai ac ad) = minimum [x, mini ai, mini ac, mini ad]
 -- --------------------------------------------------------------------
--- Ejercicio 2 . (4 puntos)
+-- Ejercicio 2 . 
 -- Los divisores medios de un n�mero son los que ocupan la
 -- posici�n media entre los divisores de n, ordenados de menor a mayor. Por
 -- ejemplo, los divisores de 60 son [1,2,3,4,5,6,10,12,15,20,30,60] y sus
@@ -96,7 +96,7 @@ arbolFac x |primo x = Hoja x
            where (i,d) = divisoresMedios x
                  primo n = length (divisores n) == 2
 -- --------------------------------------------------------------------
--- Ejercicio 3 . (2 puntos)
+-- Ejercicio 3 . 
 -- Una tanda de longitud n de una lista xs es una sublista de xs
 -- formada por n elementos iguales.
 --
@@ -116,7 +116,7 @@ tandas n xs@(x:_)
     where ys = takeWhile (x==) xs
 
 -- --------------------------------------------------------------------
--- Ejercicio 4 . (1 punto)
+-- Ejercicio 4 . 
 -- Una funci�n de precio determina el precio de cada elemento; por
 -- ejemplo,
 precioCI :: String -> Int
