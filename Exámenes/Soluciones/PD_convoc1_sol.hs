@@ -1,5 +1,5 @@
 -- --------------------------------------------------------------------
--- Ejercicio 1 . (4 puntos)
+-- Ejercicio 1 . 
 -- A) Definir una funcion (ramaFinal ar) que, dado un arbol
 -- que responde al tipo:
 data Arbol a =  N a [Arbol a]
@@ -56,7 +56,7 @@ mini (N x []) = x
 mini (N x ars) = minimum ( x: (map mini ars))
 
 -- --------------------------------------------------------------------
--- Ejercicio 2. (3 puntos)
+-- Ejercicio 2. 
 --  Define POR COMPRENSION Y RECURSION la funcion:
 rep :: Int -> [a] -> [a]
 -- que repite cada elemento de la lista origen desde 1 hasta n veces
@@ -74,7 +74,7 @@ rep1 _ [] = []
 rep1 n xs |n>length xs = rep1 (n-1) xs
           |otherwise = rep1 (n-1) (init xs) ++ (repite n (xs!!(n-1)))
 -- --------------------------------------------------------------------
--- Ejercicio 3. (1,5 puntos)
+-- Ejercicio 3. 
 -- Definir la funcion 
 cortainter :: Int -> [a] -> [a]
 -- tal que (cortainter n xs) corta la lista por la posicion n y devuelve la
@@ -89,7 +89,7 @@ cortainter n xs = inter (take n xs) (drop n xs)
           inter xs [] = xs
           inter (x:xs) (y:ys) = x:y:(inter xs ys)  
 -- --------------------------------------------------------------------
--- Ejercicio 4. (1,5 puntos)
+-- Ejercicio 4. 
 -- Define una funcion 
 cuantosaplic :: [(a -> Bool)] -> [a] -> [Int]
 -- que recibe una lista de predicados ps y una lista de valores xs y devuelve
