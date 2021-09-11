@@ -1,5 +1,5 @@
 -- ------------------------------------------------------------------
--- EJERCICIO 1.1: (0,5 PUNTOS)
+-- EJERCICIO 1.1: 
 -- Definir el tipo Cuadrado para representar un par de números
 -- naturales, el tamaño de la base y la altura de un cuadrado.
 -- SOLUCIÓN: 
@@ -16,7 +16,7 @@ type Cuadrado = (Int, Int)
 data ArbolC = HojaC Cuadrado | RamasC ArbolC ArbolC
 
 -- ------------------------------------------------------------------
--- EJERCICIO 1.3: (1 PUNTO)
+-- EJERCICIO 1.3: 
 -- Definir la función hojaMayor para calcular el cuadrado de mayor
 -- tamaño almacenado en un árbol.
 -- SOLUCIÓN: 
@@ -26,7 +26,7 @@ hojaMayorC (HojaC (x, y)) = x*y
 hojaMayorC (RamasC  x y) = max (hojaMayorC x) (hojaMayorC y)
 
 -- ------------------------------------------------------------------
--- EJERCICIO 1.4: (1 PUNTO)
+-- EJERCICIO 1.4:
 -- Calcular el valor de hojaMayorC aplicada al arbol:
                        --         .
                        --       /   \
@@ -44,7 +44,7 @@ hojaMayorC (RamasC  x y) = max (hojaMayorC x) (hojaMayorC y)
 -- 20
 
 -- ------------------------------------------------------------------
--- EJERCICIO 2.1: (1 PUNTO)
+-- EJERCICIO 2.1: 
 -- Dado el siguiente tipo de árboles.
 
 data ArbolL a = HojaL [a] | NodoL [ArbolL a]
@@ -57,7 +57,7 @@ elementos (HojaL x) = x
 elementos (NodoL xs) = concat (map elementos xs)
 
 -- ------------------------------------------------------------------
--- EJERCICIO 2.2: (1 PUNTO)
+-- EJERCICIO 2.2: 
 -- Calcular los elementos del arbol:
                      --           .
                      --       /   |   \
@@ -76,7 +76,7 @@ elementos (NodoL xs) = concat (map elementos xs)
 -- [1,2,1,2,3,1,2,3]
 
 -- --------------------------------------------------------------------- 
--- EJERCICIO 3: (1,5 PUNTOS)
+-- EJERCICIO 3: 
 -- Definir una funcion peta tal que (peta xss) devuelve un par formado
 -- por la lista de los primeros elementos de las listas no vacias de xss 
 -- y la lista de los ultimos elementos de las listas no vacias de xs.
@@ -91,7 +91,7 @@ borra xs (zs:zss) |xs == zs = borra xs zss
                   |otherwise = zs:(borra xs zss)
                                
 -- ---------------------------------------------------------------------
--- EJERCICIO 4: (1,5 PUNTOS)
+-- EJERCICIO 4: 
 -- Supongamos que queremos convertir la sucesión ordenada
 -- de las páginas en las que aparece un concepto en la entrada de dicho
 -- concepto en el índice del libro. Por ejemplo, la sucesión 1, 3, 4, 6,
