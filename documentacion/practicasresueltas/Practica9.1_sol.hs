@@ -1,8 +1,3 @@
--- PD- 2020/21
--- Correspondiente a Relación 21 de I1M 2019-20
--- El TAD de las pilas.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
