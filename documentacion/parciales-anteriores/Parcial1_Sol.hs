@@ -1,27 +1,8 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 1                                   15 de Noviembre de 2018
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Parcial1_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- -------------------------------------------------------------------
-
 import Test.QuickCheck
 import CodeWorld
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [0.75 ptos]
+-- Ejercicio 1. 
 -- En geometría, la fórmula de Brahmagupta, dice que:
 -- el área de un cuadrilátero cuyo lados miden a, b, c y d es la raíz
 -- cuadrada de (s-a)(s-b)(s-c)(s-d), donde s es el semiperímetro 
@@ -40,7 +21,7 @@ area a b c d = sqrt r
         s = (a+b+c+d)/2
         
 -- -------------------------------------------------------------------
--- Ejercicio 2. [0.75 ptos]
+-- Ejercicio 2. 
 -- Defina una función comparaDistintos, explicitando su tipo,
 -- tal que reciba dos argumentos y devuelva un resultado, de modo que:
 -- a. El tipo de los argumentos sea polimórfico (no concreto):
@@ -67,7 +48,7 @@ comparaDistintos x y
     where m = fromIntegral x
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [1 pto]
+-- Ejercicio 3. 
 -- Definir la función casi_extremos tal que (casi_extremos n xs) es
 -- la lista formada por los n primeros elementos de xs (salvo el primero)
 -- y los n elementos finales de xs (salvo el ultimo).
@@ -87,7 +68,7 @@ casi_extremos n xs
 finales n xs = reverse (take n (reverse xs))
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. [0.5 ptos]
+-- Ejercicio 4. 
 -- Definir una propiedad prop_casiext_reverse (y probarla con QuickCheck)
 -- que indique que invertir la lista de los casi extremos n xs
 -- es equivalente a
@@ -102,7 +83,7 @@ prop_casiext_reverse n xs = n>0 && xs /= [] ==>
 -- Llamada: quickCheck prop_casiext_reverse
 
 -- -------------------------------------------------------------------
--- Ejercicio 5. [1 pto]
+-- Ejercicio 5. 
 -- Defina una función cumpleUnoDeTres,
 -- que reciba como argumentos un predicado y una lista de elementos,
 -- e indique si uno y solo uno de cada grupo de 3 elementos de la
@@ -127,7 +108,7 @@ cumpleUnoDeTres p (x:y:z:xs) =
   length (filter p [x,y,z]) == 1 && cumpleUnoDeTres p xs
 
 -- -------------------------------------------------------------------
--- Ejercicio 6. [1.5 ptos]
+-- Ejercicio 6. 
 -- Desarrolle una función principal, main, con una animación usando
 -- CodeWorld, de modo que la escena incluya un fondo estático (basta
 -- con un cuadrado negro que ocupe la mayor parte de la pantalla),
@@ -161,7 +142,7 @@ cuadradoMovil t = translated (tam*sin(t-tam)) 0 (cuadrado 1)
 -- Se decide permitir que el cuadrado móvil se salga del fondo
 
 -- -------------------------------------------------------------------
--- Ejercicio 7. [1 pto]
+-- Ejercicio 7. 
 -- Dada la siguiente información acerca de personas, incluyendo su
 -- nombre, ámbito en que destacaron, y rango en que vivieron dado por
 -- (inicio, fin):
@@ -204,7 +185,7 @@ primero_destacado x bd = head coincidentes
     coincidentes = [n | (n,c) <- cs, c==minimoAI]
 
 -- ---------------------------------------------------------------------
--- Ejercicio 8. [2 ptos]
+-- Ejercicio 8. 
 -- Se considera la función procesaNoValidos
 -- :: (Num a, Ord b) => (a -> b) -> (a -> b) -> (a -> Bool) -> [a] -> [b]
 -- tal que (procesaNoValidos f g p xs) es la lista obtenida aplicándole a
@@ -249,7 +230,7 @@ procesaNoValidos_6 :: (Num a, Ord b) => (a -> b) -> (a -> b) -> (a -> Bool) -> [
 procesaNoValidos_6 f g p = foldl (\acc x -> if not (p x) then acc++[max (f x) (g x)] else acc) []
 
 -- ---------------------------------------------------------------------
--- Ejercicio 9. [1.5 ptos]
+-- Ejercicio 9. 
 -- Escriba un programa de Entrada y Salida que haga lo siguiente:
 -- 1. Imprima un mensaje por pantalla solicitando un número natural al
 --    usuario
