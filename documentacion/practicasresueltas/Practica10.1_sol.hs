@@ -1,9 +1,3 @@
--- PD 2020-21. Solución. Vectores y matrices con Data.Array.
--- Tomado de la asignatura I1M.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
