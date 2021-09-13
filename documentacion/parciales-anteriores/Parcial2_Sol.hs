@@ -1,22 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 2                                       17 de Enero de 2019
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Parcial2_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 
@@ -32,7 +13,7 @@ import Control.Parallel.Strategies
 import Control.DeepSeq
 
 -- -------------------------------------------------------------------
--- Ejercicio 1. [1.5 ptos]
+-- Ejercicio 1. 
 -- En relación con el juego del cuatro en raya...
 --
 -- 1. Defina los tipos siguientes:
@@ -63,7 +44,7 @@ colocarFicha2 f n (CR2 cs) = CR2 [if p==n then (f:c) else c | (c,p) <- (zip cs [
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. [1.5 ptos]
+-- Ejercicio 2. 
 -- Se plantea la necesidad de trabajar con árboles que adopten tipos
 -- flexibles. Para ello:
 --
@@ -102,7 +83,7 @@ devuelveValidos p (Nodo (x,y) a1 a2 a3) = (ly++b1++b2++b3,c1++c2++c3)
         ly = if p x then [y] else []
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3.
 
 -- 1. Defina, con sintaxis de registro, un nuevo tipo que contenga la
 --    información sobre planetas que aparecen en las películas
@@ -191,7 +172,7 @@ processPlanets planets = do
 
 
 -----------------------------------------------------------------------
--- Ejercicio 4. [1 pto]
+-- Ejercicio 4.
 --
 -- El siguiente programa carga el contenido del fichero "cars-2018.csv",
 -- lo parsea y posteriormente procesa cabecera y cuerpo, que
@@ -246,7 +227,7 @@ procesaContenido csv = do
             putStrLn $ show (length (pasaALista bstyles))
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5.
 -- Se denomina matriz dispersa aquella cuyos elementos son 
 -- mayoritariamente nulos. La representación de matrices dispersas se
 -- suele realizar de forma densa, es decir, dejando los elementos no
@@ -293,7 +274,7 @@ matrizDensa p = fromLists [completaLista m (colsNoNulas i p) (0,0.0) | i <- [1..
         longFila i = length (colsNoNulas i p)
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6. [1 pto]
+-- Ejercicio 6.
 -- Representamos las pilas mediante el TAD definido en el fichero
 -- incluido en la cabecera del enunciado. Empleando solo las funciones
 -- del TAD (sin convertir los datos a listas), definir la función
@@ -319,7 +300,7 @@ ultimoElemPila' p pila e
         d = desapila pila
 
 -- ---------------------------------------------------------------------
--- Ejercicio 7.1 [0.25 ptos]
+-- Ejercicio 7.1 
 -- Un número entero n es libre de cuadrados si no existe un número primo
 -- p tal que p^2 divide a n. Por ejemplo, 10 es libre de cuadrado porque
 -- 10 = 2*5, pero 12 no lo es porque es divisible entre 2^2. Definir
@@ -341,7 +322,7 @@ primo x = divisores x == [1,x]
 divisores :: Int -> [Int]
 divisores x = [y | y <- [1..x], rem x y == 0]
 
--- Ejercicio 7.2 [0.25 ptos] Paralelizar la definición de libresDeCuadrado
+-- Ejercicio 7.2. Paralelizar la definición de libresDeCuadrado
 -- empleando la función parallel map vista en teoría. Indicar en un
 -- comentario cuál es el speedup alcanzado cuando se compara la versión
 -- secuencial (anterior) y paralela (aquí solicitada) con m=5000.
