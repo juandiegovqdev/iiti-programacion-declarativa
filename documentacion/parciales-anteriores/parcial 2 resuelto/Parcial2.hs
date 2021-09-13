@@ -1,12 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 2                                      22 de Diciembre de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
-
 import System.Environment (getArgs)
 import Control.Exception (catch, SomeException)
 import System.Directory
@@ -20,7 +11,7 @@ import Test.QuickCheck
 -- ------------------------------ --
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (2 puntos)
+-- Ejercicio 1. 
 -- Define la función (parte ns xs), tal que dadas una lista de enteros 'ns' 
 -- y una lista de elementos 'xs' (de cualquier tipo), devuelva una lista de
 -- listas con los segmentos de 'xs' de tamaños según la lista 'ns'. Esto se ve
@@ -34,18 +25,18 @@ import Test.QuickCheck
 -- > parte [3,3] [1..5] 
 -- [[1,2,3],[4,5]]
 
--- Ejercicio 1.a. (0,75 puntos) 
+-- Ejercicio 1.a. 
 -- Define la función (parte n xs) con recursión
 
 parte = undefined
 
--- Ejercicio 1.b. (0,75 puntos) 
+-- Ejercicio 1.b.
 -- Define la función (parte n xs) haciéndote valer del plegado por la
 -- izquierda (foldl)
 
 parte' = undefined
 
--- Ejercicio 1.c. (0,5 puntos)
+-- Ejercicio 1.c. 
 -- Comprueba con QuickCheck que la longitud del resultado de evaluar
 -- (parte ns xs) es igual a la longitud de ns, siempre y cuando se cumpla que:
 --   * la suma de los elementos de ns es igual a la longitud de xs.
@@ -58,7 +49,7 @@ prop_parte = undefined
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. (1,5 puntos)
+-- Ejercicio 2. 
 -- Define la función
 --   agrupa :: (Ord a) => [a] -> [a] -> ( [[a]] , [[a]] )
 -- tal que (agrupa xs ys) reciba dos listas de elementos 'xs' e 'ys'
@@ -92,15 +83,14 @@ agrupa = undefined
 
 -- ---------------------------------------------------------------------
 
-
 -- ------------------------------ --
 -- PARTE B del examen, 40 minutos --
 -- ------------------------------ --
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. (2 puntos)
+-- Ejercicio 3. 
 
--- Ejercicio 3.a. (0,5 puntos)
+-- Ejercicio 3.a. 
 -- Declara el tipo Tabla con un solo constructor, T, tal que sirva
 -- para representar una tabla de datos cuyos valores son de tipo 'a'
 -- (polimórfico). El constructor T debe tener asociados los siguientes 
@@ -115,7 +105,7 @@ agrupa = undefined
 
 -- Tabla = ....
 
--- Ejercicio 3.b. (1,5 puntos)
+-- Ejercicio 3.b. 
 -- Para este ejercicio vamos a usar la función agrupa que debiste definir
 -- en el ejercicio 2. Si no la pudiste definir, puedes hacer uso de la 
 -- definición siguiente de juguete (aunque no haga lo que debería, la 
@@ -163,7 +153,7 @@ agrupaPor = undefined
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. (1,5 puntos)
+-- Ejercicio 4. 
 -- Los árboles binarios con valores distintos en nodos y en hojas se 
 -- pueden representar mediante el tipo Arbol definido por 
 
@@ -209,13 +199,12 @@ ej3 = (N 29 (H 1) (N 524 (H 1) (H 1)))
 maximosHojas :: Arbol Int Int -> Arbol (Int,Int) Int
 maximosHojas = undefined
 
-
 -- ------------------------------ --
 -- PARTE C del examen, 30 minutos --
 -- ------------------------------ --
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. (3 puntos)
+-- Ejercicio 5.
 -- Escribir un programa compilable y ejecutable desde la terminal que reciba
 -- como parámetros la ruta de un fichero de entrada CSV y el nombre de 2
 -- columnas. Es decir, la llamada es:
