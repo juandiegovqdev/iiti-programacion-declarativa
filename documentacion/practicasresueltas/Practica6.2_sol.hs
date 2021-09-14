@@ -1,9 +1,3 @@
--- PD Practica 6.2 Solución
--- Funciones de orden superior y definiciones por plegados (II)
--- Departamento de Ciencias de la Computación e Inteligencia Artificial
--- Universidad de Sevilla
--- ============================================================================
-
 -- ============================================================================
 -- Librerías auxiliares
 -- ============================================================================

@@ -1,9 +1,3 @@
--- PD-Práctica 8.4 Solución
--- Árboles Trie
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Un árbol Trie es un árbol de búsqueda donde los nodos internos codifican
 -- un alfabeto de Claves y las hojas contienen Valores asociados

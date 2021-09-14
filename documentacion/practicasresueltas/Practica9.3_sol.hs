@@ -1,9 +1,3 @@
--- PD
--- El TAD de los multiconjuntos mediante diccionarios.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------

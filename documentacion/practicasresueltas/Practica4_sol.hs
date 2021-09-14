@@ -1,9 +1,3 @@
--- PD-Práctica 4 Sol
--- Definiciones por comprensión con cadenas: El cifrado César.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------

@@ -1,37 +1,3 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 3                                       16 de Enero de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:   Parcial3_<codigo>_<uvus>.hs
---    donde "<uvus>" es tu UVUS y "<codigo>" es el código alfanumérico
---    en tu hoja del enunciado.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y no lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. ESCRIBE tus apellidos, nombre y UVUS en la hoja del enunciado, y
---    entrégala al profesor.
--- 6. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrate de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Matrix
@@ -40,7 +6,7 @@ import CodeWorld
 import Control.Parallel.Strategies
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (2 puntos)
+-- Ejercicio 1. 
 -- ----------------------------------------------------------------------
 -- La serie de Thue-Morse comienza con el término [0] y sus siguientes
 -- términos se construyen añadiéndole al anterior su complementario. Los
@@ -80,7 +46,7 @@ serieThueMorse2 = iterate paso [0]
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (2,5 puntos)
+-- Ejercicio 2. 
 -- ----------------------------------------------------------------------
 -- Una matriz cuadrada se puede descomponer en cuatro sectores (o
 -- submatrices de mismo tamaño) como sigue:
@@ -163,7 +129,7 @@ quadTreeAux i1 i2 j1 j2 m
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (3 puntos)
+-- Ejercicio 3.
 -- ----------------------------------------------------------------------
 -- Construye un pequeño juego en CodeWorld donde hayan una circunferencia
 -- estática y un circulo que el usuario pueda mover con el teclado. Por
@@ -245,11 +211,10 @@ main = do putStr "Introduzca x: "
           putStr "Introduzca r: "
           rs <- getLine
           juego (read xs) (read ys) (read rs)
-          
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 4. (2,5 puntos)
+-- Ejercicio 4. 
 -- ----------------------------------------------------------------------
 -- En los gráficos en 3D, la triangulación de polígonos es una operación
 -- crítica. Una triangulación de un polígono es una división del área
@@ -335,4 +300,3 @@ Tiempo 2 procesadores: Total   time   12.194s  (  6.096s elapsed)
 Aceleración: 10.762s / 6.096s = 1.76x (tiempo recogido en un Intel i7)
 -}
 -- ----------------------------------------------------------------------
-    

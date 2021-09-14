@@ -1,17 +1,10 @@
--- PD: Práctica sobre acceso a fuentes de datos en ficheros.
--- Departamento de Ciencias de la Computación e I.A.
--- Universidad de Sevilla
--- =====================================================================
-
 -- ---------------------------------------------------------------------
 -- Introducción                                                       --
 -- ---------------------------------------------------------------------
 
---
 -- Esta práctica trata de asentar algunos de los primeros conceptos
 -- introducidos en el tema de entrada y salida con ficheros.
 
- 
 -- ---------------------------------------------------------------------
 -- Importación de librerías                                           --
 -- ---------------------------------------------------------------------
