@@ -1,12 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 3 (turno 1)                                21 de Enero de 2021
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
-
 import Data.Array
 import Data.List
 --import I1M.Cola
@@ -14,7 +5,7 @@ import ColaConListas
 import System.Directory
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. (2,5 puntos)
+-- Ejercicio 1.
 -- ---------------------------------------------------------------------
 -- La siguiente sucesión de números naturales
 --    binarioPar :: [Integer]
@@ -23,7 +14,7 @@ import System.Directory
 -- 1, 3, 4, 5, 7, 9, 11, 12, 13, 15, 16, 17, 19, 20, 21, 23, 25, 27, 28,...
 -- Porque: 1 acaba en 0 ceros, 3 acaba en 0 ceros, 4 acaba en 2 ceros, ...
 
--- Ejercicio 1.a (1 punto) Define la función usando recursión y/o
+-- Ejercicio 1.a. Define la función usando recursión y/o
 -- comprensión, incluyendo las funciones auxiliares.
 
 binarioPar :: [Integer]
@@ -39,11 +30,11 @@ nat2bin :: Integer -> [Integer]
 nat2bin n | n < 2 = [n]
           | otherwise = (rem n 2):nat2bin (div n 2)
 
--- Ejercicio 1.b (1,5 puntos) Define la función solo usando funciones de
+-- Ejercicio 1.b. Define la función solo usando funciones de
 -- orden superior, incluyendo las funciones auxiliares.
 -- Nota 1: puede ser de utilidad la funcion (iterate f n)
 -- Nota 2: si usas las funciones auxiliares del apartado anterior, el
--- ejercicio se evalúa pero con la mitad de puntuación (0,75 puntos).
+-- ejercicio se evalúa pero con la mitad de puntuación.
 
 binarioParO :: [Integer]
 binarioParO = filter (parCeros'.nat2bin') [1..]
@@ -56,11 +47,10 @@ nat2bin' = map (\x -> rem x 2) . takeWhile (/=0) . iterate (\x -> div x 2)
 
 -- también se puede hacer así:
 nat2bin'' = map ((flip rem) 2) . takeWhile (/=0) . iterate ((flip div) 2) 
-
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. (2,5 puntos)
+-- Ejercicio 2. 
 -- ---------------------------------------------------------------------
 -- Un árbol binario está balanceado si para cada nodo, el número de 
 -- elementos por el subárbol izquierdo y por el derecho es aproximadamente
@@ -107,11 +97,10 @@ creaArbol xs = N x (creaArbol xs1) (creaArbol xs2')
 aplana :: Arbol a -> [a]
 aplana (H) = []
 aplana (N x i d) = x: aplana i ++ aplana d
-
 -- ---------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. (2 puntos)
+-- Ejercicio 3.
 -- ------------------------------------------------------------------- 
 -- Vamos a implementar un sistema de cintas de productos mediante una
 -- lista de colas. Las cintas están conectadas entre sí, de tal manera
@@ -154,24 +143,24 @@ restoG (c1:c2:cs) = (inserta p (resto c1)):restoG (c2:cs)
 -- ------------------------------------------------------------------- 
 
 -- -------------------------------------------------------------------
--- Ejercicio 4. (3 puntos)
+-- Ejercicio 4. 
 -- ------------------------------------------------------------------- 
 -- En este ejercicio vamos a trabajar con un Sudoku de 9x9 (solo de 
 -- este tamaño, así que puedes usar el 9 sin problema en las
 -- soluciones). 
 
--- Ejercicio 4.a (0,5 puntos) Define el tipo Sudoku, el cual es sinónimo
+-- Ejercicio 4.a. Define el tipo Sudoku, el cual es sinónimo
 -- de una matriz de dos dimensiones cuyos valores son enteros.
 
 type Sudoku = Array (Int,Int) Int
 
--- Ejercicio 4.b (2,5 puntos) Define un programa interactivo donde:
---    * (1 punto) Se le pida al usuario un nombre de fichero, y éste se
+-- Ejercicio 4.b. Define un programa interactivo donde:
+--    * Se le pida al usuario un nombre de fichero, y éste se
 --      cargue si existe el fichero, si no devuelve un mensaje de error
 --      "Fichero no existente" y acaba. El contenido del fichero se debe
 --      procesar para crear una variable de tipo Sudoku (matriz de dos
 --      dimensiones de enteros.)
---    * (1,5 puntos) Se le pida al usuario una fila, una columna, e imprima
+--    * Se le pida al usuario una fila, una columna, e imprima
 --      la lista de números que pueden introducirse en esa posición. Si la
 --      posición corresponde a un 0, entonces sería una lista vacía.
 -- Ejemplos:
@@ -236,5 +225,4 @@ main = do
     let c = read cs :: Int
     let xs = posibilidades f c sudoku
     putStrLn $ "Los números posibles son:" ++ (show xs)
-
 -- -------------------------------------------------------------------

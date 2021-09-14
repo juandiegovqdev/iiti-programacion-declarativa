@@ -1,9 +1,3 @@
--- ColaConDosListas.hs
--- Implementación de las colas mediante dos listas.
--- José A. Alonso Jiménez <jalonso@us.es>
--- Sevilla, 11 de Septiembre de 2010
--- ---------------------------------------------------------------------
-
 -- En esta implementación, una cola c se representa mediante un par de
 -- listas (xs,ys) de modo que los elementos de c son, en ese orden, los
 -- elementos de la lista xs++(reverse ys).

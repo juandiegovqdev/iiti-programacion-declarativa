@@ -1,37 +1,3 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 1a Convocatoria                                   3 de Febrero de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:   Febrero_<codigo>_<uvus>.hs
---    donde "<uvus>" es tu UVUS y "<codigo>" es el código alfanumérico
---    en tu hoja del enunciado.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y no lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. ESCRIBE tus apellidos, nombre y UVUS en la hoja del enunciado, y
---    entrégala al profesor.
--- 6. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrate de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 {-
 -- Esto es parte de la solución al ejercicio 2.1. Se deja comentado
@@ -57,7 +23,7 @@ import Control.Parallel.Strategies (Eval,runEval,rpar)
 import Control.DeepSeq
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (2 puntos)
+-- Ejercicio 1. 
 -- ----------------------------------------------------------------------
 -- Una forma de transmitir valores numéricos en binario de manera compacta
 -- es la codificación unaria. Una variante es la siguiente:
@@ -96,10 +62,10 @@ decodificaR bs = decodificaR' bs 0 False
 
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (2 puntos)
+-- Ejercicio 2. 
 -- ----------------------------------------------------------------------
 
--- Ejercicio 2.1 (1,5 puntos) Implementar el TAD Pila usando el diccionario 
+-- Ejercicio 2.1. Implementar el TAD Pila usando el diccionario 
 -- Data.Map. Se debe indicar en un breve comentario cual es el diseño 
 -- seguido (es decir, qué se almacena como clave y qué como valor). No
 -- se permite la traducción a listas, por lo que se debe hacer uso 
@@ -144,7 +110,7 @@ cima p = p M.! 1
 desapila :: Pila a -> Pila a
 desapila p = M.mapKeys (\k -> k-1) (M.delete 1 p)
 
--- Ejercicio 2.2 (0,5 puntos). En un Data.Maybe, devolver simplemente 
+-- Ejercicio 2.2. En un Data.Maybe, devolver simplemente 
 -- el máximo valor de la pila, o nada si la pila está vacía. 
 -- Nota: Si no has podido hacer el ejercicio 2.1, puedes importar el 
 -- fichero TADPila.hs, adjunto al examen. Por ejemplo,
@@ -159,7 +125,7 @@ maximo p | esVacia p = Nothing
                     | otherwise = maximo' (desapila p) (max m (cima p))
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (2 puntos)
+-- Ejercicio 3. 
 -- ----------------------------------------------------------------------
 -- Un árbol binario se puede definir con el siguiente tipo de dato algebráico:
 
@@ -185,14 +151,14 @@ data Arbol a = H a
 --   ejArbol1 y ejArbol2 no están ordenados. ejArbol3 y ejArbol4 son la
 --   versión ordenada de ejArbol1 y ejArbol2, respectivamente.
 
--- Ejercicio 3.1 (0,5 puntos). Comprueba con QuickCheck que el número de 
+-- Ejercicio 3.1. Comprueba con QuickCheck que el número de 
 -- nodos de un árbol binario es siempre impar. Se valorará con 0,5 si se
 -- define la función con composición de funciones, y 0,25 en otro caso.
 
 prop_arboles_binarios :: Arbol a -> Bool
 prop_arboles_binarios = odd . length . nodos
   
--- Ejercicio 3.2 (1,5 puntos). Define la función (ordena a), tal que reciba
+-- Ejercicio 3.2. Define la función (ordena a), tal que reciba
 -- un árbol binario balanceado, a, y devuelva un árbol binario balanceado y
 -- ordenado con los mismos valores de a.
 -- Nota 1: puedes usar listas o cualquier módulo que te sea útil
@@ -221,7 +187,7 @@ arbolOrdenado xs = N r (arbolOrdenado as) (arbolOrdenado (tail bs))
         r = head bs
 
 -- ----------------------------------------------------------------------
--- Ejercicio 4. (2 puntos)
+-- Ejercicio 4. 
 -- ----------------------------------------------------------------------
 -- Vamos a definir un laberinto en una matriz de caracteres usando para
 -- ello:
@@ -296,9 +262,9 @@ inicio m = (m, head [(i,j) | i <- [1..nrows m], j <- [1..ncols m], m!(i,j) == 'E
 
 
 -- ----------------------------------------------------------------------
--- Ejercicio 5. (2 puntos)
+-- Ejercicio 5.
 -- ----------------------------------------------------------------------
--- Ejercicio 5.1 (1,5 puntos). Redefine la función main para que haya un
+-- Ejercicio 5.1. Redefine la función main para que haya un
 -- menú de texto previo a lanzar el entorno codeworld. Este menú debe:
 --  1) preguntar primero por un nombre de fichero y leerlo por teclado,
 --  2) procesar el fichero con control de excepciones. Si el fichero
@@ -349,7 +315,7 @@ menu = do
     putStrLn (show (head labs))
     activityOf (inicio (head labs)) manejaEvento pintaEstado
 
--- Ejercicio 5.2 (0,5 puntos). La función soluciones recibe una matriz
+-- Ejercicio 5.2. La función soluciones recibe una matriz
 -- y devuelve el número de posibles soluciones en el laberinto. Define una
 -- función main que cargue todos los laberintos en el fichero cuyo nombre
 -- se pase como primer argumento, y compruebe el mínimo de todos ellos.

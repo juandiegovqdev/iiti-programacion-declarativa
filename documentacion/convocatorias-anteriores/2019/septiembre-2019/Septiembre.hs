@@ -1,24 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Examen Septiembre                          12 de Septiembre de 2019
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · 1. Antes de continuar, cambie el nombre de este archivo por:
---                   Septiembre_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · 2. Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · 3. Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- · 4. Se recomienda entregar un fichero que cargue correctamente,
---   dejando comentado todo código con errores.
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 
 import TADPila
@@ -29,7 +8,7 @@ import Text.CSV
 import Data.Matrix
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [2 ptos]
+-- Ejercicio 1
 -- ---------------------------------------------------------------------
 -- Se considera la función multFuncPrimerosNValidos
 -- :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
@@ -51,7 +30,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. [1 pto]
+-- Ejercicio 2
 -- ---------------------------------------------------------------------
 -- Desarrolle una animación usando CodeWorld, de modo que la escena
 -- incluya los ejes de coordenadas, un rectángulo inmóvil con grosor,
@@ -60,7 +39,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3
 -- ---------------------------------------------------------------------
 -- Desarrolle un programa principal que lea del archivo pasado
 -- como argumento (si no se le pasa ninguno, de "atp_players.csv"),
@@ -82,7 +61,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. [1,5 ptos]
+-- Ejercicio 4
 -- ---------------------------------------------------------------------
 -- La sucesión generalizada de Fibonacci de grado N
 -- (N >= 1) se construye comenzando con el número 1 y calculando el
@@ -107,7 +86,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5
 -- ---------------------------------------------------------------------
 -- Dada la siguiente definición de árbol mediante listas 
 --
@@ -133,7 +112,7 @@ data Arbol = N Int [Arbol]
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6. [1 pto]
+-- Ejercicio 6
 -- ---------------------------------------------------------------------
 -- Definir las siguientes funciones y tipos de datos:
 ---   * Definir el tipo 'Binario', tal que nos permita representar un

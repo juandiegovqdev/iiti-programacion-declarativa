@@ -1,22 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Examen Febrero                                 1 de Febrero de 2019
--- -------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- -------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · Antes de continuar, cambie el nombre de este archivo por:
---                   Febrero_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- -------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 
@@ -31,7 +12,7 @@ import Data.Matrix
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [1 pto]
+-- Ejercicio 1
 -- Definir la función largas tal que (largas xs) es la
 -- lista de las palabras más largas de la lista xs. Por ejemplo,
 --    largas ["no", "tengo", "claro", "que", "haga", "sol", "estos", "dias"]
@@ -43,7 +24,7 @@ largas xs = [x | x <- xs, length x == m]
   where m = maximum [length x | x <- xs]
 
 -- -------------------------------------------------------------------
--- Ejercicio 2. [1 pto]
+-- Ejercicio 2
 -- Desarrollar una funcion principal (juego) con un programa
 -- interactivo basado en CodeWorld, que inicialmente pinte un círculo
 -- rojo en la parte izquierda de la pantalla y un cuadrado verde
@@ -71,7 +52,7 @@ circ n = translated (-6) 0 $ colored red (scaled n n (solidCircle 1))
 cuad m = translated 6 0 $ colored green (scaled m m (solidRectangle 2 2))
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [1,5 ptos]
+-- Ejercicio 3
 -- Se considera la funcion aplicaNSats tal que (aplicaNSats n f ps xs)
 -- es la lista obtenida aplicándole la función f a los n primeros
 -- elementos de xs que cumplan alguno de los predicados de ps.
@@ -131,7 +112,7 @@ extremosCola c
           (li,ls) = (extremosCola rc)
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5
 -- Se denomina matriz dispersa aquella cuyos elementos son 
 -- mayoritariamente nulos. La representación de matrices dispersas se
 -- suele comprimir en una forma densa, donde se dejan en las filas
@@ -179,7 +160,7 @@ matrizDispersa m = matrix (nrows m) nc f
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6. [2,5 ptos]
+-- Ejercicio 6
 -- Un árbol Trie es un árbol de búsqueda donde los nodos internos codifican
 -- un alfabeto de Claves y las hojas contienen Valores asociados
 -- a las Claves. A continuación se muestra un ejemplo, donde las Claves
@@ -287,7 +268,7 @@ consultaValor (NT _ hs) ss
 -- ---------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 7. [1,5 ptos]
+-- Ejercicio 7
 -- Se desea representar una estructura que almacena datos sobre
 -- categorías deportivas diferenciadas por la web de una importante
 -- cadena especializada en deportes. En relación con esto:

@@ -7,7 +7,7 @@ import Text.CSV
 -- import Data.Matrix
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [2 ptos]
+-- Ejercicio 1.
 -- ---------------------------------------------------------------------
 -- Se considera la función multFuncPrimerosNValidos
 -- :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
@@ -52,7 +52,7 @@ multFuncPrimerosNValidosFoldr n f p xs = undefined
 --    multFuncPrimerosNValidosFoldr 2 (4+) even [1..7] 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3. 
 -- ---------------------------------------------------------------------
 -- Desarrolle un programa principal que lea del archivo pasado
 -- como argumento (si no se le pasa ninguno, de "atp_players.csv"),
@@ -76,7 +76,7 @@ multFuncPrimerosNValidosFoldr n f p xs = undefined
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. [1,5 ptos]
+-- Ejercicio 4. 
 -- ---------------------------------------------------------------------
 -- La sucesión generalizada de Fibonacci de grado N
 -- (N >= 1) se construye comenzando con el número 1 y calculando el
@@ -103,7 +103,7 @@ multFuncPrimerosNValidosFoldr n f p xs = undefined
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5. 
 -- ---------------------------------------------------------------------
 -- Dada la siguiente definición de árbol mediante listas 
 --

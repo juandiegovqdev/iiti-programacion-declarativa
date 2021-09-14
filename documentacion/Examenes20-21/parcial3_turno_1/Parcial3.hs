@@ -1,12 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 3 (turno 1)                                21 de Enero de 2021
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:                Puesto ocupado:
--- ----------------------------------------------------------------------
-
 import Data.Array
 import Data.List
 --import I1M.Cola
@@ -14,7 +5,7 @@ import ColaConListas
 import System.Directory
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. (2,5 puntos)
+-- Ejercicio 1. 
 -- ---------------------------------------------------------------------
 -- La siguiente sucesión de números naturales
 --    binarioPar :: [Integer]
@@ -23,7 +14,7 @@ import System.Directory
 -- 1, 3, 4, 5, 7, 9, 11, 12, 13, 15, 16, 17, 19, 20, 21, 23, 25, 27, 28,...
 -- Porque: 1 acaba en 0 ceros, 3 acaba en 0 ceros, 4 acaba en 2 ceros, ...
 
--- Ejercicio 1.a (1 punto) Define la función usando recursión y/o
+-- Ejercicio 1.a. Define la función usando recursión y/o
 -- comprensión, incluyendo las funciones auxiliares.
 
 binarioPar :: [Integer]
@@ -37,19 +28,18 @@ nat2bin :: Integer -> [Integer]
 nat2bin n | n < 2 = [n]
           | otherwise = (rem n 2):nat2bin (div n 2)
 
--- Ejercicio 1.b (1,5 puntos) Define la función solo usando funciones de
+-- Ejercicio 1.b. Define la función solo usando funciones de
 -- orden superior, incluyendo las funciones auxiliares.
 -- Nota 1: puede ser de utilidad la funcion (iterate f n)
 -- Nota 2: si usas las funciones auxiliares del apartado anterior, el
--- ejercicio se evalúa pero con la mitad de puntuación (0,75 puntos).
+-- ejercicio se evalúa pero con la mitad de puntuación.
 
 binarioParO :: [Integer]
 binarioParO = undefined
-
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. (2,5 puntos)
+-- Ejercicio 2. 
 -- ---------------------------------------------------------------------
 -- Un árbol binario está balanceado si para cada nodo, el número de 
 -- elementos por el subárbol izquierdo y por el derecho es aproximadamente
@@ -81,11 +71,10 @@ ejA1 = (N 5 (H) (N 4 (N 3 H H) (N 2 H H)))
 ejA2 = (N 4 (N 8 (N 0 H (N 2 H H)) H) (N 1 (N 3 H H) H))
 
 ordenaBalancea = undefined 
-
 -- ---------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. (2 puntos)
+-- Ejercicio 3. 
 -- ------------------------------------------------------------------- 
 -- Vamos a implementar un sistema de cintas de productos mediante una
 -- lista de colas. Las cintas están conectadas entre sí, de tal manera
@@ -117,28 +106,27 @@ ejGC2 = [foldr inserta vacia [5,4..1],inserta 6 vacia]
 
 sacaCinta :: [Cola a] -> (Maybe a,[Cola a])
 sacaCinta = undefined 
-
 -- ------------------------------------------------------------------- 
 
 -- -------------------------------------------------------------------
--- Ejercicio 4. (3 puntos)
+-- Ejercicio 4. 
 -- ------------------------------------------------------------------- 
 -- En este ejercicio vamos a trabajar con un Sudoku de 9x9 (solo de 
 -- este tamaño, así que puedes usar el 9 sin problema en las
 -- soluciones). 
 
--- Ejercicio 4.a (0,5 puntos) Define el tipo Sudoku, el cual es sinónimo
+-- Ejercicio 4.a. Define el tipo Sudoku, el cual es sinónimo
 -- de una matriz de dos dimensiones cuyos valores son enteros.
 
 -- Sudoku = ...
 
--- Ejercicio 4.b (2,5 puntos) Define un programa interactivo donde:
---    * (1 punto) Se le pida al usuario un nombre de fichero, y éste se
+-- Ejercicio 4.b. Define un programa interactivo donde:
+--    * Se le pida al usuario un nombre de fichero, y éste se
 --      cargue si existe el fichero, si no devuelve un mensaje de error
 --      "Fichero no existente" y acaba. El contenido del fichero se debe
 --      procesar para crear una variable de tipo Sudoku (matriz de dos
 --      dimensiones de enteros.)
---    * (1,5 puntos) Se le pida al usuario una fila, una columna, e imprima
+--    * Se le pida al usuario una fila, una columna, e imprima
 --      la lista de números que pueden introducirse en esa posición. Si el
 --      valor en la posición no es 0, entonces imprime una lista vacía.
 -- Ejemplos:
@@ -173,5 +161,4 @@ sacaCinta = undefined
 
 main :: IO()
 main = undefined
-
 -- -------------------------------------------------------------------

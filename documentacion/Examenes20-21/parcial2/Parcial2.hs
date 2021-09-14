@@ -200,16 +200,16 @@ maximosHojas = undefined
 --   a) cargar el contenido del fichero CSV en 'entrada_csv' en una variable
 --     de tipo Tabla. Por simplicidad vamos a asumir que todas las columnas del
 --     CSV siempre contienen valores numéricos. Tendrás que hacer la transformación
---     a valores numéricos a todos los valores. (1 punto)
+--     a valores numéricos a todos los valores. 
 --   b) calcular una tabla de agrupación con 'agrupaPor' (como en el ejercicio
 --     3.b, si no lo has hecho, puedes usar la definición en Nota 1) para las
 --     columnas 'col1', 'col2' y usando como función de agregación la media 
---     aritmética. (1 punto)
---   c) elige una de las siguientes opciones (hasta 1 punto):
+--     aritmética. 
+--   c) elige una de las siguientes opciones:
 --       * imprimir por pantalla la tabla resultado como se muestra en los 
---         ejemplos de abajo. (0,5 puntos)
+--         ejemplos de abajo. 
 --       * además de imprimir por pantalla la tabla, escribir en un fichero
---         con nombre out.csv el resultado resultado. (1 punto)
+--         con nombre out.csv el resultado resultado. 
 --
 -- Se valorará más si se controlan los posible errores: existencia de ficheros, 
 -- existencia de columnas en la tabla y número de parámetros en la llamada.

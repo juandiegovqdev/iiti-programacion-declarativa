@@ -1,25 +1,3 @@
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Examen Diciembre                                   17 de Diciembre de 2019
--- --------------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- --------------------------------------------------------------------------
--- AVISOS IMPORTANTES
--- · 1. Antes de continuar, cambie el nombre de este archivo por:
---                   diciembre_<uvus>.hs
---   donde <uvus> debe ser su usuario virtual.
--- · 2. Por favor, entregue un fichero que cargue correctamente, dejando
---   comentado todo código con errores.
--- · 3. Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · 4. Asegúrese de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite,
---   describiendo su objetivo.
--- --------------------------------------------------------------------------
-
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 
@@ -33,7 +11,7 @@ import Data.Matrix
 import TADPila
 
 -- --------------------------------------------------------------------------
--- Ejercicio 1. [2 ptos]
+-- Ejercicio 1.
 -- --------------------------------------------------------------------------
 -- La función extremosCumplen recibe un predicado p, una función f y
 -- una lista de listas xss, y devuelve una lista de pares de elementos
@@ -115,7 +93,7 @@ extremosCumplenP2 p f xss = foldl (\acc xs -> acc ++ [e xs]) [] xss
 
 
 -- --------------------------------------------------------------------------
--- Ejercicio 2. [2 ptos]
+-- Ejercicio 2
 -- --------------------------------------------------------------------------
 -- 1. Defina, con sintaxis de registro, los tipos necesarios para almacenar
 --    la información sobre personajes de Star Wars contenida en el
@@ -199,7 +177,7 @@ masAlto personajes = do
 
 
 -- --------------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3
 -- --------------------------------------------------------------------------
 -- Un árbol binario se puede codificar asociando valores tan solo en las
 -- hojas. Se pide,
@@ -242,7 +220,7 @@ elemNivel' (N a1 a2) x n
 
 
 -- --------------------------------------------------------------------------
--- Ejercicio 4. [2 ptos]
+-- Ejercicio 4
 -- --------------------------------------------------------------------------
 -- En el problema de las torres de Hanoi se consideran tres varillas donde se
 -- apilan discos de distinto tamaño. Una forma de codificar las varillas es
@@ -291,7 +269,7 @@ transfiere n p1 p2 | n==0 || esVacia p1 = p2
 
 
 -- --------------------------------------------------------------------------
--- Ejercicio 5. [2 ptos]
+-- Ejercicio 5
 -- --------------------------------------------------------------------------
 -- Representamos el tablero del ajedrez con una matriz donde los elementos son
 -- del tipo Pieza. Este tipo tiene como posibles valores: V, C, T, A, P, RY y

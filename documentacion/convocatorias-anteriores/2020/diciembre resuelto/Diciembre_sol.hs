@@ -1,35 +1,3 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 2a Convocatoria                               12 de Diciembre de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- Lugar ocupado:   laboratorio:            puesto:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:          Septiembre_<uvus>.hs
---    donde "<uvus>" es tu UVUS.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y NO lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrate de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
-
 import Data.List as L
 import Data.Matrix as M
 import Data.Map as D
@@ -38,7 +6,7 @@ import Control.Exception (catch, SomeException)
 
 
 -- ============================================================================
--- Ejercicio 1. (2,5 ptos) Define la función
+-- Ejercicio 1. Define la función
 --   maximoConsecutivos :: (Eq a) => [a] -> Integer
 -- tal que '(maximoConsecutivos xs)' es el número máximo de elementos
 -- consecutivos iguales en la lista 'xs'. Por ejemplo,
@@ -69,7 +37,7 @@ maximoConsecutivos2 xs =
 -- ============================================================================
 
 -- ============================================================================
--- Ejercicio 2. (2,5 ptos) Los árboles binarios con datos en nodos internos y
+-- Ejercicio 2. Los árboles binarios con datos en nodos internos y
 -- hojas se pueden representar con el siguiente tipo de dato:
 
 data Arbol a = H a
@@ -156,7 +124,7 @@ raiz (N v _ _) = v
 -- ============================================================================
 
 -- ============================================================================
--- Ejercicio 3. (2,5 ptos) El problema de las N torres consiste en colocar 
+-- Ejercicio 3. El problema de las N torres consiste en colocar 
 -- N torres en un tablero con N filas y N columnas de forma que no haya dos
 -- torres en la misma fila ni en la misma columna.  
 --
@@ -229,10 +197,10 @@ torres3 = L.map M.fromLists . L.permutations . M.toLists . M.identity
 -- Ejercicio 4. (2,5 puntos) Define el siguiente programa:
 
 -- a) Define una función main, donde primero pida al usuario un nombre de
--- de fichero, y se recoja el nombre en una variable (0.5 ptos)
+-- de fichero, y se recoja el nombre en una variable 
 
 -- b) Si el fichero no existe, debe dar un error explicativo al usuario 
--- y vuelva a a) (0.5 ptos)
+-- y vuelva a a)
 
 -- c) Si el fichero existe, cargar el contenido en un diccionario Data.Map. Vamos a asumir que el 
 -- formato es el correcto, y se trata de un fichero de configuración, con una línea por opción (1pto): 
@@ -243,7 +211,7 @@ torres3 = L.map M.fromLists . L.permutations . M.toLists . M.identity
 -- pantalla Primaria
  
 -- d) Pedir al usuario un nombre de OPCION y devolver el VALOR correspondiente según lo cargado
--- en el diccionaro. Acto seguido, el programa acaba. (0.5ptos).
+-- en el diccionaro. Acto seguido, el programa acaba. 
 
 -- Un ejemplo (usando el fichero ejemplo.txt adjunto al examen):
 -- > main

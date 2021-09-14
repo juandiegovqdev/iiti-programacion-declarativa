@@ -1,9 +1,3 @@
--- PilaConTipoDeDatoAlgebraico.hs
--- Implementación de las pilas mediante tipos de datos algebraicos.
--- José A. Alonso Jiménez <jalonso@us.es>
--- Sevilla, 11 de Septiembre de 2010
--- ---------------------------------------------------------------------
-
 module TADPila 
     (Pila,
      vacia,    -- Pila a

@@ -1,41 +1,9 @@
--- Programación Declarativa 2019/20
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 2a Convocatoria                               10 de Septiembre de 2020
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:
--- Lugar ocupado:   laboratorio:            puesto:
--- ----------------------------------------------------------------------
--- INSTRUCCIONES PARA LA ENTREGA
--- 1. CAMBIA EL NOMBRE de este archivo por:          Septiembre_<uvus>.hs
---    donde "<uvus>" es tu UVUS.
--- 2. COMENTA LAS LÍNEAS CON ERRORES hasta que se pueda cargar el fichero
---    sin problemas. ESCRIBE tu nombre y apellidos en la cabecera.
--- 3. COMPRIME este archivo en un único fichero llamado EXACTAMENTE:
---      ENTREGA-<uvus>.tar.gz      (o bien)       ENTREGA-<uvus>.tar.xz
---    donde "<uvus>" es tu UVUS. No te olvides del guión después de
---    ENTREGA, y NO lo comprimas en un fichero .zip.
--- 4. REINICIA el equipo. En el menú de selección del sistema (con fondo
---    blanco), HAZ CLICK SOBRE "Enviar examen" al lado de sistema Ubuntu.
--- 5. Después de comprobar que se ha entregado, VUELVE A TU EQUIPO y
---    APÁGALO.
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Asegúrate de utilizar correctamente el nombre y el tipo indicado
---   para cada función solicitada.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
-
 import Data.Matrix
 import Control.Monad
 import Control.Exception (catch, SomeException)
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (3,5 puntos)
+-- Ejercicio 1.
 -- ----------------------------------------------------------------------
 -- Muchos algoritmos de compresión de imágenes se basan en la transformada
 -- discreta del coseno (DCT en inglés). La DCT se aplica sobre una lista
@@ -82,7 +50,7 @@ dctRS :: [Float] -> [Float]
 dctRS = undefined
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (3 puntos)
+-- Ejercicio 2. 
 -- ----------------------------------------------------------------------    
 -- En un árbol ternario los nodos tienen como máximo tres hijos.
 -- Suelen ser útiles para almacenar valores en orden: a la izquierda de
@@ -136,7 +104,7 @@ dctRS = undefined
 arbolTOrdenado = undefined
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (3,5 puntos)
+-- Ejercicio 3. 
 -- ----------------------------------------------------------------------
 -- Vamos a aplicar la función DCT definida antes sobre una imagen. Para ello
 -- vamos a cargar una matriz con los valores de los píxeles desde un fichero.
