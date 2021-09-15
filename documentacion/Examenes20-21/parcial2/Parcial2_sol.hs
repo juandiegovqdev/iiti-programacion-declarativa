@@ -92,7 +92,6 @@ agrupa xs ys = (parte ns xs', parte ns ys')   -- usamos parte para partir los se
         xs' = map fst zs       -- recuperamos el resultado para xs
         ys' = map snd zs       -- recuperamos el resultado para ys
         ns = map length (group xs')  -- calculamos las longitudes de segmentos de xs
-
 -- ---------------------------------------------------------------------
 
 
@@ -170,7 +169,6 @@ agrupaPor (T _ cabecera valores _) colref coldest fagr = T "agrupado" [colref,co
           (xss',yss') = agrupa xs ys  -- llamada a agrupa, y los resultados en xs' y ys'
           sref = map head xss'        -- para xss', nos quedamos con los primeros
           sdest = map fagr yss'       -- para yss', aplicamos fagr
-          
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
@@ -224,7 +222,6 @@ maximosHojas (N _ i d) = N (maxH i,maxH d) (maximosHojas i) (maximosHojas d)  --
 maxH :: Arbol Int Int -> Int
 maxH (H v) = v   -- El máximo valor de las hojas aquí es el valor de la misma hoja
 maxH (N _ i d) = max (maxH i) (maxH d) -- El máximo del resultado con i y d
-
 
 -- ------------------------------ --
 -- PARTE C del examen, 30 minutos --
@@ -359,4 +356,3 @@ main = do
     printf "   [col1] y [col2] -> son la columnas de agrupación\n"
 
   return ()
-

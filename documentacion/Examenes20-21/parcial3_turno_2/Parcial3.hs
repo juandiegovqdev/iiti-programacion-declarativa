@@ -1,19 +1,10 @@
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Parcial 3 (turno 2)                                21 de Enero de 2021
--- ----------------------------------------------------------------------
--- Apellidos:
--- Nombre:
--- UVUS:                Puesto ocupado:
--- ----------------------------------------------------------------------
-
 import Data.Array
 --import I1M.Pila
 import PilaConListas
 import Data.List
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. (2,5 puntos)
+-- Ejercicio 1.
 -- ---------------------------------------------------------------------
 -- La sucesión de Loomis generada por un número entero positivo 'x' es la 
 -- sucesión cuyos términos se definen por:
@@ -57,7 +48,7 @@ digitosNoNulos :: Integer -> [Integer]
 digitosNoNulos x = [read [c] | c <- show x, c /= '0']
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1.b (1,5 puntos) Se observa que a partir de un término todas 
+-- Ejercicio 1.b. Se observa que a partir de un término todas 
 -- coinciden con la generada por el 1. Dicho término se llama el punto de
 -- convergencia. Por ejemplo,
 
@@ -84,7 +75,7 @@ convergencia :: Integer -> Integer
 convergencia = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. (2 puntos)
+-- Ejercicio 2. 
 -- ---------------------------------------------------------------------
 -- Los árboles se pueden representar mediante el siguiente tipo de datos
 
@@ -123,7 +114,7 @@ ej2 = N 3 [N 5 [N 6 []], N 4 [], N 7 [N 2 [], N 1 []]]
 propaga = undefined
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. (2,5 puntos)
+-- Ejercicio 3.
 -- ------------------------------------------------------------------- 
 -- Una forma de detectar que todos los paréntesis de una cadena están
 -- cerrados es empleando el siguiente algoritmo basado en pilas:
@@ -165,7 +156,7 @@ comprueba' ((c,i):cs) p
 -- -------------------------------------------------------------------
 
 -- -------------------------------------------------------------------
--- Ejercicio 4. (3 puntos)
+-- Ejercicio 4. 
 -- ------------------------------------------------------------------- 
 -- En este ejercicio vamos a trabajar con un Sudoku de 9x9 (solo de 
 -- este tamaño, así que puedes usar el 9 sin problema en las
@@ -247,5 +238,4 @@ sudoku = listArray ((1,1),(9,9)) [9,2,0,8,0,0,0,4,0,
 
 main :: IO()
 main = undefined
-
 -- -------------------------------------------------------------------
