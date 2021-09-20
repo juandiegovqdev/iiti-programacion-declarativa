@@ -34,14 +34,12 @@ data CuatroEnRaya = CR [Columna] deriving Show
 colocarFicha :: Ficha -> Int -> CuatroEnRaya -> CuatroEnRaya
 colocarFicha f n (CR cs) = CR [if p==n then (f:c) else c | (c,p) <- (zip cs [1..])]
 
-
 data Ficha2 = Roja | Azul deriving Show
 type Columna2 = [Ficha2]
 data CuatroEnRaya2 = CR2 [Columna2] deriving Show
 
 colocarFicha2 :: Ficha2 -> Int -> CuatroEnRaya2 -> CuatroEnRaya2
 colocarFicha2 f n (CR2 cs) = CR2 [if p==n then (f:c) else c | (c,p) <- (zip cs [1..])]
-
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. 
@@ -154,7 +152,6 @@ processPlanet planet = do
     "El planeta " ++ show (name planet) ++
     " tiene un radio de " ++ show (div (read (diameter planet)::Int) 2) ++ " kms"
 
-
 main3 :: IO ()
 main3 = do
   args <- getArgs
@@ -169,7 +166,6 @@ main3 = do
 processPlanets :: SWPlanets -> IO ()
 processPlanets planets = do
   mapM_ processPlanet planets
-
 
 -----------------------------------------------------------------------
 -- Ejercicio 4.

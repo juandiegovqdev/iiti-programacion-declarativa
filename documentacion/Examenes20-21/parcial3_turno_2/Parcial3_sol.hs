@@ -178,7 +178,6 @@ propaga (N x as) = N x (map (prop x) as)
 -- λ> comprueba "(x+1)))"
 --    Just 6
 -- -------------------------------------------------------------------
-
 comprueba :: String -> Maybe Int
 comprueba cs = comprueba' (zip cs [1..]) (vacia)
 

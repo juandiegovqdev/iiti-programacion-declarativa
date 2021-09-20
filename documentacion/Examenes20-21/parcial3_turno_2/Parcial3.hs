@@ -21,7 +21,7 @@ import Data.List
 -- Generada por 4: 4, 8, 16, 22, 26, 38, 62, 74, 102, 104, 108, 116, 122, 126, 138, …
 -- Generada por 5: 5, 10, 11, 12, 14, 18, 26, 38, 62, 74, 102, 104, 108, 116, 122, …
 
--- Ejercicio 1.a (1 punto) Define la función  
+-- Ejercicio 1.a. Define la función  
 --    sucLoomis :: Integer -> [Integer]
 -- tal que (sucLoomis x) es la sucesión de Loomis generada por x. Por ejemplo,
 --  λ> take 15 (sucLoomis 1)
