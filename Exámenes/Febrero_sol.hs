@@ -48,7 +48,7 @@ import I1M.Pila
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (0,7 puntos) 
+-- Ejercicio 1. 
 -- ----------------------------------------------------------------------
 -- Define la función (limpia cs), tal que reciba una cadena de caracteres 
 -- y devuelva otra donde solo queden letras del abecedario en inglés
@@ -75,7 +75,7 @@ limpia'' cs = [toLower c | c <- cs, elem c (['a'..'z']++['A'..'Z'])]
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (0,3 puntos)
+-- Ejercicio 2. 
 -- ----------------------------------------------------------------------
 -- Define el tipo sinónimo TablaFrecuencias tal que sea un vector (es decir, 
 -- un Array de 1 dimensión) cuyos índices sean enteros y los valores sean
@@ -86,7 +86,7 @@ type TablaFrecuencias = Array Int Float
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (1,5 puntos)
+-- Ejercicio 3. 
 -- ----------------------------------------------------------------------
 -- Define la función (frecuencias cs) tal que reciba un String y devuelva 
 -- un valor del tipo TablaFrecuencias. La cadena cs debe ser procesada
@@ -115,7 +115,7 @@ frecuencias cs = array (idx 'a',idx 'z') [(idx c,freq c) | c <-['a'..'z'] ]
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 4. (2 puntos)
+-- Ejercicio 4.
 -- ----------------------------------------------------------------------
 -- Define la función (pilaFrecuencias tf) tal que reciba una tabla de 
 -- frecuencias y devuelva una pila cuyos elementos sean pares (c,f), 
@@ -154,7 +154,7 @@ pilaFrecuencias' tf = foldl (\p (f,c)-> apila (c,f) p) vacia $ dropWhile ((==0).
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 5. (2 puntos) 
+-- Ejercicio 5.  
 -- ----------------------------------------------------------------------
 -- Vamos a usar el siguiente tipo de dato algebraico para representar un
 -- árbol de Huffman. Observa que los 0s y 1s no se representan, tan solo 
@@ -214,7 +214,7 @@ arbolHuffman' cs = arbHuffAux fs
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 6. (1,5 puntos) 
+-- Ejercicio 6.  
 -- ----------------------------------------------------------------------
 -- Define la función (codificaHuffman cs), tal que reciba una cadena de 
 -- caracteres y devuelva una lista de enteros. La lista de enteros contendrá 
@@ -252,7 +252,7 @@ huffaux _ _ = []
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 7. (2 puntos)
+-- Ejercicio 7. 
 -- ----------------------------------------------------------------------
 -- Define un programa tal que:
 -- 1) pida al usuario que introduzca un nombre
@@ -295,7 +295,3 @@ main = do
       writeFile "output.txt" (map intToDigit hs)
 
 -- ----------------------------------------------------------------------
-
-
-
-
