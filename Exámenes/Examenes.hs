@@ -1,6 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Matrix
+import Data.Array
+import Data.Char
+import Data.List
+import Control.Exception (catch, SomeException)
+import PilaConListas
+--import I1M.Pila
 import Test.QuickCheck
 import Control.Monad
 import Control.Exception (catch, SomeException)
@@ -9,7 +15,7 @@ import Control.Parallel.Strategies (Eval,runEval,rpar)
 import Control.DeepSeq
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (2 puntos)
+-- Ejercicio 1. 
 -- ----------------------------------------------------------------------
 -- Una forma de transmitir valores numéricos en binario de manera compacta
 -- es la codificación unaria. Una variante es la siguiente:
@@ -24,21 +30,21 @@ import Control.DeepSeq
 --   λ> decodificaO [1,1,0,1,1,1,0,0] == [-2,2]
 --   λ> decodificaO [0,0,1,1,1,0,1,1,1,1,0,0,1,0,1] == [0,0,-3,3,-1]
 
--- Ejercicio 1.1 (1 punto). Definir con orden superior
+-- Ejercicio 1.1. Definir con orden superior
 
 decodificaO :: [Int] -> [Int]
 decodificaO = undefined
 
--- Ejercicio 1.2 (1 punto). Definir con solo recursión
+-- Ejercicio 1.2. Definir con solo recursión
 
 decodificaR :: [Int] -> [Int]
 decodificaR = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (2 puntos)
+-- Ejercicio 2.
 -- ----------------------------------------------------------------------
--- Ejercicio 2.1 (1,5 puntos) Implementar el TAD Pila usando el diccionario 
+-- Ejercicio 2.1. Implementar el TAD Pila usando el diccionario 
 -- Data.Map. Se debe indicar en un breve comentario cual es el diseño 
 -- seguido (es decir, qué se almacena como clave y qué como valor). No
 -- se permite la traducción a listas, por lo que se debe hacer uso 
@@ -88,7 +94,7 @@ maximo = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (2 puntos)
+-- Ejercicio 3. 
 -- ----------------------------------------------------------------------
 -- Un árbol binario se puede definir con el siguiente tipo de dato algebráico:
 
@@ -114,14 +120,14 @@ data Arbol a = H a
 --   ejArbol1 y ejArbol2 no están ordenados. ejArbol3 y ejArbol4 son la
 --   versión ordenada de ejArbol1 y ejArbol2, respectivamente.
 
--- Ejercicio 3.1 (0,5 puntos). Comprueba con QuickCheck que el número de 
+-- Ejercicio 3.1. Comprueba con QuickCheck que el número de 
 -- nodos de un árbol binario es siempre impar. Se valorará con 0,5 si se
 -- define la función con composición de funciones, y 0,25 en otro caso.
 
 prop_arboles_binarios :: Arbol a -> Bool
 prop_arboles_binarios = undefined
   
--- Ejercicio 3.2 (1,5 puntos). Define la función (ordena a), tal que reciba
+-- Ejercicio 3.2. Define la función (ordena a), tal que reciba
 -- un árbol binario balanceado, a, y devuelva un árbol binario balanceado y
 -- ordenado con los mismos valores de a.
 -- Nota 1: puedes usar listas o cualquier módulo que te sea útil
@@ -139,7 +145,7 @@ ordena = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 4. (2 puntos)
+-- Ejercicio 4.
 -- ----------------------------------------------------------------------
 -- Vamos a definir un laberinto en una matriz de caracteres usando para
 -- ello:
@@ -188,9 +194,9 @@ main = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 5. (2 puntos)
+-- Ejercicio 5. 
 -- ----------------------------------------------------------------------
--- Ejercicio 5.1 (1,5 puntos). Redefine la función main para que haya un
+-- Ejercicio 5.1. Redefine la función main para que haya un
 -- menú de texto previo a lanzar el entorno codeworld. Este menú debe:
 --  1) preguntar primero por un nombre de fichero y leerlo por teclado,
 --  2) procesar el fichero con control de excepciones. Si el fichero
@@ -226,7 +232,7 @@ main = undefined
 menu :: IO()
 menu = undefined
 
--- Ejercicio 5.2 (0,5 puntos). La función soluciones recibe una matriz
+-- Ejercicio 5.2. La función soluciones recibe una matriz
 -- y devuelve el número de posibles soluciones en el laberinto. Define una
 -- función main que cargue todos los laberintos en el fichero cuyo nombre
 -- se pase como primer argumento, y compruebe el mínimo de todos ellos.
@@ -280,27 +286,6 @@ instance Arbitrary a => Arbitrary (Arbol a) where
                       where subarbol = arbol (div n 2)
       arbol _       = error "Imposible"
 
--- ---------------------------------------------------------------------
-
--- Programación Declarativa 2020/21
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- Febrero                                          11 de Febrero de 2021
--- ----------------------------------------------------------------------
--- ORIENTACIONES
--- · Escribe la solución de cada ejercicio en el hueco reservado para
---   ello.
--- · Se valorará el uso correcto de tipados para cada función definida.
--- · Puedes añadir tantas funciones auxiliares (incluyendo el tipo
---   adecuadamente) como necesites.
--- ----------------------------------------------------------------------
-
-import Data.Array
-import Data.Char
-import Data.List
-import Control.Exception (catch, SomeException)
-import PilaConListas
---import I1M.Pila
-
 -- ----------------------------------------------------------------------
 -- En esta prueba vamos a implementar una codificación Huffman sencilla.
 -- Veamos primero de qué se trata. Por ejemplo, la cadena "ABRRKBAARAA"  
@@ -348,7 +333,7 @@ import PilaConListas
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1. (0,7 puntos) 
+-- Ejercicio 1.  
 -- ----------------------------------------------------------------------
 -- Define la función (limpia cs), tal que reciba una cadena de caracteres 
 -- y devuelva otra donde solo queden letras del abecedario en inglés
@@ -367,7 +352,7 @@ limpia = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2. (0,3 puntos)
+-- Ejercicio 2. 
 -- ----------------------------------------------------------------------
 -- Define el tipo sinónimo TablaFrecuencias tal que sea un vector (es decir, 
 -- un Array de 1 dimensión) cuyos índices sean enteros y los valores sean
@@ -378,7 +363,7 @@ limpia = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (1,5 puntos)
+-- Ejercicio 3. 
 -- ----------------------------------------------------------------------
 -- Define la función (frecuencias cs) tal que reciba un String y devuelva 
 -- un valor del tipo TablaFrecuencias. La cadena cs debe ser procesada
@@ -403,7 +388,7 @@ frecuencias = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 4. (2 puntos)
+-- Ejercicio 4.
 -- ----------------------------------------------------------------------
 -- Define la función (pilaFrecuencias tf) tal que reciba una tabla de 
 -- frecuencias y devuelva una pila cuyos elementos sean pares (c,f), 
@@ -425,7 +410,7 @@ pilaFrecuencias = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 5. (2 puntos) 
+-- Ejercicio 5. 
 -- ----------------------------------------------------------------------
 -- Vamos a usar el siguiente tipo de dato algebraico para representar un
 -- árbol de Huffman. Observa que los 0s y 1s no se representan, tan solo 
@@ -461,7 +446,7 @@ arbolHuffman = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 6. (1,5 puntos) 
+-- Ejercicio 6.  
 -- ----------------------------------------------------------------------
 -- Define la función (codificaHuffman cs), tal que reciba una cadena de 
 -- caracteres y devuelva una lista de enteros. La lista de enteros contendrá 
@@ -491,7 +476,7 @@ codificaHuffman = undefined
 -- ----------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------
--- Ejercicio 7. (2 puntos)
+-- Ejercicio 7.
 -- ----------------------------------------------------------------------
 -- Define un programa tal que:
 -- 1) pida al usuario que introduzca un nombre
@@ -524,22 +509,8 @@ codificaHuffman = undefined
 main :: IO ()
 main = undefined
 
--- ----------------------------------------------------------------------
-
--- Programación Declarativa
--- Grado de Ingeniería Informática - Tecnologías Informáticas
--- 3 Parcial                                      21 de Diciembre 2017
 -- -------------------------------------------------------------------
--- # Escriba la solución de cada ejercicio en el hueco reservado para
---   ello.
--- # Asegúrese de utilizar exactamente el nombre y el tipo indicado
---   para cada función solicitada. Puede añadir tantas funciones
---   auxiliares (incluyendo el tipo adecuadamente) como necesite
---   describiendo claramente su objetivo.
--- -------------------------------------------------------------------
-
--- -------------------------------------------------------------------
--- Ejercicio 2 (4'5 ptos).
+-- Ejercicio 2.
 -- -------------------------------------------------------------------
 -- (2.1) Definir los tipos Jugador (con dos posibles valores para
 -- poder distinguir quien tiene el turno en cada momento), Mesa (como
