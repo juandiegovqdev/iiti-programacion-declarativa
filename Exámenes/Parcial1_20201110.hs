@@ -2,7 +2,7 @@ import Test.QuickCheck
 import Data.Char
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1 (1,5 puntos)
+-- Ejercicio 1 
 -- Definir el operador infijo (~>=) tal que reciba números de cualquier 
 -- tipo de la clase fractional, y devuelva un Booleano indicando si el 
 -- primer argumento es aproximadamente igual al segundo con una precisión
@@ -21,7 +21,7 @@ x ~>= y = abs(y-x) >= 0.001
 --}
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2 (3 puntos). El centro de masas de un sistema discreto de cuerpos
+-- Ejercicio 2. El centro de masas de un sistema discreto de cuerpos
 -- es el punto del espacio que se comporta como si en él estuviera aplicada
 -- la resultante de las fuerzas externas al sistema.
 --
@@ -33,7 +33,7 @@ x ~>= y = abs(y-x) >= 0.001
 --    b = (b1*m1+b2*m2+ ... bn*mn)/(m1+m2+...mn)
 --    c = (c1*m1+c2*m2+ ... cn*mn)/(m1+m2+...mn)
 --
--- Ejercicio 2.1. (1,5 puntos)
+-- Ejercicio 2.1.
 -- Define la función (centroDeMasas xs) tal que reciba una lista de
 -- cuerpos como descrito arriba, y devuelva la coordenada del centro de masas.
 -- La función debe ser polimórfica, aceptando tipos de clase Floating.
@@ -68,7 +68,7 @@ obtenerM [] = 0
 obtenerM ((m,(a,b,c)):xs) = m + obtenerM xs
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2.2 (1,5 punto)
+-- Ejercicio 2.2 
 -- Comprueba con quickcheck la siguiente propiedad: para todo conjunto
 -- de n cuerpos, con n>1, cuyas masas son positivas (estrictamente mayor que
 -- cero), las coordenadas del centro de masas están dentro del rango de
@@ -83,7 +83,7 @@ obtenerM ((m,(a,b,c)):xs) = m + obtenerM xs
 prop_masas = undefined
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. (3 puntos)
+-- Ejercicio 3. 
 -- Dada una señal codificada en una lista de números reales,
 -- necesitamos buscar los máximos locales, los cuales se calculan como
 -- sigue: dado un valor n, un máximo local es aquel elemento que es 
@@ -127,7 +127,7 @@ mayorQuePosterior n z (x:xs)
     | otherwise       = False
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. (2,5 puntos)
+-- Ejercicio 4. 
 -- Define la función (digitosConDecimales n), tal que reciba un número
 -- real (de simple precisión) y devuelva un par donde ambas componentes
 -- son una lista de números enteros. La función devuelve la lista de los
