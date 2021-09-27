@@ -7,7 +7,7 @@ import Text.CSV
 import Data.Matrix
 
 -- ---------------------------------------------------------------------
--- Ejercicio 1. [2 ptos]
+-- Ejercicio 1.
 -- ---------------------------------------------------------------------
 -- Se considera la función multFuncPrimerosNValidos
 -- :: (Num a, Num b) => Int -> (a -> b) -> (a -> Bool) -> [a] -> b
@@ -37,7 +37,7 @@ import Data.Matrix
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. [1 pto]
+-- Ejercicio 2.
 -- ---------------------------------------------------------------------
 -- Desarrolle una animación usando CodeWorld, de modo que la escena
 -- incluya los ejes de coordenadas, un rectángulo inmóvil con grosor,
@@ -46,7 +46,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3. 
 -- ---------------------------------------------------------------------
 -- Desarrolle un programa principal que lea del archivo pasado
 -- como argumento (si no se le pasa ninguno, de "atp_players.csv"),
@@ -68,7 +68,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 4. [1,5 ptos]
+-- Ejercicio 4. 
 -- ---------------------------------------------------------------------
 -- La sucesión generalizada de Fibonacci de grado N
 -- (N >= 1) se construye comenzando con el número 1 y calculando el
@@ -93,7 +93,7 @@ import Data.Matrix
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5. 
 -- ---------------------------------------------------------------------
 -- Dada la siguiente definición de árbol mediante listas 
 --
@@ -119,7 +119,7 @@ data Arbol = N Int [Arbol]
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 6. [1 pto]
+-- Ejercicio 6. 
 -- ---------------------------------------------------------------------
 -- Definir las siguientes funciones y tipos de datos:
 ---   * Definir el tipo 'Binario', tal que nos permita representar un
@@ -135,7 +135,7 @@ data Arbol = N Int [Arbol]
 -- ---------------------------------------------------------------------
 
 -- ---------------------------------------------------------------------
--- Ejercicio 7. [1 pto]
+-- Ejercicio 7.
 -- ---------------------------------------------------------------------
 -- Algunos algoritmos de compresión de imágenes hacen uso de los planos
 -- de bits, o bitplanes. Sea una matriz m de números en binario, los
