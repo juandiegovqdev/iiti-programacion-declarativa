@@ -4,7 +4,7 @@ import PilaConTipoDeDatoAlgebraico
 import System.Environment (getArgs)
 
 -- -------------------------------------------------------------------
--- Ejercicio 1. [1,75 ptos]
+-- Ejercicio 1. 
 -- En relación con el juego del cuatro en raya...
 --
 -- 1. Defina los tipos siguientes:
@@ -22,7 +22,7 @@ type Ficha = Rojo | Azul
 type Columna = [Ficha]
 
 -- ---------------------------------------------------------------------
--- Ejercicio 2. [1,75 ptos]
+-- Ejercicio 2. 
 -- Se plantea la necesidad de trabajar con árboles que adopten tipos
 -- flexibles. Para ello:
 --
@@ -41,7 +41,7 @@ type Columna = [Ficha]
 
 
 -- -------------------------------------------------------------------
--- Ejercicio 3. [2 ptos]
+-- Ejercicio 3. 
 
 -- 1. Defina, con sintaxis de registro, un nuevo tipo que contenga la
 --    información sobre planetas que aparecen en las películas
@@ -71,7 +71,7 @@ type Columna = [Ficha]
 
 
 -----------------------------------------------------------------------
--- Ejercicio 4. [1 pto]
+-- Ejercicio 4.
 --
 -- El siguiente programa carga el contenido del fichero "cars-2018.csv",
 -- lo parsea y posteriormente procesa cabecera y cuerpo, que
@@ -118,7 +118,7 @@ pasaALista :: Field -> [String]
 pasaALista cadena = read cadena::[String]
 
 -- ---------------------------------------------------------------------
--- Ejercicio 5. [1,5 ptos]
+-- Ejercicio 5. 
 -- Se denomina matriz dispersa aquella cuyos elementos son 
 -- mayoritariamente nulos. La representación de matrices dispersas se
 -- suele realizar de forma densa, es decir, dejando los elementos no
@@ -172,7 +172,7 @@ ejPila = foldr apila vacia [2,4,6,8,10]
 
 
 -- ---------------------------------------------------------------------
--- Ejercicio 7.1 [0.5 ptos]
+-- Ejercicio 7.1 
 -- Un número entero n es libre de cuadrados si no existe un número primo
 -- p tal que p^2 divide a n. Por ejemplo, 10 es libre de cuadrado porque
 -- 10 = 2*5, pero 12 no lo es porque es divisible entre 2^2. Definir
@@ -183,7 +183,7 @@ ejPila = foldr apila vacia [2,4,6,8,10]
 --          [True,True,True,False,True,True,True,False,False,True]
 
 
--- Ejercicio 7.2 [0.5 ptos] Paralelizar la definición de libresDeCuadrado
+-- Ejercicio 7.2. Paralelizar la definición de libresDeCuadrado
 -- empleando la función parallel map vista en teoría. Indicar en un
 -- comentario cuál es el speedup alcanzado cuando se compara la versión
 -- secuencial (anterior) y paralela (aquí solicitada) con m=5000.
