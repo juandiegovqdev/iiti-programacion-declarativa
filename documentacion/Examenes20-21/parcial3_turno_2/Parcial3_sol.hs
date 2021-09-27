@@ -109,7 +109,6 @@ convergencia2 x = aux (sucLoomis2 1) (sucLoomis2 x)
                                | x < y     = aux xs bs
                                | otherwise = aux as ys
 
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 2. 
 -- ---------------------------------------------------------------------
@@ -117,7 +116,7 @@ convergencia2 x = aux (sucLoomis2 1) (sucLoomis2 x)
 
 data Arbol a = N a [Arbol a]
   deriving (Show, Eq)
-
+  
 -- 
 -- Por ejemplo, los árboles
 --      1               3
@@ -302,4 +301,3 @@ main = do
   if (posible f c n sudoku) then
       putStrLn "Correcto" else 
       putStrLn "Incorrecto"
--- -------------------------------------------------------------------
