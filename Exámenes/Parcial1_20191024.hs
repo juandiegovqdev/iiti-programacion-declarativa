@@ -1,7 +1,7 @@
 import Test.QuickCheck
 
 -- ----------------------------------------------------------------------
--- Ejercicio 1.1 (2 puntos)
+-- Ejercicio 1.1 
 -- Definir el operador infijo (*&) tal que reciba y devuelva números
 -- reales de doble precisión. El cálculo realizado es la multiplicación
 -- de los dos argumentos redondeado al siguiente entero. El operador debe
@@ -17,7 +17,7 @@ import Test.QuickCheck
 
 
 -- ----------------------------------------------------------------------
--- Ejercicio 2.1 (2 puntos)
+-- Ejercicio 2.1 
 -- Definir la función (intervalos a b xs), donde xs es una lista de posiciones
 -- en una recta (números reales) que puede venir desordenada, a y b son dos
 -- valores reales que definen un intervalo en dicha recta. Necesitamos que la
@@ -36,7 +36,7 @@ import Test.QuickCheck
 -- λ> intervalos 0.0 10.0 [9.5,10.0,-3,0.3,5.0,-10.56,114.5] ==
 -- ([-10.56,-3.0],[0.3,5.0,9.5,10.0],[114.5])
 
--- Ejercicio 2.2. (1 punto)
+-- Ejercicio 2.2. 
 -- Comprobar con quickCheck si se cumple lo siguiente: xs es igual al intervalo
 -- comprendido entre el mínimo y el máximo de xs calculado mediante la función
 -- intervalos.
@@ -65,7 +65,7 @@ mayoresQue 0 xs = xs
 mayoresQue c (x:xs) = mayoresQue (c-1) xs
 
 -- ----------------------------------------------------------------------
--- Ejercicio 3. (2,5 puntos)
+-- Ejercicio 3. 
 -- La función (zigzag xs) sobre una lista cambia el orden de los elementos de
 -- xs tal que el primero de xs va al comienzo, el segundo de xs al final, el
 -- tercero en la segunda posición, el cuarto en la penúltima posición, etc. Es
@@ -102,7 +102,7 @@ zigzagO :: [Int] -> [Int]
 zigzagO xs = filter odd xs ++ reverse (filter even xs)
 
 -- ----------------------------------------------------------------------  
--- Ejercicio 4.1. (1,5 puntos)
+-- Ejercicio 4.1. 
 -- Definir la función (maxListas xss) tal que reciba una lista de listas xss,
 -- y devuelva una lista de pares (i,j), donde i es el índice de la sublista no
 -- vacía i-ésima dentro de xss y j es la posición donde sucede el máximo de la
@@ -127,7 +127,7 @@ obtenerIndice (x:xs) a indF ind
     | a < x = obtenerIndice xs x (indF+1) (ind+1)
     | otherwise = obtenerIndice xs a (indF) (ind+1)
 
--- Ejercicio 4.2. (1 punto)
+-- Ejercicio 4.2. 
 -- Definir la función (listaIncrementales xs) que reciba una lista de pares
 -- como la calculada en el ejercicio anterior. Dado que cada par (i,j) indica
 -- el índice de la lista, i, y la posición de su máximo, j, la función debe
