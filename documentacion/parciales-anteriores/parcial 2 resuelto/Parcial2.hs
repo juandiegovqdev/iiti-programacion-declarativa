@@ -6,10 +6,6 @@ import Text.Printf
 import Data.List
 import Test.QuickCheck
 
--- ------------------------------ --
--- PARTE A del examen, 40 minutos --
--- ------------------------------ --
-
 -- ----------------------------------------------------------------------
 -- Ejercicio 1. 
 -- Define la función (parte ns xs), tal que dadas una lista de enteros 'ns' 
@@ -82,10 +78,6 @@ agrupa :: (Ord a) => [a] -> [a] -> ([[a]],[[a]])
 agrupa = undefined
 
 -- ---------------------------------------------------------------------
-
--- ------------------------------ --
--- PARTE B del examen, 40 minutos --
--- ------------------------------ --
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. 
@@ -198,10 +190,6 @@ ej3 = (N 29 (H 1) (N 524 (H 1) (H 1)))
 
 maximosHojas :: Arbol Int Int -> Arbol (Int,Int) Int
 maximosHojas = undefined
-
--- ------------------------------ --
--- PARTE C del examen, 30 minutos --
--- ------------------------------ --
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5.
