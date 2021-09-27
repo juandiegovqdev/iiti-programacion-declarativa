@@ -72,7 +72,6 @@ prop_masas xs = length xs > 1 && and [m>0| (m,_) <- xs] ==>       -- condición 
           bs = [b | (_,(_,b,_)) <- xs]  -- Sacamos segundas coordenadas
           cs = [c | (_,(_,_,c)) <- xs]  -- Sacamos terceras coordenadas
 
-
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. 
 -- Dada una señal codificada en una lista de números reales,
