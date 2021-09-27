@@ -6,10 +6,6 @@ import Text.Printf
 import Data.List
 import Test.QuickCheck
 
--- ------------------------------ --
--- PARTE A del examen, 40 minutos --
--- ------------------------------ --
-
 -- ----------------------------------------------------------------------
 -- Ejercicio 1. 
 -- Define la función (parte ns xs), tal que dadas una lista de enteros 'ns' 
@@ -93,10 +89,6 @@ agrupa xs ys = (parte ns xs', parte ns ys')   -- usamos parte para partir los se
         ns = map length (group xs')  -- calculamos las longitudes de segmentos de xs
 
 -- ---------------------------------------------------------------------
-
--- ------------------------------ --
--- PARTE B del examen, 40 minutos --
--- ------------------------------ --
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3. 
@@ -222,10 +214,6 @@ maximosHojas (N _ i d) = N (maxH i,maxH d) (maximosHojas i) (maximosHojas d)  --
 maxH :: Arbol Int Int -> Int
 maxH (H v) = v   -- El máximo valor de las hojas aquí es el valor de la misma hoja
 maxH (N _ i d) = max (maxH i) (maxH d) -- El máximo del resultado con i y d
-
--- ------------------------------ --
--- PARTE C del examen, 30 minutos --
--- ------------------------------ --
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 5. 
@@ -356,4 +344,3 @@ main = do
     printf "   [col1] y [col2] -> son la columnas de agrupación\n"
 
   return ()
-
