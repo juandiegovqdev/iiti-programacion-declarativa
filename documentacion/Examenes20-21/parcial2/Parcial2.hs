@@ -262,4 +262,3 @@ control_error err = print "Se ha producido un error." >> print (err::SomeExcepti
    
 main :: IO ()
 main = undefined
-
