@@ -3,7 +3,7 @@ import Data.List
 -- NOTA: AL IMPORTAR ESTE MÓDULO, PODEMOS UTILIZAR FUNCIONES
 -- COMO sort o nub, si son necesarias.
 -- -----------------------------------------------------------------
--- EJERCICIO 1.(1,5 puntos)
+-- EJERCICIO 1.
 --  Definir por COMPRENSIÓN Y RECURSIÓN la función (parejas l1 l2),
 --  tal que, dadas dos listas l1 y l2, construya todas las posibles 
 --  parejas que se pueden formar con los elementos de ambas. 
@@ -27,7 +27,7 @@ parejasC :: [a] -> [b] -> [(a,b)]
 parejasC xs ys = [(x, y) | x <- xs, y <- ys]
 
 -- -----------------------------------------------------------------
--- EJERCICIO 2.(1,5 puntos)
+-- EJERCICIO 2.
 -- Definir POR RECURSIÓN Y COMPRENSIÓN una función (elimina l n) tal
 -- que, dada una lista l y un número natural n(mayor que 1), elimine
 -- de la lista todos los elementos cuyas posiciones sean múltiplos
@@ -47,7 +47,7 @@ eliminaC :: [a] -> Int -> [a]
 eliminaC = undefined
 
 -- -----------------------------------------------------------------
--- EJERCICIO 3.(1 punto)
+-- EJERCICIO 3.
 -- Definir una función permuta que, dados dos números naturales,
 -- determine si el segundo es una permutación de las cifras del
 -- primero.
@@ -61,7 +61,7 @@ permuta :: Int -> Int -> Bool
 permuta = undefined
 
 -- -----------------------------------------------------------------
--- EJERCICIO 4.(1,5 puntos)
+-- EJERCICIO 4.
 -- Definir, utilizando PLEGADO, una función (repetidos n l) tal 
 -- que, dados un número natural n y una lista de números naturales l,
 -- devuelva los números de l que son permutaciones de las cifras de n.
@@ -74,7 +74,7 @@ repetidos :: Int -> [Int] -> [Int]
 repetidos = undefined
 
 -- -----------------------------------------------------------------
--- EJERCICIO 5. (2,5 puntos)
+-- EJERCICIO 5. 
 -- Definir un tipo de dato que permita representar árboles (no
 -- necesariamente binarios) con datos enteros en los  nodos.
 
@@ -102,5 +102,3 @@ repetidos = undefined
 -- ramaLarga :: Arbol a -> [a]
 -- ramaLarga = undefined
 -- -----------------------------------------------------------------
-
-
